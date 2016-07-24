@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>ShipName</key>
+		<string>PROSPECTOR</string>
+		<key>PointsRequired</key>
+		<integer>0</integer>
+		<key>DamageMultiplier</key>
+		<real>1</real>
+		<key>CollisionPolygon</key>
+		<array>
+			<string>{32,-8.5}</string>
+			<string>{-5,-32}</string>
+			<string>{-13.5,-32}</string>
+			<string>{-29.625,-16}</string>
+			<string>{-29.625,16}</string>
+			<string>{-13.5,32}</string>
+			<string>{-5,32}</string>
+			<string>{32,8.5}</string>
+		</array>
+		<key>JetScale</key>
+		<real>0.25</real>
+		<key>JetPositions</key>
+		<array>
+			<string>{-10,23.25}</string>
+			<string>{-10,41.75}</string>
+		</array>
+	</dict>
+	<dict>
+		<key>ShipName</key>
+		<string>OMEGA SEEKER</string>
+		<key>PointsRequired</key>
+		<integer>800000</integer>
+		<key>DamageMultiplier</key>
+		<real>1.1</real>
+		<key>CollisionPolygon</key>
+		<array>
+			<string>{-21.5,3}</string>
+			<string>{-17.15,4.25}</string>
+			<string>{-12.9,3.1}</string>
+			<string>{-12.5,2}</string>
+			<string>{-7.75,2}
+</string>
+			<string>{-6.75,5.35}</string>
+			<string>{-5,8.1}</string>
+			<string>{-2.65,10.35}
+</string>
+			<string>{0.35,12}</string>
+			<string>{-7.5,26.5}</string>
+			<string>{7,29}</string>
+			<string>{6.65,32}</string>
+			<string>{15,30}</string>
+			<string>{21.5,25.1}</string>
+			<string>{25.85,20}</string>
+			<string>{28.35,15.85}</string>
+			<string>{30,12}</string>
+			<string>{32,3}</string>
+			<string>{32,-3}</string>
+			<string>{30,-12}</string>
+			<string>{28.35,-15.85}</string>
+			<string>{25.85,-20}</string>
+			<string>{21.5,-25.1}</string>
+			<string>{15,-30}</string>
+			<string>{6.65,-32}</string>
+			<string>{7,-29}</string>
+			<string>{-7.5,-26.5}</string>
+			<string>{0.35,-12}</string>
+			<string>{-2.65,-10.35}</string>
+			<string>{-5,-8.1}</string>
+			<string>{-6.75,-5.35}</string>
+			<string>{-7.75,-2}
+</string>
+			<string>{-12.5,-2}</string>
+			<string>{-12.9,-3.1}</string>
+			<string>{-17.15,-4.25}</string>
+			<string>{-21.5,-3}</string>
+		</array>
+		<key>JetScale</key>
+		<real>0.25</real>
+		<key>JetPositions</key>
+		<array>
+			<string>{1,32.25}</string>
+		</array>
+	</dict>
+	<dict>
+		<key>ShipName</key>
+		<string>SPUTNIK</string>
+		<key>PointsRequired</key>
+		<integer>3000000</integer>
+		<key>DamageMultiplier</key>
+		<real>1.3</real>
+		<key>CollisionRadius</key>
+		<integer>27</integer>
+		<key>CollisionOffset</key>
+		<string>{5,0}</string>
+		<key>JetScale</key>
+		<real>0.41666666666667</real>
+		<key>JetPositions</key>
+		<array>
+			<string>{8,32.25}</string>
+		</array>
+	</dict>
+</array>
+</plist>

@@ -1,0 +1,34 @@
+{
+    "ndk_module_path" :[
+        "../cocos2d",
+        "../cocos2d/cocos",
+        "../cocos2d/external"
+    ],
+    "copy_resources": [
+       {
+           "from": "../Resources",
+           "to": "",
+           "exclude": ["*.caf"]
+       },
+       {
+           "from": "../GameAssets/assets1x",
+           "to": "assets1x"
+       },
+       {
+           "from": "../GameAssets/assets2x",
+           "to": "assets2x"
+       },
+       {
+           "from": "../GameAssets/assets3x",
+           "to": "assets3x"
+       },
+       {
+           "from": "../GameAssets/assets4x",
+           "to": "assets4x"
+       },
+       {
+           "from": "../GameAssets/common",
+           "to": "common"
+       }
+    ]
+}

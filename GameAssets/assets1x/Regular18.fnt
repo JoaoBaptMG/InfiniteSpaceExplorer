@@ -1,0 +1,55 @@
+info face=Regular18 size=18 bold=0 italic=0 charset= unicode= stretchH=100 smooth=1 aa=1 padding=2,2,2,2 spacing=0,0 outline=0
+common lineHeight=22 base=14 scaleW=32 scaleH=128 pages=1 packed=0
+page id=0 file="Regular18.png"
+chars count=15
+char id=67 x=2 y=2 width=11 height=14 xoffset=1 yoffset=0 xadvance=12 page=0 chnl=15
+char id=72 x=2 y=18 width=11 height=13 xoffset=2 yoffset=0 xadvance=14 page=0 chnl=15
+char id=79 x=2 y=33 width=13 height=14 xoffset=1 yoffset=0 xadvance=14 page=0 chnl=15
+char id=83 x=15 y=2 width=9 height=14 xoffset=1 yoffset=0 xadvance=10 page=0 chnl=15
+char id=69 x=15 y=18 width=8 height=13 xoffset=2 yoffset=0 xadvance=10 page=0 chnl=15
+char id=32 x=2 y=49 width=0 height=0 xoffset=0 yoffset=13 xadvance=3 page=0 chnl=15
+char id=89 x=2 y=51 width=12 height=13 xoffset=0 yoffset=0 xadvance=11 page=0 chnl=15
+char id=85 x=2 y=66 width=11 height=13 xoffset=1 yoffset=0 xadvance=13 page=0 chnl=15
+char id=82 x=2 y=81 width=10 height=13 xoffset=2 yoffset=0 xadvance=12 page=0 chnl=15
+char id=73 x=2 y=96 width=2 height=13 xoffset=2 yoffset=0 xadvance=6 page=0 chnl=15
+char id=80 x=2 y=111 width=9 height=13 xoffset=2 yoffset=0 xadvance=11 page=0 chnl=15
+char id=44 x=6 y=96 width=3 height=5 xoffset=1 yoffset=11 xadvance=4 page=0 chnl=15
+char id=84 x=11 y=96 width=10 height=13 xoffset=0 yoffset=0 xadvance=11 page=0 chnl=15
+char id=65 x=14 y=81 width=12 height=13 xoffset=0 yoffset=0 xadvance=12 page=0 chnl=15
+char id=76 x=15 y=66 width=8 height=13 xoffset=2 yoffset=0 xadvance=9 page=0 chnl=15
+char id=32 x=0 y=0 width=0 height=0 xoffset=2 yoffset=0 xadvance=3 page=0 chnl=15
+kernings count=34
+kerning first=44 second=67 amount=-1
+kerning first=44 second=79 amount=-1
+kerning first=44 second=84 amount=-2
+kerning first=44 second=89 amount=-1
+kerning first=65 second=67 amount=0
+kerning first=65 second=79 amount=0
+kerning first=65 second=84 amount=-1
+kerning first=65 second=85 amount=-1
+kerning first=65 second=89 amount=-1
+kerning first=76 second=44 amount=0
+kerning first=76 second=67 amount=-1
+kerning first=76 second=79 amount=-1
+kerning first=76 second=84 amount=-2
+kerning first=76 second=89 amount=-2
+kerning first=79 second=44 amount=-1
+kerning first=79 second=65 amount=0
+kerning first=79 second=84 amount=-1
+kerning first=79 second=89 amount=-1
+kerning first=80 second=44 amount=-2
+kerning first=80 second=65 amount=-1
+kerning first=82 second=67 amount=0
+kerning first=82 second=79 amount=0
+kerning first=82 second=84 amount=0
+kerning first=82 second=85 amount=0
+kerning first=84 second=44 amount=-2
+kerning first=84 second=65 amount=-1
+kerning first=84 second=67 amount=-1
+kerning first=84 second=79 amount=-1
+kerning first=85 second=44 amount=0
+kerning first=85 second=65 amount=-1
+kerning first=89 second=44 amount=-1
+kerning first=89 second=65 amount=-1
+kerning first=89 second=67 amount=-1
+kerning first=89 second=79 amount=-1
