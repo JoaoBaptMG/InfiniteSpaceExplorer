@@ -27,6 +27,83 @@ THE SOFTWARE.
 package org.cocos2dx.cpp;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.content.*;
+import android.app.Activity;
+import android.view.*;
+import android.net.Uri;
+import com.facebook.*;
+import com.facebook.appevents.AppEventsLogger;
+import joaobapt.FacebookManager;
 
-public class AppActivity extends Cocos2dxActivity {
+public class AppActivity extends Cocos2dxActivity
+{
+    public static Display defaultDisplay;
+    public static Activity activity;
+    public static FacebookManager fbManager;
+    
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        defaultDisplay = ((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        activity = this;
+        
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        fbManager = new FacebookManager(CallbackManager.Factory.create());
+    }
+    
+    public static int getDisplayRotation()
+    {
+        return defaultDisplay.getRotation();
+    }
+    
+    public static Activity getActivity()
+    {
+        return activity;
+    }
+    
+    public static FacebookManager getFacebookManager()
+    {
+        return fbManager;
+    }
+    
+    public static boolean openURL(String url)
+    {
+        try
+        {
+            activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+            return true;
+        }
+        catch (ActivityNotFoundException exc)
+        {
+            return false;
+        }
+    }
+    
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AppEventsLogger.activateApp(this);
+    }
+    
+    @Override
+    protected void onPause() {
+        super.onPause();
+        AppEventsLogger.deactivateApp(this);
+    }
+    
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        fbManager.cleanup();
+    }
+    
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        fbManager.getCallbackManager().onActivityResult(requestCode, resultCode, data);
+    }
 }
