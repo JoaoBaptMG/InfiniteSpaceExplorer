@@ -45,7 +45,7 @@ void GameCenterManager::authenticate(std::function<void()> success)
     {
         if (viewController != nil)
         {
-            Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("FreezeForGameCenter");
+            Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("FreezeForSocialManagers");
             UIViewController *rootController = [UIApplication sharedApplication].keyWindow.rootViewController;
             [rootController presentViewController:viewController animated:YES completion:nil];
             awaitingViewController = true;
@@ -60,7 +60,7 @@ void GameCenterManager::authenticate(std::function<void()> success)
         
         if (awaitingViewController)
         {
-            Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("UnfreezeForGameCenter");
+            Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("UnfreezeForSocialManagers");
             awaitingViewController = false;
         }
     };

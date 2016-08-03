@@ -216,7 +216,36 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Classes\AppDelegate.h" />
-    <ClInclude Include="..\..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\..\Classes\BackgroundNode.h" />
+    <ClInclude Include="..\..\Classes\BezierNode.h" />
+    <ClInclude Include="..\..\Classes\BlurFilter.h" />
+    <ClInclude Include="..\..\Classes\CollisionManager.h" />
+    <ClInclude Include="..\..\Classes\CustomActions.h" />
+    <ClInclude Include="..\..\Classes\CustomGLPrograms.h" />
+    <ClInclude Include="..\..\Classes\Defaults.h" />
+    <ClInclude Include="..\..\Classes\DownloadedPhotoNode.h" />
+    <ClInclude Include="..\..\Classes\DownloadPicture.h" />
+    <ClInclude Include="..\..\Classes\ExampleScoreManager.h" />
+    <ClInclude Include="..\..\Classes\FacebookLoginButton.h" />
+    <ClInclude Include="..\..\Classes\FacebookManager.h" />
+    <ClInclude Include="..\..\Classes\GameCenterManager.h" />
+    <ClInclude Include="..\..\Classes\GameScene.h" />
+    <ClInclude Include="..\..\Classes\GPGManager.h" />
+    <ClInclude Include="..\..\Classes\HazardSelector.h" />
+    <ClInclude Include="..\..\Classes\LifeMarker.h" />
+    <ClInclude Include="..\..\Classes\MessageDialog.h" />
+    <ClInclude Include="..\..\Classes\MotionProcessor.h" />
+    <ClInclude Include="..\..\Classes\MultiPurposeScene.h" />
+    <ClInclude Include="..\..\Classes\OpenURL.h" />
+    <ClInclude Include="..\..\Classes\PlayerNode.h" />
+    <ClInclude Include="..\..\Classes\PowerupSpawner.h" />
+    <ClInclude Include="..\..\Classes\ResultNode.h" />
+    <ClInclude Include="..\..\Classes\ScoreManager.h" />
+    <ClInclude Include="..\..\Classes\ScoreNode.h" />
+    <ClInclude Include="..\..\Classes\ScoreTable.h" />
+    <ClInclude Include="..\..\Classes\ShipConfig.h" />
+    <ClInclude Include="..\..\Classes\SoundManager.h" />
+    <ClInclude Include="..\..\Classes\TutorialNode.h" />
     <ClInclude Include="App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
@@ -240,7 +269,37 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\..\Classes\BackgroundNode.cpp" />
+    <ClCompile Include="..\..\Classes\BezierNode.cpp" />
+    <ClCompile Include="..\..\Classes\BlurFilter.cpp" />
+    <ClCompile Include="..\..\Classes\CollisionManager.cpp" />
+    <ClCompile Include="..\..\Classes\CustomActions.cpp" />
+    <ClCompile Include="..\..\Classes\CustomGLPrograms.cpp" />
+    <ClCompile Include="..\..\Classes\DownloadedPhotoNode.cpp" />
+    <ClCompile Include="..\..\Classes\DownloadPicture.cpp" />
+    <ClCompile Include="..\..\Classes\ExampleScoreManager.cpp" />
+    <ClCompile Include="..\..\Classes\FacebookLoginButton.cpp" />
+    <ClCompile Include="..\..\Classes\FacebookManager.cpp" />
+    <ClCompile Include="..\..\Classes\GameCenterManager.cpp" />
+    <ClCompile Include="..\..\Classes\GameScene.cpp" />
+    <ClCompile Include="..\..\Classes\GPGManager.cpp" />
+    <ClCompile Include="..\..\Classes\HazardSelector-Spawners.cpp" />
+    <ClCompile Include="..\..\Classes\HazardSelector.cpp" />
+    <ClCompile Include="..\..\Classes\LifeMarker.cpp" />
+    <ClCompile Include="..\..\Classes\MessageDialog.cpp" />
+    <ClCompile Include="..\..\Classes\MotionProcessor-Backup.cpp" />
+    <ClCompile Include="..\..\Classes\MotionProcessor.cpp" />
+    <ClCompile Include="..\..\Classes\MultiPurposeScene.cpp" />
+    <ClCompile Include="..\..\Classes\OpenURL.cpp" />
+    <ClCompile Include="..\..\Classes\PlayerNode.cpp" />
+    <ClCompile Include="..\..\Classes\PowerupSpawner.cpp" />
+    <ClCompile Include="..\..\Classes\ResultNode.cpp" />
+    <ClCompile Include="..\..\Classes\ScoreManager.cpp" />
+    <ClCompile Include="..\..\Classes\ScoreNode.cpp" />
+    <ClCompile Include="..\..\Classes\ScoreTable.cpp" />
+    <ClCompile Include="..\..\Classes\ShipConfig.cpp" />
+    <ClCompile Include="..\..\Classes\SoundManager.cpp" />
+    <ClCompile Include="..\..\Classes\TutorialNode.cpp" />
     <ClCompile Include="App.xaml.cpp">
       <DependentUpon>App.xaml</DependentUpon>
     </ClCompile>

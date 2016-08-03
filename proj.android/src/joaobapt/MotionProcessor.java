@@ -43,9 +43,6 @@ class MotionProcessor implements SensorEventListener
             manualSensorFusion = false;
             
             currentSensors = new Sensor[] { rotationVectorSensor };
-            
-            currentQuaternion = new float[] { 0.0f, 0.0f, 0.0f, 0.0f };
-            calibratedQuaternion = new float[] { 0.0f, 0.0f, 0.0f, 0.0f };
         }
         else
         {
@@ -67,6 +64,8 @@ class MotionProcessor implements SensorEventListener
             }
         }
         
+        currentQuaternion = new float[] { 0.0f, 0.0f, 0.0f, 0.0f };
+        calibratedQuaternion = new float[] { 0.0f, 0.0f, 0.0f, 0.0f };
         directionVector = new float[] { 0.0f, 0.0f };
     }
     

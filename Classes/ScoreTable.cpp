@@ -202,7 +202,7 @@ bool ScoreTable::init(Size size)
     currentRequestCode = 0;
     
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    gameCenterLoadedListener = _eventDispatcher->addCustomEventListener("GameCenterRefreshed", [=] (EventCustom*) { redrawScores(); });
+    gameCenterLoadedListener = _eventDispatcher->addCustomEventListener("SocialManagersRefreshed", [=] (EventCustom*) { redrawScores(); });
 #endif
     
     auto separator = LayerColor::create(Color4B(204, 204, 204, 255), size.width, 1);

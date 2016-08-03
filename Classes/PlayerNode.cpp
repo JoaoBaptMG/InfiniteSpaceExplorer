@@ -107,11 +107,6 @@ bool PlayerNode::init()
 PlayerNode::~PlayerNode()
 {
     GLProgramState::getOrCreateWithGLProgramName("PlayerShapeProgram")->setUniformCallback("tintAmount", nullptr);
-    
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-    if (debugOrientationLabel->getParent() != nullptr) debugOrientationLabel->removeFromParent();
-    debugOrientationLabel->release();
-#endif
 }
 
 void PlayerNode::createJetFlames()
@@ -233,10 +228,6 @@ void PlayerNode::onEnter()
         
         int opHealth = -health;
         _eventDispatcher->dispatchCustomEvent("LifeUpdate", &opHealth);
-        
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-        getParent()->getParent()->addChild(debugOrientationLabel);
-#endif
     }
 }
 
@@ -314,10 +305,6 @@ void PlayerNode::update(float delta)
         
         auto angle = (velocity/delta + Vec2(1200, 0)).getAngle();
         setRotation(-CC_RADIANS_TO_DEGREES(angle));
-        
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-        debugOrientationLabel->setString(longToString(motionProcessor->getScreenRotation()));
-#endif
     }
 }
 

@@ -22,8 +22,8 @@ class GameScene : public cocos2d::LayerColor
     cocos2d::EventListenerCustom *lifeUpdateListener, *tutorialDoneListener;
     cocos2d::EventListenerCustom *backgroundListener, *foregroundListener;
     
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    cocos2d::EventListenerCustom *gameCenterListener;
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    cocos2d::EventListenerCustom *socialEventListener;
 #endif
     
     cocos2d::RenderTexture* firstRenderTexture;

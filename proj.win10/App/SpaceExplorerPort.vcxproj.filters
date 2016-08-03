@@ -14,6 +14,18 @@
     <Filter Include="Classes">
       <UniqueIdentifier>{a18967bc-4fa1-4c67-bf7e-3f9c8b6a1129}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Custom Nodes">
+      <UniqueIdentifier>{c8ec43ca-856b-4d0d-9d1b-8537df52046d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Scenes">
+      <UniqueIdentifier>{51b82bce-abd3-4298-b05f-37e384259f61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Social Experience Managers">
+      <UniqueIdentifier>{b926865e-0c78-43d5-ae04-88e26e0ea511}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Utility Files">
+      <UniqueIdentifier>{617a3a01-f6a8-4392-a2f3-1fdfe42ae9cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -31,8 +43,98 @@
     <ClCompile Include="..\..\Classes\AppDelegate.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Classes\HelloWorldScene.cpp">
-      <Filter>Classes</Filter>
+    <ClCompile Include="..\..\Classes\BackgroundNode.cpp">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\BezierNode.cpp">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\DownloadedPhotoNode.cpp">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\FacebookLoginButton.cpp">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\HazardSelector.cpp">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\HazardSelector-Spawners.cpp">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\LifeMarker.cpp">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\PlayerNode.cpp">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\PowerupSpawner.cpp">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\ResultNode.cpp">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\ScoreNode.cpp">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\ScoreTable.cpp">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\TutorialNode.cpp">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\GameScene.cpp">
+      <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\MultiPurposeScene.cpp">
+      <Filter>Classes\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\ExampleScoreManager.cpp">
+      <Filter>Classes\Social Experience Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\FacebookManager.cpp">
+      <Filter>Classes\Social Experience Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\GameCenterManager.cpp">
+      <Filter>Classes\Social Experience Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\GPGManager.cpp">
+      <Filter>Classes\Social Experience Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\ScoreManager.cpp">
+      <Filter>Classes\Social Experience Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\BlurFilter.cpp">
+      <Filter>Classes\Utility Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CollisionManager.cpp">
+      <Filter>Classes\Utility Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CustomActions.cpp">
+      <Filter>Classes\Utility Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CustomGLPrograms.cpp">
+      <Filter>Classes\Utility Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\DownloadPicture.cpp">
+      <Filter>Classes\Utility Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\MessageDialog.cpp">
+      <Filter>Classes\Utility Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\MotionProcessor.cpp">
+      <Filter>Classes\Utility Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\MotionProcessor-Backup.cpp">
+      <Filter>Classes\Utility Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\OpenURL.cpp">
+      <Filter>Classes\Utility Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\ShipConfig.cpp">
+      <Filter>Classes\Utility Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\SoundManager.cpp">
+      <Filter>Classes\Utility Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -48,8 +150,95 @@
     <ClInclude Include="..\..\Classes\AppDelegate.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Classes\HelloWorldScene.h">
-      <Filter>Classes</Filter>
+    <ClInclude Include="..\..\Classes\BackgroundNode.h">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\BezierNode.h">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\DownloadedPhotoNode.h">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\FacebookLoginButton.h">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\HazardSelector.h">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\LifeMarker.h">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\PlayerNode.h">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\PowerupSpawner.h">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\ResultNode.h">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\ScoreNode.h">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\ScoreTable.h">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\TutorialNode.h">
+      <Filter>Classes\Custom Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\GameScene.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\MultiPurposeScene.h">
+      <Filter>Classes\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\ExampleScoreManager.h">
+      <Filter>Classes\Social Experience Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\FacebookManager.h">
+      <Filter>Classes\Social Experience Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\GameCenterManager.h">
+      <Filter>Classes\Social Experience Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\GPGManager.h">
+      <Filter>Classes\Social Experience Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\ScoreManager.h">
+      <Filter>Classes\Social Experience Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\BlurFilter.h">
+      <Filter>Classes\Utility Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CollisionManager.h">
+      <Filter>Classes\Utility Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CustomActions.h">
+      <Filter>Classes\Utility Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CustomGLPrograms.h">
+      <Filter>Classes\Utility Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\Defaults.h">
+      <Filter>Classes\Utility Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\DownloadPicture.h">
+      <Filter>Classes\Utility Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\MessageDialog.h">
+      <Filter>Classes\Utility Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\MotionProcessor.h">
+      <Filter>Classes\Utility Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\OpenURL.h">
+      <Filter>Classes\Utility Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\ShipConfig.h">
+      <Filter>Classes\Utility Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\SoundManager.h">
+      <Filter>Classes\Utility Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

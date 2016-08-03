@@ -64,8 +64,12 @@ bool GameScene::init()
     backgroundListener = _eventDispatcher->addCustomEventListener("DidEnterBackground", CC_CALLBACK_1(GameScene::toBackground, this));
     foregroundListener = _eventDispatcher->addCustomEventListener("WillEnterForeground", CC_CALLBACK_1(GameScene::toForeground, this));
     
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    gameCenterListener = _eventDispatcher->addCustomEventListener("FreezeForGameCenter", [=] (EventCustom *event) { gotoPauseScreen(); });
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    socialEventListener = _eventDispatcher->addCustomEventListener("FreezeForSocialManagers", [=] (EventCustom *event) 
+	{ 
+		if (Director::getInstance()->getRunningScene() == getScene() && gameLayer->getChildByName("PlayerNode") != nullptr)
+			gotoPauseScreen(); 
+	});
 #endif
     
     firstRenderTexture = RenderTexture::create(size.width, size.height, Texture2D::PixelFormat::RGBA8888, GL_DEPTH24_STENCIL8);
@@ -96,8 +100,8 @@ GameScene::~GameScene()
     _eventDispatcher->removeEventListener(backgroundListener);
     _eventDispatcher->removeEventListener(foregroundListener);
     
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    _eventDispatcher->removeEventListener(gameCenterListener);
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    _eventDispatcher->removeEventListener(socialEventListener);
 #endif
     
     firstRenderTexture->release();

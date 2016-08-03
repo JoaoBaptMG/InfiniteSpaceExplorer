@@ -18,10 +18,7 @@ constexpr int MaxHealth = 100;
 class PowerupIcon;
 
 class PlayerNode : public cocos2d::Node
-{
-    // FIXME: Remove this
-    cocos2d::Label *debugOrientationLabel;
-    
+{   
     int health;
     float fixedUpdateInterval;
     bool damage, touching, alreadyPositioned, onShield, withShooter, invincible;

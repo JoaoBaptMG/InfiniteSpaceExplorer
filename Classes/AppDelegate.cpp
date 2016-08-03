@@ -136,10 +136,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->getEventDispatcher()->addCustomEventListener(EVENT_RENDERER_RECREATED, [] (EventCustom*) { loadCustomGLPrograms(); rebuildBlurPrograms(); });
     
     std::string pathToBGMusic = FileUtils::getInstance()->fullPathForFilename("BackgroundMusic.ogg");
-#endif
-    
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    GameCenterManager::authenticate([] { Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("GameCenterRefreshed"); });
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    GameCenterManager::authenticate([] { Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("SocialManagersRefreshed"); });
     
     std::string pathToBGMusic = FileUtils::getInstance()->fullPathForFilename("BackgroundMusic.caf");
 #endif
@@ -179,7 +177,7 @@ void AppDelegate::applicationDidEnterBackground()
 void AppDelegate::applicationWillEnterForeground()
 {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    GameCenterManager::authenticate([] { Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("GameCenterRefreshed"); });
+    GameCenterManager::authenticate([] { Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("SocialManagersRefreshed"); });
 #endif
     
     Director::getInstance()->startAnimation();
