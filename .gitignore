@@ -104,3 +104,5 @@ docs/html/*
 /cocos2d/cocos/platform/android/java/.d
 /cocos2d/build/cocos2d-win10.VC.db
 /cocos2d/build/.vs/cocos2d-win10/v14
+
+gpg-cpp-sdk/*
