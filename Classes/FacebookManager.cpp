@@ -195,20 +195,6 @@ void FacebookManager::graphRequest(std::string path, const std::unordered_map<st
      }];
 }
 
-void FacebookManager::shareScore(int64_t score)
-{
-    auto file = FileUtils::getInstance()->fullPathForFilename("LifeMarker1.png");
-    
-    FBSDKShareLinkContent *link = [[FBSDKShareLinkContent alloc] init];
-    link.contentURL = [NSURL URLWithString:@"https://fb.me/1642009619415245"];
-    
-    link.imageURL = [NSURL URLWithString:[NSString stringWithCString:file.c_str() encoding:NSUTF8StringEncoding]];
-    link.contentTitle = [[FBSDKProfile currentProfile].name stringByAppendingString:@" just played a game of Infinite Space Explorer!"];
-    link.contentDescription = [NSString stringWithFormat:@"%@ played Infinite Space Explorer and got a score of %lld points.", [FBSDKProfile currentProfile].name, score];
-    
-    [FBSDKShareDialog showFromViewController:[UIApplication sharedApplication].keyWindow.rootViewController withContent:link delegate:nil];
-}
-
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
 #include <jni.h>
@@ -383,7 +369,8 @@ void FacebookManager::graphRequest(std::string path, const std::unordered_map<st
     env->DeleteLocalRef(obj);
 }
 
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_WP8
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
+
 #endif
 
 void FacebookManager::loadPlayerCurrentScore(std::function<void(const ScoreManager::ScoreData&)> handler)

@@ -1,1413 +1,1668 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>frames</key>
-	<dict>
-		<key>ButtonPause.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{454,150},{45,45}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{45,45}</string>
-		</dict>
-		<key>HazardBullet.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{38,4},{32,12}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{32,12}</string>
-		</dict>
-		<key>HazardCube.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{408,150},{42,42}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{42,42}</string>
-		</dict>
-		<key>HazardFireball.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{503,150},{54,54}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{54,54}</string>
-		</dict>
-		<key>HazardFireballFlame.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{68,93},{36,36}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{36,36}</string>
-		</dict>
-		<key>HazardGuidedMissile.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{74,4},{36,14}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{36,14}</string>
-		</dict>
-		<key>HazardShooter1.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{450,39},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter10.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{486,39},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter11.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{522,39},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter12.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{558,39},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter13.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{594,39},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter14.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{630,39},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter15.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{666,39},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter16.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{702,39},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter17.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{738,39},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter18.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{774,39},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter19.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{810,39},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter2.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{846,39},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter20.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{882,39},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter21.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{918,39},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter22.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{954,39},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter23.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{181,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter24.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{217,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter25.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{253,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter26.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{289,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter27.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{325,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter28.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{361,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter29.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{397,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter3.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{4,55},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter30.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{433,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter31.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{469,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter32.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{505,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter33.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{541,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter34.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{577,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter35.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{613,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter36.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{649,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter37.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{685,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter38.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{721,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter39.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{757,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter4.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{40,57},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter40.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{793,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter41.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{829,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter42.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{865,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter43.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{901,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter44.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{937,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter45.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{973,4},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter46.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{4,20},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter47.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{40,22},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter48.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{76,22},{31,32}}</string>
-			<key>offset</key>
-			<string>{2.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter49.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{76,57},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter5.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{112,73},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter50.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{148,74},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter51.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{184,74},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter52.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{220,74},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter53.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{256,74},{33,32}}</string>
-			<key>offset</key>
-			<string>{1.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter54.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{293,74},{33,32}}</string>
-			<key>offset</key>
-			<string>{1.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter55.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{330,74},{33,32}}</string>
-			<key>offset</key>
-			<string>{1.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter56.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{367,74},{34,32}}</string>
-			<key>offset</key>
-			<string>{0.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter57.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{405,74},{34,32}}</string>
-			<key>offset</key>
-			<string>{0.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter58.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{443,75},{35,32}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter59.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{482,75},{35,32}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter6.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{521,75},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter60.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{557,75},{35,32}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter7.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{596,75},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter8.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{632,75},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooter9.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{668,75},{32,32}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooterBackground.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{14,4},{20,10}}</string>
-			<key>offset</key>
-			<string>{-7.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{35,32}</string>
-		</dict>
-		<key>HazardShooterShot.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{4,4},{6,6}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{6,6}</string>
-		</dict>
-		<key>JetFire1.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{4,93},{60,35}}</string>
-			<key>offset</key>
-			<string>{8.000000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire10.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{108,110},{66,35}}</string>
-			<key>offset</key>
-			<string>{5.000000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire11.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{178,110},{66,35}}</string>
-			<key>offset</key>
-			<string>{5.000000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire12.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{248,110},{66,35}}</string>
-			<key>offset</key>
-			<string>{5.000000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire13.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{318,110},{66,35}}</string>
-			<key>offset</key>
-			<string>{5.000000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire14.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{388,111},{66,35}}</string>
-			<key>offset</key>
-			<string>{5.000000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire15.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{458,111},{66,35}}</string>
-			<key>offset</key>
-			<string>{5.000000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire16.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{704,75},{68,32}}</string>
-			<key>offset</key>
-			<string>{4.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire17.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{776,75},{69,32}}</string>
-			<key>offset</key>
-			<string>{3.500000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire18.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{114,4},{63,30}}</string>
-			<key>offset</key>
-			<string>{6.500000,-1.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire19.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{112,38},{63,31}}</string>
-			<key>offset</key>
-			<string>{6.500000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire2.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{528,111},{62,35}}</string>
-			<key>offset</key>
-			<string>{7.000000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire20.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{179,39},{61,31}}</string>
-			<key>offset</key>
-			<string>{7.500000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire21.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{244,39},{60,31}}</string>
-			<key>offset</key>
-			<string>{8.000000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire22.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{308,39},{65,31}}</string>
-			<key>offset</key>
-			<string>{5.500000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire23.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{377,39},{69,31}}</string>
-			<key>offset</key>
-			<string>{3.500000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire24.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{915,75},{71,34}}</string>
-			<key>offset</key>
-			<string>{2.500000,-1.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire25.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{849,75},{62,33}}</string>
-			<key>offset</key>
-			<string>{7.000000,-0.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire26.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{594,111},{62,35}}</string>
-			<key>offset</key>
-			<string>{7.000000,0.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire27.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{144,149},{63,36}}</string>
-			<key>offset</key>
-			<string>{5.500000,-2.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire28.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{211,149},{63,37}}</string>
-			<key>offset</key>
-			<string>{5.500000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire29.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{278,149},{63,37}}</string>
-			<key>offset</key>
-			<string>{5.500000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire3.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{660,111},{63,35}}</string>
-			<key>offset</key>
-			<string>{6.500000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire30.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{345,150},{59,37}}</string>
-			<key>offset</key>
-			<string>{7.500000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire4.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{727,111},{63,35}}</string>
-			<key>offset</key>
-			<string>{6.500000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire5.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{794,112},{63,35}}</string>
-			<key>offset</key>
-			<string>{6.500000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire6.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{861,113},{65,35}}</string>
-			<key>offset</key>
-			<string>{5.500000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire7.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{930,113},{66,35}}</string>
-			<key>offset</key>
-			<string>{5.000000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire8.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{4,133},{66,35}}</string>
-			<key>offset</key>
-			<string>{5.000000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>JetFire9.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{74,149},{66,35}}</string>
-			<key>offset</key>
-			<string>{5.000000,-1.500000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{80,48}</string>
-		</dict>
-		<key>PlayerShape0.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{4,359},{128,128}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{128,128}</string>
-		</dict>
-		<key>PlayerShape1.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{773,322},{107,128}}</string>
-			<key>offset</key>
-			<string>{10.500000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{128,128}</string>
-		</dict>
-		<key>PlayerShape2.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{905,322},{128,108}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{128,128}</string>
-		</dict>
-		<key>PlayerShape2b.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{561,150},{59,60}}</string>
-			<key>offset</key>
-			<string>{1.500000,0.000000}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceSize</key>
-			<string>{128,128}</string>
-		</dict>
-		<key>ShieldAnimation1.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{625,150},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation10.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{710,151},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation11.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{795,152},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation12.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{880,152},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation13.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{4,188},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation14.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{89,189},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation15.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{174,190},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation16.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{259,190},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation17.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{344,196},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation18.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{429,208},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation19.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{514,213},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation2.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{599,235},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation20.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{684,236},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation21.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{769,237},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation22.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{854,237},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation23.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{939,237},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation24.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{4,273},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation3.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{89,274},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation4.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{174,275},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation5.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{259,275},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation6.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{344,281},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation7.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{429,293},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation8.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{514,298},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldAnimation9.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{599,320},{81,81}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{81,81}</string>
-		</dict>
-		<key>ShieldGlowingBorder.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{684,322},{85,85}}</string>
-			<key>offset</key>
-			<string>{0.000000,0.000000}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{85,85}</string>
-		</dict>
-	</dict>
-	<key>metadata</key>
-	<dict>
-		<key>format</key>
-		<integer>2</integer>
-		<key>textureFileName</key>
-		<string>GameAssets.png</string>
-	</dict>
-</dict>
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>PlayerShape0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0, 0}, {128, 128}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {128, 128}}</string>
+                <key>sourceSize</key>
+                <string>{128, 128}</string>
+            </dict>
+            <key>PlayerShape1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0, 132}, {128, 128}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {128, 128}}</string>
+                <key>sourceSize</key>
+                <string>{128, 128}</string>
+            </dict>
+            <key>PlayerShape2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0, 264}, {128, 128}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {128, 128}}</string>
+                <key>sourceSize</key>
+                <string>{128, 128}</string>
+            </dict>
+            <key>PlayerShape2b.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0, 396}, {128, 128}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {128, 128}}</string>
+                <key>sourceSize</key>
+                <string>{128, 128}</string>
+            </dict>
+            <key>ShieldGlowingBorder.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0, 528}, {85, 85}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {85, 85}}</string>
+                <key>sourceSize</key>
+                <string>{85, 85}</string>
+            </dict>
+            <key>ShieldAnimation1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0, 617}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation10.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0, 702}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation11.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0, 787}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation12.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0, 872}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation13.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{85, 617}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation14.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{89, 528}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation15.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{85, 702}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation16.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{85, 787}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation17.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{85, 872}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation18.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{170, 702}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation19.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{170, 787}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{170, 872}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation20.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{132, 0}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation21.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{132, 85}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation22.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{132, 170}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation23.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{132, 255}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation24.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{132, 340}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{132, 425}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{174, 510}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{174, 595}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{217, 0}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation7.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{217, 85}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation8.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{217, 170}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>ShieldAnimation9.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{217, 255}, {81, 81}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {81, 81}}</string>
+                <key>sourceSize</key>
+                <string>{81, 81}</string>
+            </dict>
+            <key>JetFire1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0, 957}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire10.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{84, 957}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire11.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{168, 957}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire12.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{252, 957}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire13.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{217, 340}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire14.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{217, 424}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire15.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{259, 508}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire16.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{269, 340}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire17.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{269, 424}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire18.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{302, 0}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire19.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{302, 84}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{302, 168}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire20.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{302, 252}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire21.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{259, 592}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire22.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{259, 676}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire23.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{259, 760}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire24.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{259, 844}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire25.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{311, 592}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire26.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{321, 336}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire27.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{321, 420}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire28.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{321, 504}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire29.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{311, 676}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{311, 760}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire30.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{311, 844}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{363, 676}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{363, 760}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{363, 844}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire7.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{354, 0}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire8.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{354, 84}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>JetFire9.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{354, 168}, {80, 48}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {80, 48}}</string>
+                <key>sourceSize</key>
+                <string>{80, 48}</string>
+            </dict>
+            <key>HazardFireball.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{354, 252}, {54, 54}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {54, 54}}</string>
+                <key>sourceSize</key>
+                <string>{54, 54}</string>
+            </dict>
+            <key>ButtonPause.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{406, 0}, {45, 45}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {45, 45}}</string>
+                <key>sourceSize</key>
+                <string>{45, 45}</string>
+            </dict>
+            <key>HazardCube.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{406, 49}, {42, 42}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {42, 42}}</string>
+                <key>sourceSize</key>
+                <string>{42, 42}</string>
+            </dict>
+            <key>HazardFireballFlame.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{406, 95}, {36, 36}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {36, 36}}</string>
+                <key>sourceSize</key>
+                <string>{36, 36}</string>
+            </dict>
+            <key>HazardShooter1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{406, 135}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter10.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{406, 174}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter11.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{406, 213}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter12.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{373, 310}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter13.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{373, 349}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter14.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{373, 388}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter15.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{373, 427}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter16.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{373, 466}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter17.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{373, 505}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter18.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{373, 544}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter19.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{373, 583}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{373, 622}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter20.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{409, 310}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter21.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{412, 252}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter22.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{442, 135}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter23.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{446, 95}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter24.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{452, 49}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter25.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{455, 0}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter26.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{442, 174}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter27.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{442, 213}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter28.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{478, 174}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter29.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{478, 213}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{488, 39}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter30.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{491, 0}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter31.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{488, 78}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter32.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{488, 117}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter33.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{409, 349}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter34.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{409, 388}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter35.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{409, 427}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter36.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{409, 466}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter37.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{409, 505}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter38.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{409, 544}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter39.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{409, 583}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{409, 622}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter40.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{445, 349}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter41.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{445, 388}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter42.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{445, 427}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter43.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{445, 466}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter44.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{445, 505}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter45.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{445, 544}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter46.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{445, 583}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter47.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{445, 622}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter48.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{481, 349}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter49.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{481, 388}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{481, 427}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter50.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{481, 466}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter51.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{481, 505}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter52.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{481, 544}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter53.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{481, 583}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter54.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{481, 622}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter55.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{517, 349}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter56.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{517, 388}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter57.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{517, 427}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter58.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{517, 466}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter59.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{517, 505}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{517, 544}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter60.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{517, 583}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter7.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{517, 622}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter8.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{524, 39}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooter9.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{527, 0}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardShooterBackground.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{524, 78}, {35, 32}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {35, 32}}</string>
+                <key>sourceSize</key>
+                <string>{35, 32}</string>
+            </dict>
+            <key>HazardGuidedMissile.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{132, 510}, {36, 14}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {36, 14}}</string>
+                <key>sourceSize</key>
+                <string>{36, 14}</string>
+            </dict>
+            <key>HazardBullet.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{488, 156}, {32, 12}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {32, 12}}</string>
+                <key>sourceSize</key>
+                <string>{32, 12}</string>
+            </dict>
+            <key>HazardShooterShot.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{455, 39}, {6, 6}}</string>
+                <key>offset</key>
+                <string>{0, 0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0, 0}, {6, 6}}</string>
+                <key>sourceSize</key>
+                <string>{6, 6}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>size</key>
+            <string>{1024,1024}</string>
+        </dict>
+    </dict>
 </plist>

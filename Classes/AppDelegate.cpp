@@ -15,8 +15,10 @@
 
 #import <UIKit/UIKit.h>
 #import "GameCenterManager.h"
+#include "GPGManager.h"
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 #include "renderer/CCTextureCache.h"
+#include "GPGManager.h"
 #endif
 
 USING_NS_CC;
@@ -132,7 +134,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // load the user programs
     loadCustomGLPrograms();
     
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WP8
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
     director->getEventDispatcher()->addCustomEventListener(EVENT_RENDERER_RECREATED, [] (EventCustom*) { loadCustomGLPrograms(); rebuildBlurPrograms(); });
     
     std::string pathToBGMusic = FileUtils::getInstance()->fullPathForFilename("BackgroundMusic.ogg");
@@ -140,6 +142,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     GameCenterManager::authenticate([] { Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("SocialManagersRefreshed"); });
     
     std::string pathToBGMusic = FileUtils::getInstance()->fullPathForFilename("BackgroundMusic.caf");
+#endif
+
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+	GPGManager::initialize();
 #endif
     
     SoundManager::updateBackgroundVolume();

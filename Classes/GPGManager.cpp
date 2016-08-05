@@ -25,9 +25,8 @@ using namespace cocos2d;
 
 static std::unique_ptr<gpg::GameServices> gameServices;
 static bool gpgActive = false;
-static std::string errorString;
 
-void GPGManager::initialize(std::function<void()> success)
+void GPGManager::initialize()
 {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 	gpg::IosPlatformConfiguration config;
@@ -45,21 +44,42 @@ void GPGManager::initialize(std::function<void()> success)
 	config.SetActivity(activity);
 #endif
 
-	bool uiLaunched = false;
-	auto onAuthFinished = [=](gpg::AuthOperation op, gpg::AuthStatus status) mutable
+	auto onAuthStarted = [](gpg::AuthOperation op)
+	{
+		if (op == gpg::AuthOperation::SIGN_OUT)
+			gpgActive = false;
+	};
+
+	auto onAuthFinished = [=](gpg::AuthOperation op, gpg::AuthStatus status)
 	{
 		if (op == gpg::AuthOperation::SIGN_IN)
 		{
 			if (gpg::IsSuccess(status))
-			{
-				success(); 
 				gpgActive = true;
-			}
 		}
-		else gpgActive = uiLaunched = false;
+
+		Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("GPGStatusUpdated");
 	};
 
-	gameServices = gpg::GameServices::Builder().SetOnAuthActionFinished(onAuthFinished).Create(config);
+	gameServices = gpg::GameServices::Builder()
+		.SetOnAuthActionStarted(onAuthStarted)
+		.SetOnAuthActionFinished(onAuthFinished)
+		.Create(config);
+}
+
+bool GPGManager::isAuthorized()
+{
+	return gameServices->IsAuthorized();
+}
+
+void GPGManager::signIn()
+{
+	gameServices->StartAuthorizationUI();
+}
+
+void GPGManager::signOut()
+{
+	gameServices->SignOut();
 }
 
 #endif

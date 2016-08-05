@@ -106,3 +106,4 @@ docs/html/*
 /cocos2d/build/.vs/cocos2d-win10/v14
 
 gpg-cpp-sdk/*
+/GameAssets/cachedir/packages

@@ -174,6 +174,16 @@ MotionProcessor *createMotionProcessor()
     return new MotionProcessorAndroid();
 }
 
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_WP8
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
+
+class MotionProcessorWin10 : public MotionProcessor
+{
+
+};
+
+MotionProcessor *createMotionProcessor()
+{
+	return new MotionProcessorWin10();
+}
 
 #endif

@@ -230,6 +230,7 @@
     <ClInclude Include="..\..\Classes\FacebookManager.h" />
     <ClInclude Include="..\..\Classes\GameCenterManager.h" />
     <ClInclude Include="..\..\Classes\GameScene.h" />
+    <ClInclude Include="..\..\Classes\GPGLoginButton.h" />
     <ClInclude Include="..\..\Classes\GPGManager.h" />
     <ClInclude Include="..\..\Classes\HazardSelector.h" />
     <ClInclude Include="..\..\Classes\LifeMarker.h" />
@@ -282,6 +283,7 @@
     <ClCompile Include="..\..\Classes\FacebookManager.cpp" />
     <ClCompile Include="..\..\Classes\GameCenterManager.cpp" />
     <ClCompile Include="..\..\Classes\GameScene.cpp" />
+    <ClCompile Include="..\..\Classes\GPGLoginButton.cpp" />
     <ClCompile Include="..\..\Classes\GPGManager.cpp" />
     <ClCompile Include="..\..\Classes\HazardSelector-Spawners.cpp" />
     <ClCompile Include="..\..\Classes\HazardSelector.cpp" />

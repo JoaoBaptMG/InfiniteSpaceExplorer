@@ -31,7 +31,7 @@ class ScoreTable : public cocos2d::Node
 {
     cocos2d::Size preferredSize;
     
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
     cocos2d::EventListenerCustom *gameCenterLoadedListener;
 #endif
     

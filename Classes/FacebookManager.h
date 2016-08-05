@@ -37,8 +37,6 @@ namespace FacebookManager
     void loadHighscoresOnRange(ScoreManager::SocialConstraint socialConstraint, ScoreManager::TimeConstraint timeConstraint,
                                long first, long last, std::function<void(long, std::vector<ScoreManager::ScoreData>&&, std::string)> handler, bool loadPhotos = true);
     void reportScore(int64_t score);
-    
-    void shareScore(int64_t score);
 }
 
 #endif /* defined(__SpaceExplorer__FacebookManager__) */

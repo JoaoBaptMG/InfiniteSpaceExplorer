@@ -17,6 +17,9 @@
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 #include "GameCenterManager.h"
 #endif
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+#include "GPGManager.h"
+#endif
 
 ScoreManager::TimeConstraint ScoreManager::currentTimeConstraint = TimeConstraint::DAILY;
 ScoreManager::SocialConstraint ScoreManager::currentSocialConstraint = SocialConstraint::GLOBAL;
@@ -30,12 +33,10 @@ void ScoreManager::init()
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     currentSource = Source::GAME_CENTER;
 #else
-    //currentSource = Source::EXAMPLE;
+
     currentTimeConstraint = TimeConstraint::ALL;
     currentSocialConstraint = SocialConstraint::FRIENDS;
 #endif
-    
-    //ExampleScoreManager::reportScore(700000);
 }
 
 void ScoreManager::loadPlayerCurrentScore(std::function<void(const ScoreData&)> handler)
@@ -46,7 +47,9 @@ void ScoreManager::loadPlayerCurrentScore(std::function<void(const ScoreData&)> 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
         case Source::GAME_CENTER: GameCenterManager::loadPlayerCurrentScore(handler); break;
 #endif
-        //case Source::GOOGLE_PLAY_SERVICES: break;
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+        //case Source::GOOGLE_PLAY_SERVICES: GPGManager::loadPlayerCurrentScore(handler); break;
+#endif
         case Source::FACEBOOK: FacebookManager::loadPlayerCurrentScore(handler); break;
         default: break;
     }
@@ -56,11 +59,12 @@ void ScoreManager::loadHighscoresOnRange(long first, long last, std::function<vo
 {
     switch (currentSource)
     {
-        //case Source::EXAMPLE: ExampleScoreManager::loadHighscoresOnRange(currentSocialConstraint, currentTimeConstraint, first, last, handler); break;
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
         case Source::GAME_CENTER: GameCenterManager::loadHighscoresOnRange(currentSocialConstraint, currentTimeConstraint, first, last, handler); break;
 #endif
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
         //case Source::GOOGLE_PLAY_SERVICES: break;
+#endif
         case Source::FACEBOOK: FacebookManager::loadHighscoresOnRange(currentSocialConstraint, currentTimeConstraint, first, last, handler); break;
         default: break;
     }
@@ -72,7 +76,9 @@ void ScoreManager::reportScore()
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     GameCenterManager::reportScore(global_GameScore);
 #endif
-    //case Source::GOOGLE_PLAY_SERVICES: break;
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    // GPGManager::reportScore(global_GameScore);
+#endif
     FacebookManager::reportScore(global_GameScore);
 }
 
@@ -98,9 +104,11 @@ void ScoreManager::updateScoreTrackingArray()
     sourcesFetched = 0;
     savedScore = ScoreData();
     
-    //ExampleScoreManager::loadHighscoresOnRange(SocialConstraint::FRIENDS, TimeConstraint::ALL, 1, INT32_MAX, CC_CALLBACK_3(fetchScores, Source::EXAMPLE));
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     GameCenterManager::loadHighscoresOnRange(SocialConstraint::FRIENDS, TimeConstraint::ALL, 1, INT32_MAX, CC_CALLBACK_3(fetchScores, Source::GAME_CENTER), false);
+#endif
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+	// placeholder
 #endif
     FacebookManager::loadHighscoresOnRange(SocialConstraint::FRIENDS, TimeConstraint::ALL, 1, INT32_MAX, CC_CALLBACK_3(fetchScores, Source::FACEBOOK), false);
 }

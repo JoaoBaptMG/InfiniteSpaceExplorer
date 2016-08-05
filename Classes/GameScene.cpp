@@ -152,7 +152,7 @@ void GameScene::toBackground(EventCustom *event)
 
 void GameScene::toForeground(EventCustom *event)
 {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
     auto callback = [this] (float delta)
     {
         unschedule("ComebackEvent");
@@ -164,7 +164,7 @@ void GameScene::toForeground(EventCustom *event)
             if (gameLayer->getChildByName("PlayerNode") != nullptr)
                 gotoPauseScreen();
         }
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
     };
     
     resume();

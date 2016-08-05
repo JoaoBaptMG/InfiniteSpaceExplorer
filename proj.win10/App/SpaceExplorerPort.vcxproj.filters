@@ -136,6 +136,9 @@
     <ClCompile Include="..\..\Classes\SoundManager.cpp">
       <Filter>Classes\Utility Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Classes\GPGLoginButton.cpp">
+      <Filter>Classes\Social Experience Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.xaml.h" />
@@ -239,6 +242,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Classes\SoundManager.h">
       <Filter>Classes\Utility Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\GPGLoginButton.h">
+      <Filter>Classes\Social Experience Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

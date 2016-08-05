@@ -94,11 +94,12 @@ void FacebookLoginButton::act()
     
     if (FacebookManager::isAccessTokenValid())
     {
-        presentMessage("Do you want to log out from Facebook? You won't be able to publish your scores this way.", "Login out?", "Yes", "No",
-                       [=] { label->setString("..."); FacebookManager::logOut(); }, [] {});
+        presentMessage("Do you want to log out from Facebook? You won't be able to publish your scores this way.", "Log out?", "Yes", "No",
+                       [=] { label->setString("..."); waitingForResponse = true; FacebookManager::logOut(); }, [] {});
     }
     else
     {
+		waitingForResponse = true;
         label->setString("...");
         FacebookManager::requestReadPermissions([=] (FacebookManager::PermissionState state, std::string)
         {

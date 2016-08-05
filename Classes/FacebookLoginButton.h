@@ -1,5 +1,5 @@
 //
-//  FacebookLoginButton.hpp
+//  FacebookLoginButton.h
 //  SpaceExplorer
 //
 //  Created by João Baptista on 12/10/15.

@@ -16,7 +16,12 @@
 
 namespace GPGManager
 {
-	void initialize(std::function<void()> success);
+	void initialize();
+
+	bool isAuthorized();
+
+	void signIn();
+	void signOut();
 
 	//void loadPlayerCurrentScore(std::function<void(const ScoreManager::ScoreData&)> handler);
 	//void loadHighscoresOnRange(ScoreManager::SocialConstraint socialConstraint, ScoreManager::TimeConstraint timeConstraint,

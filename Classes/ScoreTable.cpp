@@ -159,6 +159,9 @@ bool ScoreTable::init(Size size)
     for (auto val : {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
         "IconGameCenter",
+		"IconGPG",
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+		"IconGPG",
 #endif
         "IconFacebook" })
         if (*val != 0) sourceButtons[i++] = createButton(val);
@@ -201,7 +204,7 @@ bool ScoreTable::init(Size size)
     lastPosition = optCurrentIndex = 0;
     currentRequestCode = 0;
     
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
     gameCenterLoadedListener = _eventDispatcher->addCustomEventListener("SocialManagersRefreshed", [=] (EventCustom*) { redrawScores(); });
 #endif
     
@@ -226,7 +229,7 @@ ScoreTable::~ScoreTable()
     infoLabel->release();
     scoresTopLabel->release();
     
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
     _eventDispatcher->removeEventListener(gameCenterLoadedListener);
 #endif
 }

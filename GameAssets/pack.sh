@@ -8,46 +8,34 @@ mkdir out/UI.Rescaled1x out/UI.Rescaled2x out/UI.Rescaled3x
 # Check the main files
 for f in $(ls in);
 do
-    sips --resampleHeight $((`./height in/$f`/4)) in/$f --out out/Rescaled1x/$f
-    sips --resampleHeight $((`./height in/$f`/2)) in/$f --out out/Rescaled2x/$f
-    sips --resampleHeight $((`./height in/$f`*3/4)) in/$f --out out/Rescaled3x/$f
-    img1x="$img1x\nout/Rescaled1x/$f"
-    img2x="$img2x\nout/Rescaled2x/$f"
-    img3x="$img3x\nout/Rescaled3x/$f"
-    img4x="$img4x\nin/$f"
+    echo in/$f
+    python resize.py 0.25 in/$f out/Rescaled1x/$f &
+    python resize.py 0.50 in/$f out/Rescaled2x/$f &
+    python resize.py 0.75 in/$f out/Rescaled3x/$f
 done
 
 for f in $(ls ui.in);
 do
-    sips --resampleHeight $((`./height ui.in/$f`/4)) ui.in/$f --out out/UI.Rescaled1x/$f
-    sips --resampleHeight $((`./height ui.in/$f`/2)) ui.in/$f --out out/UI.Rescaled2x/$f
-    sips --resampleHeight $((`./height ui.in/$f`*3/4)) ui.in/$f --out out/UI.Rescaled3x/$f
-    ui1x="$ui1x\nout/UI.Rescaled1x/$f"
-    ui2x="$ui2x\nout/UI.Rescaled2x/$f"
-    ui3x="$ui3x\nout/UI.Rescaled3x/$f"
-    ui4x="$ui4x\nui.in/$f"
+    echo ui.in/$f
+    python resize.py 0.25 ui.in/$f out/UI.Rescaled1x/$f &
+    python resize.py 0.50 ui.in/$f out/UI.Rescaled2x/$f &
+    python resize.py 0.75 ui.in/$f out/UI.Rescaled3x/$f
 done
 
 # Pack the textures
-echo "$img1x" | ./texpack --trim --allow-rotate --POT --max-size 1024x1024 --padding 4 --output assets1x/GameAssets
-echo "$img2x" | ./texpack --trim --allow-rotate --POT --max-size 2048x2048 --padding 4 --output assets2x/GameAssets
-echo "$img3x" | ./texpack --trim --allow-rotate --POT --max-size 4096x4096 --padding 4 --output assets3x/GameAssets
-echo "$img4x" | ./texpack --trim --allow-rotate --POT --max-size 4096x4096 --padding 4 --output assets4x/GameAssets
+java -jar TexturePacker.jar out/Rescaled1x --trim --rotation --force-squared --max-size=1024 --shape-padding=4 --texture="assets1x/GameAssets.png" --data="assets1x/GameAssets.plist" &
+java -jar TexturePacker.jar out/Rescaled2x --trim --rotation --force-squared --max-size=2048 --shape-padding=4 --texture="assets2x/GameAssets.png" --data="assets2x/GameAssets.plist" &
+java -jar TexturePacker.jar out/Rescaled3x --trim --rotation --force-squared --max-size=4096 --shape-padding=4 --texture="assets3x/GameAssets.png" --data="assets3x/GameAssets.plist" &
+java -jar TexturePacker.jar in --trim --rotation --force-squared --max-size=4096 --shape-padding=4 --texture="assets4x/GameAssets.png" --data="assets4x/GameAssets.plist"
 
-echo "$ui1x" | ./texpack --trim --allow-rotate --POT --max-size 1024x1024 --padding 4 --output assets1x/UIAssets
-echo "$ui2x" | ./texpack --trim --allow-rotate --POT --max-size 2048x2048 --padding 4 --output assets2x/UIAssets
-echo "$ui3x" | ./texpack --trim --allow-rotate --POT --max-size 4096x4096 --padding 4 --output assets3x/UIAssets
-echo "$ui4x" | ./texpack --trim --allow-rotate --POT --max-size 4096x4096 --padding 4 --output assets4x/UIAssets
+java -jar TexturePacker.jar out/UI.Rescaled1x --trim --rotation --force-squared --max-size=1024 --shape-padding=4 --texture="assets1x/UIAssets.png" --data="assets1x/UIAssets.plist" &
+java -jar TexturePacker.jar out/UI.Rescaled2x --trim --rotation --force-squared --max-size=2048 --shape-padding=4 --texture="assets2x/UIAssets.png" --data="assets2x/UIAssets.plist" &
+java -jar TexturePacker.jar out/UI.Rescaled3x --trim --rotation --force-squared --max-size=4096 --shape-padding=4 --texture="assets3x/UIAssets.png" --data="assets3x/UIAssets.plist" &
+java -jar TexturePacker.jar ui.in --trim --rotation --force-squared --max-size=4096 --shape-padding=4 --texture="assets4x/UIAssets.png" --data="assets4x/UIAssets.plist"
 
-plutil -insert metadata.textureFileName -string 'GameAssets.png' -- assets1x/GameAssets.plist
-plutil -insert metadata.textureFileName -string 'GameAssets.png' -- assets2x/GameAssets.plist
-plutil -insert metadata.textureFileName -string 'GameAssets.png' -- assets3x/GameAssets.plist
-plutil -insert metadata.textureFileName -string 'GameAssets.png' -- assets4x/GameAssets.plist
+echo Done!
 
-plutil -insert metadata.textureFileName -string 'UIAssets.png' -- assets1x/UIAssets.plist
-plutil -insert metadata.textureFileName -string 'UIAssets.png' -- assets2x/UIAssets.plist
-plutil -insert metadata.textureFileName -string 'UIAssets.png' -- assets3x/UIAssets.plist
-plutil -insert metadata.textureFileName -string 'UIAssets.png' -- assets4x/UIAssets.plist
+read
 
 # Remove the directory
 rm -rf out
