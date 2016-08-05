@@ -9,6 +9,8 @@
 #include "MotionProcessor.h"
 using namespace cocos2d;
 
+constexpr float K = 0.4;
+
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 #ifndef __OBJC__
 #error This file must be compiled as an Objective-C++ source file!
@@ -17,7 +19,6 @@ using namespace cocos2d;
 #import <Foundation/Foundation.h>
 #import <CoreMotion/CoreMotion.h>
 
-constexpr float K = 0.4;
 class MotionProcessoriOS : public MotionProcessor
 {
     NSOperationQueue *queue;
@@ -48,11 +49,6 @@ public:
         [queue waitUntilAllOperationsAreFinished];
         
         return directionVector;
-    }
-    
-    virtual int getScreenRotation() override
-    {
-        return [UIApplication sharedApplication].statusBarOrientation;
     }
     
 protected:
@@ -134,18 +130,6 @@ public:
         return result;
     }
     
-    virtual int getScreenRotation() override
-    {
-        JniMethodInfo t;
-        if (JniHelper::getStaticMethodInfo(t, "org/cocos2dx/cpp/AppActivity", "getDisplayRotation", "()I"))
-        {
-            jint rotation = t.env->CallStaticIntMethod(t.classID, t.methodID);
-            t.env->DeleteLocalRef(t.classID);
-            return rotation;
-        }
-        return -1;
-    }
-    
 protected:
     MotionProcessorAndroid()
     {
@@ -176,9 +160,81 @@ MotionProcessor *createMotionProcessor()
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
 
+using namespace Windows::Foundation;
+using namespace Windows::Devices::Sensors;
+using namespace Windows::Graphics::Display;
+
+using OrHandler = TypedEventHandler<OrientationSensor^, OrientationSensorReadingChangedEventArgs^>;
+using DiHandler = TypedEventHandler<DisplayInformation^, Platform::Object^>;
+
 class MotionProcessorWin10 : public MotionProcessor
 {
+	OrientationSensor^ sensor;
+	EventRegistrationToken orientationReadingHandlerToken, orientationChangedHandlerToken;
 
+	Quaternion currentQuaternion, calibratedQuaternion;
+	Vec2 directionVector;
+
+public:
+	virtual ~MotionProcessorWin10()
+	{
+		sensor->ReadingChanged -= orientationReadingHandlerToken;
+		sensor = nullptr;
+
+		DisplayInformation::GetForCurrentView()->OrientationChanged -= orientationChangedHandlerToken;
+	}
+
+	virtual void calibrate() override
+	{
+		calibratedQuaternion = currentQuaternion;
+		calibratedQuaternion.conjugate();
+		directionVector.set(0, 0);
+	}
+
+	virtual Vec2 getDirectionVector() override
+	{
+		return directionVector;
+	}
+
+protected:
+	MotionProcessorWin10()
+	{
+		sensor = OrientationSensor::GetDefaultForRelativeReadings();
+		sensor->ReadingTransform = DisplayOrientations::Landscape;
+
+		uint32_t reportInterval = 17;
+		if (reportInterval < sensor->MinimumReportInterval)
+			reportInterval = sensor->MinimumReportInterval;
+		sensor->ReportInterval = reportInterval;
+
+		orientationReadingHandlerToken =
+			sensor->ReadingChanged += ref new OrHandler(
+				[=](OrientationSensor^ sensor, OrientationSensorReadingChangedEventArgs^ args)
+		{
+			auto squat = args->Reading->Quaternion;
+			currentQuaternion.set(squat->X, squat->Y, squat->Z, squat->W);
+
+			Quaternion quat = currentQuaternion * calibratedQuaternion;
+
+			float tanpitch = .625 * (2 * quat.w*quat.y - 2 * quat.x*quat.z) / (1 - 2 * quat.y*quat.y - 2 * quat.z*quat.z);
+			float tanroll = .625 * (2 * quat.w*quat.x - 2 * quat.y*quat.z) / (1 - 2 * quat.x*quat.x - 2 * quat.z*quat.z);
+
+			directionVector = directionVector*(1 - K) + Vec2(tanroll, tanpitch)*K;
+		});
+
+		orientationChangedHandlerToken =
+			DisplayInformation::GetForCurrentView()->OrientationChanged += ref new DiHandler(
+				[=](DisplayInformation^ info, Platform::Object^ args)
+		{
+			CCLOG("Device being called!");
+			if (sensor != nullptr)
+				sensor->ReadingTransform = info->CurrentOrientation;
+		});
+
+		sensor->ReadingTransform = DisplayInformation::GetForCurrentView()->CurrentOrientation;
+	}
+
+	friend MotionProcessor *createMotionProcessor();
 };
 
 MotionProcessor *createMotionProcessor()

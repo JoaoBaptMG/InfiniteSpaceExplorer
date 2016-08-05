@@ -18,8 +18,6 @@ public:
     virtual void calibrate() = 0;
     virtual cocos2d::Vec2 getDirectionVector() = 0;
     
-    virtual int getScreenRotation() = 0;
-    
 protected:
     MotionProcessor() {}
     
