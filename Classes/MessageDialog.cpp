@@ -49,7 +49,13 @@
 #include "platform/android/jni/JniHelper.h"
 using namespace cocos2d;
 
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_WP8
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
+
+#include "platform/winrt/CCGLViewImpl-winrt.h"
+#include "platform/winrt/CCWinRTUtils.h"
+using namespace cocos2d;
+using namespace Windows::UI::Core;
+using namespace Windows::UI::Popups;
 
 #endif
 
@@ -99,7 +105,20 @@ void presentMessage(std::string message, std::string title, std::string confirmC
             }
         }
     }
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_WP8
-    assert(false && "Not implemented!");
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
+	auto dispatcher = GLViewImpl::sharedOpenGLView()->getDispatcher();
+
+	if (dispatcher)
+		dispatcher->RunAsync(CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]
+	{
+		auto dialog = ref new MessageDialog(PlatformStringFromString(message), PlatformStringFromString(title));
+
+		dialog->Commands->Append(ref new UICommand(PlatformStringFromString(confirmCaption),
+			ref new UICommandInvokedHandler([=](IUICommand^) { confirmCallback(); })));
+		dialog->Commands->Append(ref new UICommand(PlatformStringFromString(cancelCaption),
+			ref new UICommandInvokedHandler([=](IUICommand^) { cancelCallback(); })));
+
+		dialog->ShowAsync();
+	}));
 #endif
 }

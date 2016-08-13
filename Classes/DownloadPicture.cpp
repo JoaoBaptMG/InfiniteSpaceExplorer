@@ -81,6 +81,51 @@ void downloadPicture(std::string path, std::string key, std::function<void(cocos
     urlCtr.env->DeleteLocalRef(pathStr);
 }
 
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_WP8
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
+
+#include "platform/winrt/CCWinRTUtils.h"
+#include <wrl.h>
+#include <robuffer.h>
+
+using namespace Windows::Foundation;
+using namespace Windows::Storage::Streams;
+using namespace Windows::Web::Http;
+using namespace Concurrency;
+using namespace Microsoft::WRL;
+
+void downloadPicture(std::string path, std::string key, std::function<void(cocos2d::Texture2D*)> callback)
+{
+	try
+	{
+		auto httpClient = ref new HttpClient();
+		auto uri = ref new Uri(PlatformStringFromString(path));
+
+		create_task(httpClient->GetBufferAsync(uri)).then([=](IBuffer^ buffer)
+		{
+			if (buffer->Length > 0)
+			{
+				ComPtr<IBufferByteAccess> byteAccess;
+				reinterpret_cast<IInspectable*>(buffer)->QueryInterface(IID_PPV_ARGS(&byteAccess));
+
+				byte* data;
+				byteAccess->Buffer(&data);
+
+				Image *image = new Image();
+				image->initWithImageData(data, buffer->Length);
+				image->retain();
+
+				Director::getInstance()->getScheduler()->performFunctionInCocosThread([=]
+				{
+					callback(Director::getInstance()->getTextureCache()->addImage(image, key));
+					image->release();
+				});
+			}
+		});
+	}
+	catch (Platform::Exception^ e)
+	{
+
+	}
+}
 
 #endif

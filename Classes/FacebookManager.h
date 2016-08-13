@@ -12,6 +12,15 @@
 #include "cocos2d.h"
 #include "ScoreManager.h"
 
+#if CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
+#include <collection.h>
+#include "platform/winrt/CCWinRTUtils.h"
+
+enum { WINRT_DELETE = DELETE, WINRT_ERROR = ERROR };
+#undef DELETE
+#undef ERROR
+#endif
+
 #define PARAMS_EMPTY (std::unordered_map<std::string, std::string>())
 
 enum class HTTPMethod { GET, POST, DELETE };

@@ -96,7 +96,7 @@ void FacebookManager::requestPublishPermissions(std::function<void(FacebookManag
     
     if ([[FBSDKAccessToken currentAccessToken] hasGranted:@"publish_actions"])
     {
-        callback(readState = PermissionState::ACCEPTED, "");
+        callback(publishState = PermissionState::ACCEPTED, "");
         return;
     }
     
@@ -151,9 +151,8 @@ inline void makeValueFromID(Value &value, id obj)
         vec.reserve([obj count]);
         [obj enumerateObjectsUsingBlock:^ (id val, NSUInteger indx, BOOL *stop)
          {
-             Value newValue;
-             makeValueFromID(newValue, val);
-             vec.push_back(std::move(newValue));
+			 vec.push_back(Value());
+             makeValueFromID(vec.back(), val);
          }];
         value = std::move(vec);
     }
@@ -164,9 +163,8 @@ inline void makeValueFromID(Value &value, id obj)
          {
              if (![key isKindOfClass:[NSString class]]) return;
              std::string keyStr = [key UTF8String];
-             Value newValue;
-             makeValueFromID(newValue, val);
-             map.emplace(keyStr, std::move(newValue));
+             auto it = map.emplace(keyStr, Value()).first;
+             makeValueFromID(it->second, val);
          }];
         value = std::move(map);
     }
@@ -370,6 +368,166 @@ void FacebookManager::graphRequest(std::string path, const std::unordered_map<st
 }
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
+#define APP_ID "1616893238593550"
+
+using namespace cocos2d;
+using namespace Windows::Foundation::Collections;
+using namespace Windows::Data::Json;
+using namespace concurrency;
+using namespace winsdkfb;
+using namespace winsdkfb::Graph;
+
+using WStringVector = Platform::Collections::Vector<Platform::String^>;
+
+static FacebookManager::PermissionState readState = FacebookManager::PermissionState::UNKNOWN;
+static FacebookManager::PermissionState publishState = FacebookManager::PermissionState::UNKNOWN;
+
+void initialize()
+{
+	FBSession^ session = FBSession::ActiveSession;
+	session->FBAppId = APP_ID;
+	session->WinAppId = "TODO-FILL-THIS";
+
+	appID = APP_ID;
+}
+
+bool FacebookManager::isAccessTokenValid()
+{
+	return FBSession::ActiveSession->LoggedIn;
+}
+
+std::string FacebookManager::getUserID()
+{
+	if (isAccessTokenValid() && FBSession::ActiveSession->User)
+		return PlatformStringToString(FBSession::ActiveSession->User->Id);
+	return "";
+}
+
+std::string FacebookManager::getUserName()
+{
+	if (isAccessTokenValid() && FBSession::ActiveSession->User)
+		return PlatformStringToString(FBSession::ActiveSession->User->Name);
+	return "";
+}
+
+void requestReadPermissions(std::function<void(FacebookManager::PermissionState, std::string)> callback, bool rerequest)
+{
+	if (!rerequest && readState == FacebookManager::PermissionState::DECLINED)
+		callback(FacebookManager::PermissionState::DECLINED, "");
+
+	if (FacebookManager::hasPermission("public_profile") && FacebookManager::hasPermission("user_friends"))
+		callback(readState = FacebookManager::PermissionState::ACCEPTED, "");
+
+	auto list = ref new WStringVector();
+	list->Append("public_profile");
+	list->Append("user_friends");
+	auto permissions = ref new FBPermissions(list->GetView());
+
+	create_task(FBSession::ActiveSession->LoginAsync(permissions)).then([=](FBResult^ result)
+	{
+		using namespace FacebookManager;
+		if (result->Succeeded)
+		{
+			readState = hasPermission("user_friends") ? PermissionState::ACCEPTED : PermissionState::DECLINED;
+			callback(readState, "");
+		}
+		else callback(PermissionState::ERROR, PlatformStringToString(result->ErrorInfo->Message));
+	});
+}
+
+void requestPublishPermissions(std::function<void(FacebookManager::PermissionState, std::string)> callback, bool rerequest)
+{
+	if (!rerequest && publishState == FacebookManager::PermissionState::DECLINED)
+		callback(FacebookManager::PermissionState::DECLINED, "");
+
+	if (FacebookManager::hasPermission("publish_actions"))
+		callback(publishState = FacebookManager::PermissionState::ACCEPTED, "");
+
+	auto list = ref new WStringVector();
+	list->Append("publish_actions");
+	auto permissions = ref new FBPermissions(list->GetView());
+
+	create_task(FBSession::ActiveSession->LoginAsync(permissions)).then([=](FBResult^ result)
+	{
+		using namespace FacebookManager;
+		if (result->Succeeded)
+		{
+			publishState = hasPermission("publish_actions") ? PermissionState::ACCEPTED : PermissionState::DECLINED;
+			callback(publishState, "");
+		}
+		else callback(PermissionState::ERROR, PlatformStringToString(result->ErrorInfo->Message));
+	});
+}
+
+void FacebookManager::logOut()
+{
+	FBSession::ActiveSession->LogoutAsync();
+}
+
+bool FacebookManager::hasPermission(std::string permission)
+{
+	auto accessTokenData = FBSession::ActiveSession->AccessTokenData;
+	if (!accessTokenData) return false;
+
+	return accessTokenData->GrantedPermissions->Values->IndexOf(PlatformStringFromString(permission), nullptr);
+}
+
+inline void makeValueFromJsonValue(Value& value, IJsonValue^ jval)
+{
+	switch (jval->ValueType)
+	{
+		case JsonValueType::Boolean: value = Value(jval->GetBoolean()); break;
+		case JsonValueType::Number: value = Value(jval->GetNumber()); break;
+		case JsonValueType::String: value = Value(PlatformStringToString(jval->GetString())); break;
+		case JsonValueType::Array:
+		{
+			ValueVector vector;
+			for each (auto jelm in jval->GetArray())
+			{
+				vector.push_back(Value());
+				makeValueFromJsonValue(vector.back(), jelm);
+			}
+			value = Value(std::move(vector));
+		} break;
+		case JsonValueType::Object:
+		{
+			ValueMap map;
+			for each (auto jpair in jval->GetObject())
+			{
+				auto iter = map.emplace(PlatformStringToString(jpair->Key), Value()).first;
+				makeValueFromJsonValue(iter->second, jpair->Value);
+			}
+			value = Value(std::move(map));
+		} break;
+		case JsonValueType::Null: value = Value(); break;
+	}
+}
+
+void FacebookManager::graphRequest(std::string path, const std::unordered_map<std::string, std::string> &parameters,
+	HTTPMethod method, std::function<void(Value&&, std::string)> callback)
+{
+	auto params = ref new PropertySet();
+	for (auto pair : parameters)
+		params->Insert(PlatformStringFromString(pair.first), PlatformStringFromString(pair.second));
+
+	auto factory = ref new FBJsonClassFactory([](Platform::String^ json) { return JsonValue::Parse(json); });
+	auto sval = ref new FBSingleValue(PlatformStringFromString(path), params, factory);
+
+	auto task = method == HTTPMethod::GET ? sval->GetAsync() :
+		method == HTTPMethod::POST ? sval->PostAsync() :
+		sval->DeleteAsync();
+
+	create_task(task).then([=](FBResult^ result)
+	{
+		if (result->Succeeded)
+		{
+			Value value;
+			makeValueFromJsonValue(value, static_cast<IJsonValue^>(result->Object));
+			callback(std::move(value), "");
+		}
+		else callback(Value(), PlatformStringToString(result->ErrorInfo->Message));
+	});
+}
 
 #endif
 
