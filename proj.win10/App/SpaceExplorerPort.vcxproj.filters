@@ -262,6 +262,7 @@
     <None Include="$(CurlBinPath)libcurl.dll" />
     <None Include="$(CurlBinPath)libeay32.dll" />
     <None Include="$(CurlBinPath)ssleay32.dll" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Cocos2dEngine\OpenGLESPage.xaml">
