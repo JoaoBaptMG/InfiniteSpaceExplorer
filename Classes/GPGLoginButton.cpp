@@ -32,7 +32,7 @@ bool GPGLoginButton::init()
 
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
-	waitingForResponse = false;
+	waitingForResponse = true;
 	setPressed(false);
 
 	return true;

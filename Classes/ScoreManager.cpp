@@ -21,9 +21,9 @@
 #include "GPGManager.h"
 #endif
 
-ScoreManager::TimeConstraint ScoreManager::currentTimeConstraint = TimeConstraint::DAILY;
-ScoreManager::SocialConstraint ScoreManager::currentSocialConstraint = SocialConstraint::GLOBAL;
-ScoreManager::Source ScoreManager::currentSource = Source::FACEBOOK;
+ScoreManager::TimeConstraint ScoreManager::currentTimeConstraint = ScoreManager::TimeConstraint::DAILY;
+ScoreManager::SocialConstraint ScoreManager::currentSocialConstraint = ScoreManager::SocialConstraint::GLOBAL;
+ScoreManager::Source ScoreManager::currentSource = ScoreManager::Source::FACEBOOK;
 
 void ScoreManager::init()
 {
@@ -48,7 +48,7 @@ void ScoreManager::loadPlayerCurrentScore(std::function<void(const ScoreData&)> 
         case Source::GAME_CENTER: GameCenterManager::loadPlayerCurrentScore(handler); break;
 #endif
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-        //case Source::GOOGLE_PLAY_SERVICES: GPGManager::loadPlayerCurrentScore(handler); break;
+        case Source::GOOGLE_PLAY_GAMES: GPGManager::loadPlayerCurrentScore(handler); break;
 #endif
         case Source::FACEBOOK: FacebookManager::loadPlayerCurrentScore(handler); break;
         default: break;
@@ -63,7 +63,7 @@ void ScoreManager::loadHighscoresOnRange(long first, long last, std::function<vo
         case Source::GAME_CENTER: GameCenterManager::loadHighscoresOnRange(currentSocialConstraint, currentTimeConstraint, first, last, handler); break;
 #endif
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-        //case Source::GOOGLE_PLAY_SERVICES: break;
+        case Source::GOOGLE_PLAY_GAMES: GPGManager::loadHighscoresOnRange(currentSocialConstraint, currentTimeConstraint, first, last, handler); break;
 #endif
         case Source::FACEBOOK: FacebookManager::loadHighscoresOnRange(currentSocialConstraint, currentTimeConstraint, first, last, handler); break;
         default: break;
@@ -84,19 +84,24 @@ void ScoreManager::reportScore()
 
 struct CompareScores
 {
-    bool operator()(const ScoreManager::ScoreData &s1, const ScoreManager::ScoreData &s2) { return s1.score < s2.score; }
+    bool operator()(const ScoreManager::ScoreData &s1, const ScoreManager::ScoreData &s2) const { return s1.score < s2.score; }
 };
 
+static std::mutex scoreBuildLock;
 static std::set<ScoreManager::ScoreData, CompareScores> scoreTracking, tempBuildScore;
 static uint64_t sourcesFetched;
 static ScoreManager::ScoreData savedScore;
 
 inline void fetchScores(ScoreManager::Source source, long position, std::vector<ScoreManager::ScoreData> &&data, std::string error)
 {
+	scoreBuildLock.lock();
+
     sourcesFetched |= 1 << (uint8_t)source;
     std::move(data.begin(), data.end(), std::inserter(tempBuildScore, tempBuildScore.end()));
     
     if (ScoreManager::trackedScoresReady()) scoreTracking = std::move(tempBuildScore);
+
+	scoreBuildLock.unlock();
 }
 
 void ScoreManager::updateScoreTrackingArray()
@@ -108,7 +113,7 @@ void ScoreManager::updateScoreTrackingArray()
     GameCenterManager::loadHighscoresOnRange(SocialConstraint::FRIENDS, TimeConstraint::ALL, 1, INT32_MAX, CC_CALLBACK_3(fetchScores, Source::GAME_CENTER), false);
 #endif
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	// placeholder
+	GPGManager::loadHighscoresOnRange(SocialConstraint::FRIENDS, TimeConstraint::ALL, 1, INT32_MAX, CC_CALLBACK_3(fetchScores, Source::GOOGLE_PLAY_GAMES), false);
 #endif
     FacebookManager::loadHighscoresOnRange(SocialConstraint::FRIENDS, TimeConstraint::ALL, 1, INT32_MAX, CC_CALLBACK_3(fetchScores, Source::FACEBOOK), false);
 }
@@ -120,10 +125,16 @@ bool ScoreManager::trackedScoresReady()
 
 ScoreManager::ScoreData ScoreManager::getNextTrackedScore(int64_t score)
 {
-    if (score < savedScore.score) return savedScore;
+    if (score >= savedScore.score)
+	{
+		scoreBuildLock.lock();
+
+		auto it = scoreTracking.upper_bound(ScoreData(0, "", score));
+		if (it == scoreTracking.end()) savedScore = ScoreData(-1, "", INT64_MAX);
+		else savedScore = *it;
+
+		scoreBuildLock.unlock();
+	}
     
-    auto it = scoreTracking.upper_bound(ScoreData(0, "", score));
-    if (it == scoreTracking.end()) return ScoreData(-1, "", INT64_MAX);
-    
-    return savedScore = *it;
+    return savedScore;
 }

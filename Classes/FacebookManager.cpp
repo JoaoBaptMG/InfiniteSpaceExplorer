@@ -382,7 +382,7 @@ using WStringVector = Platform::Collections::Vector<Platform::String^>;
 static FacebookManager::PermissionState readState = FacebookManager::PermissionState::UNKNOWN;
 static FacebookManager::PermissionState publishState = FacebookManager::PermissionState::UNKNOWN;
 
-void initialize()
+void FacebookManager::initialize()
 {
 	FBSession^ session = FBSession::ActiveSession;
 	session->FBAppId = APP_ID;
@@ -588,7 +588,7 @@ void FacebookManager::loadHighscoresOnRange(ScoreManager::SocialConstraint socia
                         const auto &userPicture = userData.at("picture").asValueMap().at("data").asValueMap();
                         if (loadPhotos && !userPicture.at("is_silhouette").asBool() && Director::getInstance()->getTextureCache()->getTextureForKey(score.textureKey) == nullptr)
                         {
-                            downloadPicture(userPicture.at("url").asString(), score.textureKey, [=] (Texture2D* texture)
+                            downloadPicture(userPicture.at("url").asString(), textureKey, [=] (Texture2D* texture)
                             {
                                 Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("TextureArrived." + textureKey, &texture);
                             });

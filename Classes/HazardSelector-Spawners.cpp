@@ -440,8 +440,8 @@ void hazardFireballSpawner(HazardSelector *self)
 
 static const Vec2 missilePoints[] =
 {
-    { 18, 0 }, { -14, 7 }, { -15.65, 6.7 }, { -16.85, 5.55 }, { -17.5, 4 },
-    { -17.5, -4 }, { -16.85, -5.55 }, { -15.65, -6.7 }, { -14, -7 }
+    { 18, 0 }, { -14, 7 }, { -15.65f, 6.7f }, { -16.85f, 5.55f }, { -17.5, 4 },
+    { -17.5, -4 }, { -16.85f, -5.55f }, { -15.65f, -6.7f }, { -14, -7 }
 };
 static constexpr int missilePointsSize = sizeof(missilePoints)/sizeof(missilePoints[0]);
 

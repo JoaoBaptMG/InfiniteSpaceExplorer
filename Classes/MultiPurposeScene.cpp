@@ -21,6 +21,10 @@
 #include "SoundManager.h"
 #include "OpenURL.h"
 
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+#include "GPGLoginButton.h"
+#endif
+
 using namespace cocos2d;
 
 constexpr auto LATO_REGULAR = "fonts/Lato/Lato-Regular.ttf";
@@ -231,6 +235,8 @@ void MultiPurposeLayer::createLayout1Title()
     arrowButtons[0] = ui::Button::create(name, name, name, ui::Widget::TextureResType::PLIST);
     arrowButtons[1] = ui::Button::create(name, name, name, ui::Widget::TextureResType::PLIST);
     
+	auto arrowButton0 = arrowButtons[0], arrowButton1 = arrowButtons[1];
+
     int i = 0;
     for (int dir : { -1, +1 })
     {
@@ -250,7 +256,7 @@ void MultiPurposeLayer::createLayout1Title()
                 SoundManager::play("common/ClickButton.wav");
             else if (type == ui::Widget::TouchEventType::ENDED)
             {
-                for (auto arrow : arrowButtons) arrow->setEnabled(false);
+				for (auto arrow : { arrowButton0, arrowButton1 }) arrow->setEnabled(false);
                 
                 auto currentShip = global_ShipSelect;
                 auto nextShip = (global_ShipSelect + dir + getShipConfigSize()) % getShipConfigSize();
@@ -274,7 +280,7 @@ void MultiPurposeLayer::createLayout1Title()
                     shipLabel->setSpriteFrame("PlayerName" + ulongToString(nextShip) + ".png");
                     pointsRequiredLabel->setString(getLockedText(nextShip));
                     
-                    for (auto arrow : arrowButtons) arrow->setEnabled(true);
+                    for (auto arrow : { arrowButton0, arrowButton1 }) arrow->setEnabled(true);
                 });
                 
                 shipLabel->runAction(EaseCubicActionInOut::create(rotate));
@@ -439,9 +445,15 @@ void MultiPurposeLayer::createLayout2()
     fbButton->setPosition(size.width + 48 + fbButton->getContentSize().width/2, SliderBottomSpacing/2);
     containerNode->addChild(fbButton);
     
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+	auto gpgButton = GPGLoginButton::create();
+	gpgButton->setPosition(fbButton->getPosition() + Vec2(fbButton->getContentSize().width / 2 + 8 + gpgButton->getContentSize().width / 2, 0));
+	containerNode->addChild(gpgButton);
+#endif
+
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     auto gameCenterButton = createHoverButton("IconGameCenter");
-    gameCenterButton->setPosition(fbButton->getPosition() + Vec2(fbButton->getContentSize().width/2 + 8 + gameCenterButton->getContentSize().width/2, 0));
+    gameCenterButton->setPosition(gpgButton->getPosition() + Vec2(gpgButton->getContentSize().width/2 + 8 + gameCenterButton->getContentSize().width/2, 0));
     containerNode->addChild(gameCenterButton);
     
     gameCenterButton->addTouchEventListener([this] (Ref* button, ui::Widget::TouchEventType type)
@@ -514,6 +526,9 @@ void MultiPurposeLayer::onEnterTransitionDidFinish()
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
         std::string callToAction = "Rate our game on Play Store if you like it! It will help us improve your experience.";
         std::string url = "";
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
+		std::string callToAction = "Rate our game on Windows Store if you like it! It will help us improve your experience.";
+		std::string url = "";
 #endif
         
         UserDefault::getInstance()->setIntegerForKey("CountdownToRate", -1);

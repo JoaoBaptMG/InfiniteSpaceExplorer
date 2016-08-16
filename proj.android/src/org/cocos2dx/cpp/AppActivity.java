@@ -104,6 +104,9 @@ public class AppActivity extends Cocos2dxActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        fbManager.getCallbackManager().onActivityResult(requestCode, resultCode, data);
+        if (fbManager.getCallbackManager().onActivityResult(requestCode, resultCode, data)) return;
+		gpgOnActivityResult(this, requestCode, resultCode, data);
     }
+
+	private static native void gpgOnActivityResult(Activity activity, int requestCode, int resultCode, Intent data);
 }

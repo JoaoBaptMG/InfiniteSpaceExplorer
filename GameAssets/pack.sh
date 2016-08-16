@@ -9,17 +9,17 @@ mkdir out/UI.Rescaled1x out/UI.Rescaled2x out/UI.Rescaled3x
 for f in $(ls in);
 do
     echo in/$f
-    python resize.py 0.25 in/$f out/Rescaled1x/$f &
-    python resize.py 0.50 in/$f out/Rescaled2x/$f &
-    python resize.py 0.75 in/$f out/Rescaled3x/$f
+    python resize.py -s 0.25 in/$f out/Rescaled1x/$f &
+    python resize.py -s 0.50 in/$f out/Rescaled2x/$f &
+    python resize.py -s 0.75 in/$f out/Rescaled3x/$f
 done
 
 for f in $(ls ui.in);
 do
     echo ui.in/$f
-    python resize.py 0.25 ui.in/$f out/UI.Rescaled1x/$f &
-    python resize.py 0.50 ui.in/$f out/UI.Rescaled2x/$f &
-    python resize.py 0.75 ui.in/$f out/UI.Rescaled3x/$f
+    python resize.py -s 0.25 ui.in/$f out/UI.Rescaled1x/$f &
+    python resize.py -s 0.50 ui.in/$f out/UI.Rescaled2x/$f &
+    python resize.py -s 0.75 ui.in/$f out/UI.Rescaled3x/$f
 done
 
 # Pack the textures
