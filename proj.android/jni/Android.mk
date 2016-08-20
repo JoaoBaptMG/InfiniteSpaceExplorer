@@ -18,6 +18,7 @@ CLASS_FILES := $(CLASS_FILES:$(LOCAL_PATH)/%=%)
 LOCAL_SRC_FILES := Java_org_cocos2dx_cpp_AppActivity.cpp
 LOCAL_SRC_FILES += Java_joaobapt_CommonAlertListener.cpp
 LOCAL_SRC_FILES += Java_joaobapt_PictureDownloader.cpp
+LOCAL_SRC_FILES += Java_joaobapt_MotionProcessor.cpp
 LOCAL_SRC_FILES += Java_joaobapt_FacebookManager.cpp
 LOCAL_SRC_FILES += hellocpp/main.cpp
 LOCAL_SRC_FILES += $(CLASS_FILES)

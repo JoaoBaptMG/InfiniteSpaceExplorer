@@ -65,4 +65,25 @@ inline static void recursiveResume(cocos2d::Node *node)
 const cocos2d::Color3B BackgroundColor = 0x3993B0_c3;
 constexpr float StandardPlayfieldHeight = 400;
 
+#if CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
+
+namespace cocos2d
+{
+	std::wstring CC_DLL StringUtf8ToWideChar(const std::string& strUtf8);
+	std::string CC_DLL StringWideCharToUtf8(const std::wstring& strWideChar);
+}
+
+inline std::string PlatformStringToString(Platform::String^ s)
+{
+	return cocos2d::StringWideCharToUtf8(std::wstring(s->Data()));
+}
+
+inline Platform::String^ PlatformStringFromString(const std::string& s)
+{
+	std::wstring ws = cocos2d::StringUtf8ToWideChar(s);
+	return ref new Platform::String(ws.data(), static_cast<unsigned int>(ws.length()));
+}
+
+#endif
+
 #endif

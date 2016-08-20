@@ -37,8 +37,6 @@
     <string name="com_facebook_share_button_text">Share</string>
     <string name="com_facebook_send_button_text">Send</string>
 
-    <string name="app_id">1054735770297</string>
-  
     <string name="app_name">SpaceExplorerPort</string>
-    <string name="facebook_app_id">1616893238593550</string>
+    <string name="app_display_name">Inf Space</string>
 </resources>

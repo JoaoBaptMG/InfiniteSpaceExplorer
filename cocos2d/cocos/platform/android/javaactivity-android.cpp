@@ -40,6 +40,8 @@ THE SOFTWARE.
 #include <android/log.h>
 #include <jni.h>
 
+#include "gpg/android_initialization.h"
+
 #define  LOG_TAG    "main"
 #define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
 
@@ -52,6 +54,7 @@ extern "C"
 
 JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved)
 {
+	gpg::AndroidInitialization::JNI_OnLoad(vm);
     JniHelper::setJavaVM(vm);
 
     cocos_android_app_init(JniHelper::getEnv());

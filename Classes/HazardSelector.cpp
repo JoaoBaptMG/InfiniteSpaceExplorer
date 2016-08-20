@@ -9,6 +9,7 @@
 #include "HazardSelector.h"
 #include "CustomActions.h"
 #include "GameScene.h"
+#include "AchievementManager.h"
 
 using namespace cocos2d;
 
@@ -21,6 +22,7 @@ bool HazardSelector::init(bool onTitle)
     
     spawnTime = 5.0;
     currentTime = 0.0;
+	gameTime = 0.0;
     speed = 1.0;
     global_AdvanceSpeed = 0.0f;
     
@@ -53,6 +55,15 @@ void HazardSelector::update(float delta)
     if (onTitle) speed *= 0.5;
     currentTime += delta * speed;
     
+	if (!onTitle)
+	{
+		int oldMin = gameTime / 60;
+		gameTime += delta;
+		int newMin = gameTime / 60;
+
+		if (oldMin != newMin) AchievementManager::updateStat("GameTime", newMin);
+	}
+
     for (auto it = runningActions.begin(); it != runningActions.end();)
     {
         if ((*it)->isDone())

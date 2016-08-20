@@ -410,7 +410,7 @@ std::string FacebookManager::getUserName()
 	return "";
 }
 
-void requestReadPermissions(std::function<void(FacebookManager::PermissionState, std::string)> callback, bool rerequest)
+void FacebookManager::requestReadPermissions(std::function<void(FacebookManager::PermissionState, std::string)> callback, bool rerequest)
 {
 	if (!rerequest && readState == FacebookManager::PermissionState::DECLINED)
 		callback(FacebookManager::PermissionState::DECLINED, "");
@@ -435,7 +435,7 @@ void requestReadPermissions(std::function<void(FacebookManager::PermissionState,
 	});
 }
 
-void requestPublishPermissions(std::function<void(FacebookManager::PermissionState, std::string)> callback, bool rerequest)
+void FacebookManager::requestPublishPermissions(std::function<void(FacebookManager::PermissionState, std::string)> callback, bool rerequest)
 {
 	if (!rerequest && publishState == FacebookManager::PermissionState::DECLINED)
 		callback(FacebookManager::PermissionState::DECLINED, "");

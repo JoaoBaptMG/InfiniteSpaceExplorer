@@ -211,7 +211,7 @@ bool BlurNode::init(Size contentSize, Node *targetNode)
     setContentSize(contentSize);
     createRenderTextures();
     
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WP8
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
     recreatedListener = _eventDispatcher->addCustomEventListener(EVENT_RENDERER_RECREATED, [this] (EventCustom*) { deleteRenderTextures(); createRenderTextures(); });
 #endif
     
@@ -222,7 +222,7 @@ BlurNode::~BlurNode()
 {
     deleteRenderTextures();
     
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WP8
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
     _eventDispatcher->removeEventListener(recreatedListener);
 #endif
 }

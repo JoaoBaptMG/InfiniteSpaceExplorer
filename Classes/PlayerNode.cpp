@@ -14,6 +14,7 @@
 #include "ShipConfig.h"
 #include "GameScene.h"
 #include "SoundManager.h"
+#include "AchievementManager.h"
 
 unsigned long global_ShipSelect = 0;
 
@@ -185,6 +186,7 @@ bool PlayerNode::projectileDamage(const CollisionManager::HazardCollisionData &h
     {
         int val = hazard.info.projectileScore;
         _eventDispatcher->dispatchCustomEvent("ScoreUpdate", &val);
+		AchievementManager::increaseStat("HazardHit", 1);
         
         for (Node *hz : { hazard.positionNode, hazard.otherNode, hazard.info.companionNode[0].get(), hazard.info.companionNode[1].get() })
         {
@@ -211,7 +213,8 @@ void PlayerNode::onTouchEnded(Touch *touch, Event *event)
     if (touching)
     {
         touching = false;
-        motionProcessor->calibrate();
+        if (motionProcessor)
+			motionProcessor->calibrate();
     }
 }
 

@@ -43,7 +43,7 @@ inline static bool getRotationQuaternion(Vec3 gravity, const Vec3 &geomagnetic, 
     Quaternion::createFromRotationMatrix(Mat4(H.x, H.y, H.z, 0, M.x, M.y, M.z, 0, gravity.x, gravity.y, gravity.z, 0, 0, 0, 0, 1), outQuat);
     return true;
 }
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_WP8
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
 
 #endif
 
@@ -87,7 +87,7 @@ MotionProcessor::MotionProcessor() : calibratedQuaternion(0, 0, 0, 0), direction
     }
     
     motionSource = (void*)data;
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_WP8
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
     
 #endif
 }

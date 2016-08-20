@@ -215,6 +215,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Classes\AchievementManager.h" />
     <ClInclude Include="..\..\Classes\AppDelegate.h" />
     <ClInclude Include="..\..\Classes\BackgroundNode.h" />
     <ClInclude Include="..\..\Classes\BezierNode.h" />
@@ -270,6 +271,7 @@
     <None Include="SpaceExplorerPort_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Classes\AchievementManager.cpp" />
     <ClCompile Include="..\..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\..\Classes\BackgroundNode.cpp" />
     <ClCompile Include="..\..\Classes\BezierNode.cpp" />

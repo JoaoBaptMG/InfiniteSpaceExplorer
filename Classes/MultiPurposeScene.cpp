@@ -43,7 +43,7 @@ inline static ui::Button *createHoverButton(const std::string &name)
 
 inline static bool isShipUnlocked(unsigned long shipId)
 {
-    return UserDefault::getInstance()->getIntegerForKey("AccumulatedScore") >= getShipConfig(shipId).pointsRequired;
+    return UserDefault::getInstance()->getIntegerForKey("Unlock") >= getShipConfig(shipId).pointsRequired;
 }
 
 inline static std::string getLockedText(unsigned long shipId)
@@ -51,7 +51,7 @@ inline static std::string getLockedText(unsigned long shipId)
     if (isShipUnlocked(shipId)) return "AVAILABLE TO PLAY";
     else
     {
-        int required = getShipConfig(shipId).pointsRequired - UserDefault::getInstance()->getIntegerForKey("AccumulatedScore");
+        int required = getShipConfig(shipId).pointsRequired - UserDefault::getInstance()->getIntegerForKey("Unlock");
         return ulongToString(required) + " MORE TO UNLOCK";
     }
 }
@@ -366,7 +366,7 @@ void MultiPurposeLayer::exitConfirm()
 }
 
 
-constexpr struct { const char name[20], text[20], defaultKey[20]; int begin, end; } sliders[] =
+const struct { const char name[20], text[20], defaultKey[20]; int begin, end; } sliders[] =
 {
     { "ButtonMusicOn.png", "MUSIC VOLUME", "MusicVolume", 0, 100 },
     { "ButtonSoundOn.png", "SOUND VOLUME", "SoundVolume", 0, 100 },

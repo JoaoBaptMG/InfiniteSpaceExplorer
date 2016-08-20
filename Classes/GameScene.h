@@ -17,7 +17,7 @@ class GameScene : public cocos2d::LayerColor
     bool init();
     
     int colorID;
-    float gameTime;
+    float bgTime;
     cocos2d::Node *gameLayer, *uiLayer, *backgroundLayer;
     cocos2d::EventListenerCustom *lifeUpdateListener, *tutorialDoneListener;
     cocos2d::EventListenerCustom *backgroundListener, *foregroundListener;

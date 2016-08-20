@@ -27,12 +27,13 @@ bool GPGLoginButton::init()
 
 	authorizationListener = _eventDispatcher->addCustomEventListener("GPGStatusUpdated", [=](EventCustom *custom)
 	{
-		refresh(GPGManager::isAuthorized());
+		refresh(GPGManager::getSignStatus());
 	});
 
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
 	waitingForResponse = true;
+	refresh(GPGManager::getSignStatus());
 	setPressed(false);
 
 	return true;
@@ -74,34 +75,31 @@ void GPGLoginButton::onTouchCancelled(Touch *touch, Event *event)
 
 void GPGLoginButton::setPressed(bool pressed)
 {
+	log("Pressed!");
 	setOpacity(waitingForResponse || !pressed ? 255 : 127);
 }
 
-void GPGLoginButton::refresh(bool isLoggedIn)
+void GPGLoginButton::refresh(GPGManager::SignStatus signStatus)
 {
-	waitingForResponse = false;
-	setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(!isLoggedIn ? "GPGSignInButton.png" : "GPGSignOutButton.png"));
+	waitingForResponse = signStatus == GPGManager::SignStatus::SIGNING || signStatus == GPGManager::SignStatus::PLATFORM_UNAVAILABLE;
+
+	log("GPGLoginButton refreshed!");
+
+	const char *spriteFrameNames[] = { "GPGSignInButton.png", "GPGSigningButton.png", "GPGSignOutButton.png", "GPGPlatformUnavailable.png" };
+
+	setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(spriteFrameNames[(int)signStatus]));
 }
 
 void GPGLoginButton::act()
 {
 	if (waitingForResponse) return;
 
-	if (GPGManager::isAuthorized())
-	{
-		presentMessage("Do you want to sign out from Google Play Games?", "Sign out?", "Yes", "No", [=]
-		{ 
-			waitingForResponse = true;
-			setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("GPGSigningButton.png"));
-			GPGManager::signOut();
-		}, [] {});
-	}
-	else
-	{
-		waitingForResponse = true;
-		setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("GPGSigningButton.png"));
-		GPGManager::signIn();
-	}
+	if (GPGManager::getSignStatus() == GPGManager::SignStatus::SIGNED)
+		presentMessage("Do you want to sign out from Google Play Games?", "Sign out?", "Yes", "No",
+			[=] { GPGManager::signOut(); }, [] {});
+	else GPGManager::signIn();
+
+	refresh(GPGManager::getSignStatus());
 }
 
 #endif

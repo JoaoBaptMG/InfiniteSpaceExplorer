@@ -46,15 +46,15 @@ bool openURL(std::string url)
 }
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
-#include "platform/winrt/CCWinRTUtils.h"
+#include "Defaults.h"
 using namespace Windows::Foundation;
 using namespace Windows::System;
 
-bool openUrl(std::string url)
+bool openURL(std::string url)
 {
 	try
 	{
-		Launcher::LaunchUriAsync(ref new Uri(cocos2d::PlatformStringFromString(url)));
+		Launcher::LaunchUriAsync(ref new Uri(PlatformStringFromString(url)));
 		return true;
 	}
 	catch (Platform::Exception^)

@@ -11,6 +11,7 @@
 #include "CollisionManager.h"
 #include "GameScene.h"
 #include "SoundManager.h"
+#include "AchievementManager.h"
 
 using namespace cocos2d;
 
@@ -232,6 +233,7 @@ void PowerupSpawner::spawnPowerup()
     
     CollisionManager::addPowerup(CollisionManager::PowerupCollisionData(sprite, Vec2::ZERO, 16, [func, sprite] (const CollisionManager::PlayerCollisionData &data)
     {
+		AchievementManager::increaseStat("PowerupCollected", 1);
         SoundManager::play("common/PowerupTaken.wav");
         func(static_cast<PlayerNode*>(data.positionNode), sprite);
     }));

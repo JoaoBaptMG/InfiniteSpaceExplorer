@@ -20,7 +20,7 @@ JNIEXPORT void JNICALL Java_joaobapt_PictureDownloader_onPostExecute(JNIEnv* env
 {
     jclass curClass = env->FindClass("joaobapt/PictureDownloader");
     
-    jfieldID stringMessageID = env->GetFieldID(curClass, "errorMessage", "Ljava/lang/String");
+	jfieldID stringMessageID = env->GetFieldID(curClass, "errorMessage", "Ljava/lang/String;");
     jfieldID callbackID = env->GetFieldID(curClass, "callback", "Ljava/nio/ByteBuffer;");
     
     if (!callbackID) return;

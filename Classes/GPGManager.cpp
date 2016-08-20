@@ -33,6 +33,8 @@ bool playerDataGot = false;
 static std::mutex playerDataMutex;
 static std::condition_variable playerDataCondition;
 
+static GPGManager::SignStatus signStatus = GPGManager::SignStatus::NOT_SIGNED;
+
 std::string getPlayerId()
 {
 	std::unique_lock<std::mutex> lock(playerDataMutex);
@@ -69,11 +71,18 @@ void GPGManager::initialize()
 
 	auto onAuthStarted = [](gpg::AuthOperation op)
 	{
+		signStatus = GPGManager::SignStatus::SIGNING;
+
 		if (op == gpg::AuthOperation::SIGN_OUT)
 		{
+			log("Sign out started!");
+
 			gpgActive = false;
 			playerId = playerName = "";
 		}
+		else log("Sign in started!");
+
+		Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("GPGStatusUpdated");
 	};
 
 	auto onAuthFinished = [=](gpg::AuthOperation op, gpg::AuthStatus status)
@@ -82,7 +91,9 @@ void GPGManager::initialize()
 		{
 			if (gpg::IsSuccess(status))
 			{
-				gpgActive = true;
+				log("Sign in successful!");
+
+				signStatus = GPGManager::SignStatus::SIGNED;
 				gameServices->Players().FetchSelf([=](const gpg::PlayerManager::FetchSelfResponse &response)
 				{
 					std::lock_guard<std::mutex> lockGuard(playerDataMutex);
@@ -97,6 +108,16 @@ void GPGManager::initialize()
 					playerDataCondition.notify_all();
 				});
 			}
+			else 
+			{
+				log("Sign in failed!"); 
+				signStatus = GPGManager::SignStatus::NOT_SIGNED;
+			}
+		}
+		else
+		{
+			signStatus = GPGManager::SignStatus::NOT_SIGNED;
+			log("Sign out successful!");
 		}
 
 		Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("GPGStatusUpdated");
@@ -105,9 +126,12 @@ void GPGManager::initialize()
 	gameServices = gpg::GameServices::Builder()
 		.SetOnAuthActionStarted(onAuthStarted)
 		.SetOnAuthActionFinished(onAuthFinished)
+		.SetOnLog([](gpg::LogLevel level, const std::string &error) { log("%s", error.c_str()); }, gpg::LogLevel::VERBOSE)
 		.Create(config);
 
-	CC_ASSERT(gameServices);
+	if (!gameServices) signStatus = GPGManager::SignStatus::PLATFORM_UNAVAILABLE;
+
+	log("GPG Status: %d", (int)signStatus);
 }
 
 bool GPGManager::isPlatformAvailable()
@@ -115,10 +139,9 @@ bool GPGManager::isPlatformAvailable()
 	return (bool)gameServices;
 }
 
-bool GPGManager::isAuthorized()
+GPGManager::SignStatus GPGManager::getSignStatus()
 {
-	if (gameServices) return gameServices->IsAuthorized();
-	return false;
+	return signStatus;
 }
 
 void GPGManager::signIn()
@@ -133,7 +156,7 @@ void GPGManager::signOut()
 
 void GPGManager::loadPlayerCurrentScore(std::function<void(const ScoreManager::ScoreData&)> handler)
 {
-	if (!gpgActive) return;
+	if (signStatus != GPGManager::SignStatus::SIGNED) return;
 
 	gameServices->Leaderboards().FetchScoreSummary(LEADERBOARD_ID, gpg::LeaderboardTimeSpan::ALL_TIME,
 		gpg::LeaderboardCollection::SOCIAL, [=](const gpg::LeaderboardManager::FetchScoreSummaryResponse& response)
@@ -175,8 +198,8 @@ struct scoreGatherer
 
 	void requestToken()
 	{
-		long numberOfEntries = std::min(requestedLast - currentFirst + 1, PageSize);
-		numberOfEntries = std::max(numberOfEntries, long(0));
+		long numberOfEntries = MIN(requestedLast - currentFirst + 1, PageSize);
+		numberOfEntries = MAX(numberOfEntries, 0);
 		gameServices->Leaderboards().FetchScorePage(curToken, std::ref(*this));
 	}
 
@@ -203,8 +226,8 @@ struct scoreGatherer
 
 		firstRequest = false;
 
-		auto begin = page.Entries().begin(); std::advance(begin, std::max(requestedFirst - currentFirst, long(0)));
-		auto end = page.Entries().begin(); std::advance(end, std::min(requestedLast - currentFirst + 1, PageSize));
+		auto begin = page.Entries().begin() + MIN(MAX(requestedFirst - currentFirst, 0), page.Entries().size());
+		auto end = page.Entries().begin() + MIN(MIN(requestedLast - currentFirst + 1, PageSize), page.Entries().size());
 
 		auto dist = std::distance(begin, end);
 
@@ -224,24 +247,30 @@ struct scoreGatherer
 				currentScores[i].index = it->Score().Rank();
 
 				currentScores[i].isPlayer = it->PlayerId() == playerId;
+				
+				log("Retrieved score id %ld!", i);
 
 				gameServices->Players().Fetch(it->PlayerId(), [&, i](const gpg::PlayerManager::FetchResponse &response)
 				{
-					std::string textureKey = "Avatar" + response.data.Id();
+					std::string textureKey;
 
+					log("Lock mutex!");
 					nameWriterMutex.lock();
+					log("Mutex locked!");
 
 					if (gpg::IsSuccess(response.status))
 					{
 						currentScores[i].name = response.data.Name();
-						currentScores[i].textureKey = textureKey;
+						currentScores[i].textureKey = textureKey = "Avatar" + response.data.Id();;
 					}
 					else error = true;
 
 					namesWritten++;
 
+					log("Wait condition!");
 					nameWriterCondition.notify_all();
 					nameWriterMutex.unlock();
+					log("Condition notified!");
 
 					if (gpg::IsSuccess(response.status) && loadPhotos && Director::getInstance()->getTextureCache()->getTextureForKey(textureKey) == nullptr)
 					{
@@ -253,8 +282,9 @@ struct scoreGatherer
 				});
 			}
 
-			std::unique_lock<std::mutex> nameWriterLock;
+			std::unique_lock<std::mutex> nameWriterLock(nameWriterMutex);
 			nameWriterCondition.wait(nameWriterLock, [&, dist] { return namesWritten == dist; });
+			log("Successful!");
 		}
 
 		if (error)
@@ -267,7 +297,11 @@ struct scoreGatherer
 			currentFirst -= PageSize;
 			curToken = page.PreviousScorePageToken();
 			if (curToken.Valid() && currentFirst + PageSize > requestedFirst) requestToken();
-			else return finalize();
+			else
+			{
+				requestedFirst = currentFirst + PageSize;
+				return finalize();
+			}
 		}
 		else
 		{
@@ -305,7 +339,8 @@ struct scoreGatherer
 void GPGManager::loadHighscoresOnRange(ScoreManager::SocialConstraint socialConstraint, ScoreManager::TimeConstraint timeConstraint,
 	long first, long last, std::function<void(long, std::vector<ScoreManager::ScoreData>&&, std::string)> handler, bool loadPhotos)
 {
-	if (!gpgActive) return;
+	if (signStatus == GPGManager::SignStatus::PLATFORM_UNAVAILABLE) return handler(-1, {}, "Google Play Games is not available!");
+	if (signStatus != GPGManager::SignStatus::SIGNED) return handler(-1, {}, "You are not signed in!");
 
 	getPlayerId(); // This will load the playerId previously
 
@@ -351,9 +386,29 @@ void GPGManager::loadHighscoresOnRange(ScoreManager::SocialConstraint socialCons
 
 void GPGManager::reportScore(int64_t score)
 {
-	if (!gpgActive) return;
+	if (gameServices) gameServices->Leaderboards().SubmitScore(LEADERBOARD_ID, score);
+}
 
-	gameServices->Leaderboards().SubmitScore(LEADERBOARD_ID, score);
+void GPGManager::unlockAchievement(std::string id)
+{
+	if (gameServices) gameServices->Achievements().Unlock(id);
+}
+
+void GPGManager::updateAchievementStatus(std::string id, int val)
+{
+	if (gameServices) gameServices->Achievements().SetStepsAtLeast(id, val);
+}
+
+void GPGManager::getAchievementProgress(std::string id, std::function<void(int)> handler)
+{
+	if (gameServices)
+		gameServices->Achievements().Fetch(id, [=](const gpg::AchievementManager::FetchResponse& response)
+	{
+		if (gpg::IsSuccess(response.status))
+			handler(response.data.CurrentSteps());
+		else handler(-1);
+	});
+	else handler(-1);
 }
 
 #endif

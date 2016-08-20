@@ -14,7 +14,6 @@
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
 #include <collection.h>
-#include "platform/winrt/CCWinRTUtils.h"
 
 enum { WINRT_DELETE = DELETE, WINRT_ERROR = ERROR };
 #undef DELETE

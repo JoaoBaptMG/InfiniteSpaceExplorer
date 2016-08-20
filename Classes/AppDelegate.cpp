@@ -6,6 +6,7 @@
 #include "ScoreManager.h"
 #include "FacebookManager.h"
 #include "SoundManager.h"
+#include "AchievementManager.h"
 #include "audio/include/SimpleAudioEngine.h"
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
@@ -125,9 +126,13 @@ bool AppDelegate::applicationDidFinishLaunching() {
     
     setDesignResolution(glview);
     setUserDefaults();
+
+	for (const auto& str : FileUtils::getInstance()->getSearchPaths())
+		log("%s", str.c_str());
+
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile("GameAssets.plist");
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile("UIAssets.plist");
-    
+
     auto tex = director->getTextureCache()->addImage("common/Background.png");
     if (!tex->hasMipmaps()) tex->generateMipmap();
     
@@ -153,6 +158,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     
     FacebookManager::initialize();
     ScoreManager::init();
+	AchievementManager::initialize();
 
     register_all_packages();
 

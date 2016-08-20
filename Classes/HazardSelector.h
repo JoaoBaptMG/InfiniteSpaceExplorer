@@ -48,7 +48,7 @@ public:
     void presentHazard(int id);
     void moveHazardOffscreen(cocos2d::RefPtr<cocos2d::Node> node, cocos2d::Vec2 dir, cocos2d::RefPtr<cocos2d::Action> nextAction, ExitDir exitDir = ExitDir::ALL, float expansion = 0);
     
-    float spawnTime, currentTime;
+    float spawnTime, currentTime, gameTime;
     float speed;
     
     bool onTitle;

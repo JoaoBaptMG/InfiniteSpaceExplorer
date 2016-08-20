@@ -52,7 +52,7 @@ using namespace cocos2d;
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
 
 #include "platform/winrt/CCGLViewImpl-winrt.h"
-#include "platform/winrt/CCWinRTUtils.h"
+#include "Defaults.h"
 using namespace cocos2d;
 using namespace Windows::UI::Core;
 using namespace Windows::UI::Popups;

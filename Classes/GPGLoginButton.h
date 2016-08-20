@@ -10,6 +10,7 @@
 #define GPGLoginButton_hpp
 
 #include "cocos2d.h"
+#include "GPGManager.h"
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
@@ -24,7 +25,7 @@ class GPGLoginButton : public cocos2d::Sprite
 	void onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *event);
 
 	void setPressed(bool pressed);
-	void refresh(bool isLoggedIn);
+	void refresh(GPGManager::SignStatus signStatus);
 
 	void act();
 

@@ -13,6 +13,7 @@
 #include "Defaults.h"
 #include "MultiPurposeScene.h"
 #include "ScoreManager.h"
+#include "AchievementManager.h"
 #include "MessageDialog.h"
 #include "FacebookManager.h"
 
@@ -117,7 +118,7 @@ void ResultNode::sequence()
     
     auto scoreText = Label::createWithTTF("000000", LATO_LIGHT, 96);
     scoreText->setPosition(Vec2(size.width/2, size.height*.7));
-    addChild(scoreText);
+	addChild(scoreText);
     
     auto infoText = Label::createWithTTF("YOUR SCORE ON THIS GAME WAS", LATO_REGULAR, 16);
     infoText->setPosition(scoreText->getPosition() + Vec2(0, 50));

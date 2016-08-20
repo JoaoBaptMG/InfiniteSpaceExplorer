@@ -217,6 +217,21 @@ void GameCenterManager::reportScore(int64_t score)
     cachedPlayerDataDirty = true;
 }
 
+void GameCenterManager::unlockAchievement(std::string id)
+{
+	updateAchievementStatus(id, 100);
+}
+
+void GameCenterManager::updateAchievementStatus(std::string id, double percent)
+{
+
+}
+
+void GameCenterManager::getAchievementProgress(std::string id, std::function<void(double)> handler)
+{
+
+}
+
 void GameCenterManager::presentWidget()
 {
     GKGameCenterViewController *controller = [[GKGameCenterViewController alloc] init];

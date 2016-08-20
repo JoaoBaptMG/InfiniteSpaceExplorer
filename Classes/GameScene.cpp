@@ -19,6 +19,7 @@
 #include "PowerupSpawner.h"
 #include "BackgroundNode.h"
 #include "ScoreManager.h"
+#include "AchievementManager.h"
 #include "BlurFilter.h"
 #include "FacebookManager.h"
 #include "SoundManager.h"
@@ -56,7 +57,7 @@ bool GameScene::init()
     schedule([] (float delta) { CollisionManager::update(); }, "CollisionUpdate");
     
     gameLayer->addChild(PlayerNode::create());
-    gameTime = 0;
+    bgTime = 0;
     alreadyChecked = alreadyChecked2 = false;
     
     lifeUpdateListener = _eventDispatcher->addCustomEventListener("LifeUpdate", CC_CALLBACK_1(GameScene::lifeUpdate, this));
@@ -192,11 +193,8 @@ void GameScene::lifeUpdate(EventCustom *event)
             
             // Post the score
             ScoreManager::reportScore();
-            
-            // Update the accumulated score
-            int accumulatedScore = UserDefault::getInstance()->getIntegerForKey("AccumulatedScore");
-            accumulatedScore += global_GameScore;
-            UserDefault::getInstance()->setIntegerForKey("AccumulatedScore", accumulatedScore);
+			AchievementManager::updateStat("ScoreGot", global_GameScore);
+			AchievementManager::increaseStat("Unlock", global_GameScore);
         }
     }
 }
@@ -205,14 +203,17 @@ void GameScene::checkTutorialPhase()
 {
     if (!UserDefault::getInstance()->getBoolForKey("TutorialFirstPhase"))
     {
-        std::string str = "$Tap to start the ship";
+        std::string str = "$Touch the screen to start the ship";
         _eventDispatcher->dispatchCustomEvent("TutorialMessage", &str);
         
-        str = "Tilt to move the ship";
+        str = "Tilt your device to move the ship";
         _eventDispatcher->dispatchCustomEvent("TutorialMessage", &str);
         
-        str = "#{TutorialDone}$Tap and hold to stabilize";
+        str = "#{TutorialDone}$Tap and hold to freeze";
         _eventDispatcher->dispatchCustomEvent("TutorialMessage", &str);
+
+		str = "You can only move on the left half";
+		_eventDispatcher->dispatchCustomEvent("TutorialMessage", &str);
         
         tutorialDoneListener = _eventDispatcher->addCustomEventListener("TutorialDone", [this] (EventCustom *event)
         {
@@ -232,6 +233,26 @@ void GameScene::checkTutorialPhase()
     {
         gameLayer->addChild(HazardSelector::create());
         gameLayer->addChild(PowerupSpawner::create());
+
+		if (global_ShipSelect != 0)
+		{
+			char str[] = "FirstTimeShip0";
+			str[13] += global_ShipSelect;
+
+			if (!UserDefault::getInstance()->getBoolForKey(str))
+			{
+				const char *messages[] = 
+				{
+					"This ship has a stronger armor, but it's bigger",
+					"This ship is smaller, but it has a weaker armor"
+				};
+
+				std::string msg = messages[global_ShipSelect - 1];
+				_eventDispatcher->dispatchCustomEvent("TutorialMessage", &msg);
+
+				UserDefault::getInstance()->setBoolForKey(str, true);
+			}
+		}
     }
 }
 
@@ -269,7 +290,7 @@ void GameScene::gotoPauseScreen()
     
     applyBlurFilter(targetRenderTexture, helperRenderTexture, outputRenderTexture, 4);
 
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WP8
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
     RefPtr<GameScene> thisPtr = this;
     scheduleOnce([=] (float delta)
     {
@@ -303,7 +324,7 @@ void GameScene::pauseButtonPressed(Ref *object, ui::Widget::TouchEventType type)
 
 void GameScene::reset()
 {
-    gameTime = 0;
+    bgTime = 0;
     colorID = 0;
     
     gameLayer->removeAllChildren();
@@ -330,16 +351,16 @@ void GameScene::update(float delta)
 {
     LayerColor::update(delta);
     
-    gameTime += delta;
-    while (gameTime >= FadeTime)
+    bgTime += delta;
+    while (bgTime >= FadeTime)
     {
-        gameTime -= FadeTime;
+        bgTime -= FadeTime;
         colorID = (colorID + 1) % colorsSize;
     }
     
     auto color1 = colors[colorID], color2 = colors[(colorID+1) % colorsSize];
     
-    float index = gameTime/FadeTime;
+    float index = bgTime/FadeTime;
     setColor(Color3B(color1.r + index * (color2.r-color1.r), color1.g + index * (color2.g-color1.g), color1.b + index * (color2.b - color1.b)));
 }
 

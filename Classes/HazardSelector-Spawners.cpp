@@ -543,9 +543,9 @@ const HazardSpawner hazardSpawners[] =
 const int hazardSpawnerSize = sizeof(hazardSpawners)/sizeof(hazardSpawners[0]);
 const std::string hazardStrings[] =
 {
-    "Avoid cubes and other hazards",
+    "Avoid disks and other hazards",
     "",
-    "Shooters will shoot on you",
+    "Shooters will shoot you",
     "Bullets come at blazing speeds",
     "Fireballs explode on your face",
     "Missiles follow you everywhere",

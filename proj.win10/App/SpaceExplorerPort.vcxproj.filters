@@ -139,6 +139,9 @@
     <ClCompile Include="..\..\Classes\GPGLoginButton.cpp">
       <Filter>Classes\Custom Nodes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Classes\AchievementManager.cpp">
+      <Filter>Classes\Social Experience Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.xaml.h" />
@@ -245,6 +248,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Classes\GPGLoginButton.h">
       <Filter>Classes\Custom Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\AchievementManager.h">
+      <Filter>Classes\Social Experience Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

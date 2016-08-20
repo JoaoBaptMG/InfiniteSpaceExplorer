@@ -22,7 +22,7 @@ class BlurNode : public cocos2d::Node
     
     cocos2d::RefPtr<cocos2d::Node> targetNode;
     
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WP8
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
     cocos2d::EventListenerCustom* recreatedListener;
 #endif
     

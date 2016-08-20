@@ -77,7 +77,7 @@ void ScoreManager::reportScore()
     GameCenterManager::reportScore(global_GameScore);
 #endif
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-    // GPGManager::reportScore(global_GameScore);
+    GPGManager::reportScore(global_GameScore);
 #endif
     FacebookManager::reportScore(global_GameScore);
 }

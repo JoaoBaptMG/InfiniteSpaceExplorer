@@ -83,7 +83,7 @@ void downloadPicture(std::string path, std::string key, std::function<void(cocos
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
 
-#include "platform/winrt/CCWinRTUtils.h"
+#include "Defaults.h"
 #include <wrl.h>
 #include <robuffer.h>
 
