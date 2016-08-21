@@ -29,7 +29,7 @@ constexpr int SHOOT_DRONE = 4;
 constexpr int FRONT_SPRITE = 9;
 constexpr int BACK_SPRITE = 10;
 
-constexpr float AnimationRate = 30.0f;
+constexpr float AnimationRate = 60.0f;
 constexpr float PlayerScale = 0.78125f;
 
 using namespace cocos2d;
@@ -76,6 +76,7 @@ bool PlayerNode::init()
     tintAmount = 0;
     
     createJetFlames();
+    currentShieldAnimation = 0;
     
     auto sprite = Sprite::createWithSpriteFrameName("PlayerShape" + ulongToString(global_ShipSelect) + ".png");
     sprite->setScale(0.5 * PlayerScale);
@@ -126,7 +127,7 @@ void PlayerNode::createJetFlames()
     }
     
     fixedAnimationInterval = 0.0f;
-    currentAnimation = 0;
+    currentJetAnimation = 0;
 }
 
 void PlayerNode::takeDamage(const CollisionManager::HazardCollisionData &hazard)
@@ -274,8 +275,14 @@ void PlayerNode::update(float delta)
     fixedAnimationInterval += AnimationRate*delta;
     for (; fixedAnimationInterval > 1; fixedAnimationInterval -= 1)
     {
-        currentAnimation = (currentAnimation + 1) % 30;
-        for (auto jet : jetFlames) jet->setSpriteFrame("JetFire" + ulongToString(currentAnimation+1) + ".png");
+        currentJetAnimation = (currentJetAnimation + 1) % 60;
+        for (auto jet : jetFlames) jet->setSpriteFrame("JetFire" + ulongToString(currentJetAnimation/2+1) + ".png");
+        
+        currentShieldAnimation = (currentShieldAnimation + 1) % 24;
+        auto sprite = getChildByTag<Sprite*>(SHIELD_FRONT);
+        if (sprite) sprite->setSpriteFrame("ShieldAnimation" + ulongToString(currentShieldAnimation+1) + ".png");
+        sprite = getChildByTag<Sprite*>(SHIELD_BACK);
+        if (sprite) sprite->setSpriteFrame("ShieldAnimation" + ulongToString(24-currentShieldAnimation) + ".png");
     }
     
     if (withShooter)
@@ -319,7 +326,9 @@ static const Vector<SpriteFrame*> &getAnimationFrames()
         for (int i = 0; i < 24; i++)
         {
             std::string name = "ShieldAnimation" + ulongToString(i+1) + ".png";
-            frames.pushBack(SpriteFrameCache::getInstance()->getSpriteFrameByName(name));
+            auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(name);
+            frame->getTexture()->setAntiAliasTexParameters();
+            frames.pushBack(frame);
         }
     }
     return frames;
@@ -340,8 +349,6 @@ void PlayerNode::addShield()
     auto animationBack = Sprite::create();
     
     glowingBorder->runAction(RepeatForever::create(Sequence::createWithTwoActions(blink, blink2)));
-    animationFront->runAction(RepeatForever::create(animationAction));
-    animationBack->runAction(RepeatForever::create(animationAction->reverse()));
     
     for (Sprite *spr : { glowingBorder, animationFront, animationBack })
     {
@@ -349,6 +356,8 @@ void PlayerNode::addShield()
         spr->runAction(FadeIn::create(0.5));
         spr->setPosition(getContentSize()/2);
     }
+    
+    currentShieldAnimation = 0;
     
     addChild(animationBack, -4, SHIELD_BACK);
     addChild(animationFront, 2, SHIELD_FRONT);

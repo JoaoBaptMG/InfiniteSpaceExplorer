@@ -13,6 +13,8 @@
 
 using namespace cocos2d;
 
+float global_MaxMultiplier = 0;
+
 TextUpdateAction* TextUpdateAction::create(unsigned long oldScore, unsigned long newScore, float duration)
 {
     TextUpdateAction *pRet = new(std::nothrow) TextUpdateAction();
@@ -68,7 +70,7 @@ void TextUpdateAction::update(float time)
     text->setPosition(lastPos - text->getContentSize()/2);
 }
 
-constexpr float MultiplierUpgradeTime = 21, MaxMultiplierUpgrade = 5, MultiplierUpgradeStep = 0.5;
+constexpr float MultiplierUpgradeTime = 21, MaxMultiplierUpgrade = 9, MultiplierUpgradeStep = 0.5;
 
 long global_GameScore = 0;
 
@@ -80,6 +82,7 @@ bool ScoreNode::init(const Size &screenSize)
         scheduleUpdate();
     
     global_GameScore = 0;
+    global_MaxMultiplier = 1;
     multiplier = 1;
     multiplierTime = INFINITY;
     
@@ -166,16 +169,14 @@ void ScoreNode::computeTextPositions(const Size &size)
 
 void ScoreNode::update(float delta)
 {
-    if (multiplier < MaxMultiplierUpgrade)
+    if (!paused && !playerDead) multiplierTime -= delta;
+    
+    if (multiplierTime <= 0)
     {
-        if (!paused) multiplierTime -= delta;
-        
-        if (multiplierTime <= 0)
-        {
-            multiplier += MultiplierUpgradeStep;
-            multiplierTime = MultiplierUpgradeTime;
-            updateMultiplierText();
-        }
+        multiplier += MultiplierUpgradeStep;
+        global_MaxMultiplier = MAX(global_MaxMultiplier, multiplier);
+        multiplierTime = MultiplierUpgradeTime + 2*multiplier;
+        updateMultiplierText();
     }
     
     updateScoreTracking();
@@ -192,17 +193,20 @@ void ScoreNode::updateMultiplierText(bool createText)
     multiplierText->setString(ulongToString(multInt) + "." + ulongToString(multFrac) + "x" + (doubleScore ? " (+)" : ""));
     multiplierText->setPosition(lastPos + multiplierText->getContentSize()/2);
     
-    auto step = (multiplier-1)/(MaxMultiplierUpgrade-1);
+    auto step = (MIN(multiplier, MaxMultiplierUpgrade)-1)/(MaxMultiplierUpgrade-1);
     multiplierText->setTextColor(Color4B(255, 255 - 41*step, 255*(1-step), 255));
     
     if (createText)
     {
+        removeChildByName("MultiplierText");
+        
         auto size = getScene()->getContentSize();
         
         auto text = Label::createWithTTF("Score multiplier: " + multiplierText->getString() + "!", "fonts/Lato/Lato-Regular.ttf", 24);
         text->setPosition(size/2);
         
-        auto step = (multiplier-1)/(MaxMultiplierUpgrade-1);
+        text->setName("MultiplierText");
+        
         text->setTextColor(Color4B(255, 255 - 41*step, 255*(1-step), 255));
         text->setOpacity(0);
         

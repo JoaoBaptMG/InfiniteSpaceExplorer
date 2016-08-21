@@ -34,6 +34,9 @@ namespace GPGManager
 	void unlockAchievement(std::string id);
 	void updateAchievementStatus(std::string id, int val);
 	void getAchievementProgress(std::string id, std::function<void(int)> handler);
+    
+    void presentLeaderboardWidget();
+    void presentAchievementWidget();
 }
 
 #endif

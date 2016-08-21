@@ -24,6 +24,8 @@ inline static cocos2d::Scene *createSceneWithLayer(cocos2d::Layer* layer)
 
 extern unsigned long global_ShipSelect;
 extern long global_GameScore;
+extern float global_GameTime;
+extern float global_MaxMultiplier;
 
 inline static std::string ulongToString(unsigned long value, int numberOfZeroes = 1)
 {

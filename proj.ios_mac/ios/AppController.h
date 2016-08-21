@@ -1,9 +1,10 @@
 #import <UIKit/UIKit.h>
 #import <GameKit/GameKit.h>
+#import <GoogleSignIn/GoogleSignIn.h>
 
 @class RootViewController;
 
-@interface AppController : NSObject <UIApplicationDelegate, GKGameCenterControllerDelegate> {
+@interface AppController : NSObject <UIApplicationDelegate, GKGameCenterControllerDelegate, GIDSignInUIDelegate> {
 
 }
 

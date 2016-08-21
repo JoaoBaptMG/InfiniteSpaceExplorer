@@ -38,7 +38,11 @@ inline static ui::Button *createButton(const std::string &name)
 
 inline static ui::Button *createHoverButton(const std::string &name)
 {
-    return ui::Button::create(name + ".png", name + ".png", name + ".png", cocos2d::ui::Widget::TextureResType::PLIST);
+    auto button = ui::Button::create(name + ".png", name + ".png", name + ".png", cocos2d::ui::Widget::TextureResType::PLIST);
+    button->setHighlighted(true);
+    button->getVirtualRenderer()->setOpacity(127);
+    button->setHighlighted(false);
+    return button;
 }
 
 inline static bool isShipUnlocked(unsigned long shipId)
@@ -93,6 +97,9 @@ bool MultiPurposeLayer::init(Color3B color, bool pause)
 MultiPurposeLayer::~MultiPurposeLayer()
 {
     _director->getTextureCache()->removeTextureForKey("SavedImage");
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    _eventDispatcher->removeEventListener(gpgListener);
+#endif
 }
 
 static const Vector<SpriteFrame*> &getJetAnimationFrames()
@@ -441,19 +448,56 @@ void MultiPurposeLayer::createLayout2()
         });
     }
     
+    auto buttonsNode = Node::create();
+    buttonsNode->setAnchorPoint(Vec2::ZERO);
+    buttonsNode->setPosition(size.width + 48, SliderBottomSpacing/2);
+    
     auto fbButton = FacebookLoginButton::create();
-    fbButton->setPosition(size.width + 48 + fbButton->getContentSize().width/2, SliderBottomSpacing/2);
-    containerNode->addChild(fbButton);
+    fbButton->setPosition(fbButton->getContentSize().width/2, 0);
+    buttonsNode->addChild(fbButton);
+    
+    auto totalWidth = fbButton->getContentSize().width;
     
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	auto gpgButton = GPGLoginButton::create();
-	gpgButton->setPosition(fbButton->getPosition() + Vec2(fbButton->getContentSize().width / 2 + 8 + gpgButton->getContentSize().width / 2, 0));
-	containerNode->addChild(gpgButton);
+	auto gpgLoginButton = GPGLoginButton::create();
+	gpgLoginButton->setPosition(fbButton->getPosition() + Vec2(fbButton->getContentSize().width/2 + 8 + gpgLoginButton->getContentSize().width/2, 0));
+	buttonsNode->addChild(gpgLoginButton);
+    
+    totalWidth += 8 + gpgLoginButton->getContentSize().width;
 #endif
-
+    
+    containerNode->addChild(buttonsNode);
+    
+    auto aboutButton = createHoverButton("ButtonAboutTheCreators");
+    
+    aboutButton->setAnchorPoint(Vec2(1, 0.5));
+    
+    aboutButton->setPosition(Vec2(2*(size.width-48) - 4, SliderBottomSpacing/2));
+    containerNode->addChild(aboutButton);
+    
+    totalWidth += 8 + aboutButton->getContentSize().width;
+    
+    if (totalWidth > 2*(size.width-48) - 4 - (size.width+48))
+    {
+        auto scale = (2*(size.width-48) - 4 - (size.width+48))/totalWidth;
+        buttonsNode->setScale(scale);
+        aboutButton->setScale(scale);
+    }
+    
+    aboutButton->addTouchEventListener([this] (Ref* button, ui::Widget::TouchEventType type)
+    {
+        if (type == ui::Widget::TouchEventType::BEGAN)
+            SoundManager::play("common/ClickButton.wav");
+        else if (type == ui::Widget::TouchEventType::ENDED)
+            openURL("http://infinitespaceexplorer.com/");
+    });
+    
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    auto destPos = Vec2(24, size.height - 24);
+    
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     auto gameCenterButton = createHoverButton("IconGameCenter");
-    gameCenterButton->setPosition(gpgButton->getPosition() + Vec2(gpgButton->getContentSize().width/2 + 8 + gameCenterButton->getContentSize().width/2, 0));
+    gameCenterButton->setPosition(destPos);
     containerNode->addChild(gameCenterButton);
     
     gameCenterButton->addTouchEventListener([this] (Ref* button, ui::Widget::TouchEventType type)
@@ -463,23 +507,62 @@ void MultiPurposeLayer::createLayout2()
         else if (type == ui::Widget::TouchEventType::ENDED)
             GameCenterManager::presentWidget();
     });
+    
+    destPos += Vec2(gameCenterButton->getContentSize().width/2 + 16, 0);
 #endif
     
-    auto aboutButton = createHoverButton("ButtonAboutTheCreators");
-    aboutButton->setHighlighted(true);
-    aboutButton->getVirtualRenderer()->setColor(Color3B(200, 200, 200));
-    aboutButton->setHighlighted(false);
+    auto gpgSprite = Sprite::createWithSpriteFrameName("IconGPG.png");
+    gpgSprite->setPosition(destPos + Vec2(gpgSprite->getContentSize().width/2, 0));
+    containerNode->addChild(gpgSprite);
     
-    aboutButton->setPosition(Vec2(2*(size.width-48) - 4 - aboutButton->getContentSize().width/2, SliderBottomSpacing/2));
-    containerNode->addChild(aboutButton);
+    auto gpgLeaderboardsButton = createHoverButton("IconGPGLeaderboards");
+    gpgLeaderboardsButton->setPosition(gpgSprite->getPosition() + Vec2(gpgSprite->getContentSize().width/2 + 4 + gpgLeaderboardsButton->getContentSize().width/2, 0));
+    containerNode->addChild(gpgLeaderboardsButton);
     
-    aboutButton->addTouchEventListener([this] (Ref* button, ui::Widget::TouchEventType type)
+    gpgLeaderboardsButton->addTouchEventListener([this] (Ref* button, ui::Widget::TouchEventType type)
     {
         if (type == ui::Widget::TouchEventType::BEGAN)
             SoundManager::play("common/ClickButton.wav");
         else if (type == ui::Widget::TouchEventType::ENDED)
-            openURL("http://infinitespaceexplorer.com/");
+            GPGManager::presentLeaderboardWidget();
     });
+    
+    auto gpgAchievementsButton = createHoverButton("IconGPGAchievements");
+    gpgAchievementsButton->setPosition(gpgLeaderboardsButton->getPosition() + Vec2(gpgLeaderboardsButton->getContentSize().width/2 + 4 + gpgAchievementsButton->getContentSize().width/2, 0));
+    containerNode->addChild(gpgAchievementsButton);
+    
+    gpgAchievementsButton->addTouchEventListener([this] (Ref* button, ui::Widget::TouchEventType type)
+    {
+        if (type == ui::Widget::TouchEventType::BEGAN)
+            SoundManager::play("common/ClickButton.wav");
+        else if (type == ui::Widget::TouchEventType::ENDED)
+            GPGManager::presentAchievementWidget();
+    });
+    
+    if (GPGManager::getSignStatus() == GPGManager::SignStatus::PLATFORM_UNAVAILABLE)
+    {
+        gpgSprite->setOpacity(0);
+        
+        gpgLeaderboardsButton->setOpacity(0);
+        gpgLeaderboardsButton->setEnabled(false);
+        
+        gpgAchievementsButton->setOpacity(0);
+        gpgAchievementsButton->setEnabled(false);
+    }
+    
+    gpgListener = _eventDispatcher->addCustomEventListener("GPGStatusUpdated", [=](EventCustom*)
+    {
+        for (auto button : { gpgLeaderboardsButton, gpgAchievementsButton })
+            button->setEnabled(GPGManager::getSignStatus() != GPGManager::SignStatus::PLATFORM_UNAVAILABLE);
+
+        if (GPGManager::getSignStatus() == GPGManager::SignStatus::PLATFORM_UNAVAILABLE)
+            for (auto sprite : (Node*[]){ gpgSprite, gpgLeaderboardsButton, gpgAchievementsButton })
+                sprite->runAction(FadeOut::create(0.5));
+        else
+            for (auto sprite : (Node*[]){ gpgSprite, gpgLeaderboardsButton, gpgAchievementsButton })
+                sprite->runAction(FadeIn::create(0.5));
+    });
+#endif
 }
 
 void MultiPurposeLayer::createLayout3()
@@ -492,6 +575,7 @@ void MultiPurposeLayer::createLayout3()
     
     auto table = ScoreTable::create(cocos2d::Size(size.width - 120, size.height - 40));
     table->setPosition(2.5*size.width - 72, size.height/2);
+
     containerNode->addChild(table);
 }
 

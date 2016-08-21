@@ -13,6 +13,8 @@
 #ifndef __OBJC__
 #error This file must be compiled as an Objective-C++ source file!
 #endif
+
+#include "../proj.ios_mac/ios/AppController.h"
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 #include <jni.h>
 #include <string>
@@ -54,9 +56,11 @@ std::string getPlayerName()
 void GPGManager::initialize()
 {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    log("View controller = %p", ((AppController*)[UIApplication sharedApplication].delegate).viewController);
+    
 	gpg::IosPlatformConfiguration config;
-	config.SetClientID("T1054735770297-nec7sp5kg6d6ibvavmevlk6vs2i813v3.apps.googleusercontent.com");
-	config.SetOptionalViewControllerForPopups([[UIApplication sharedApplication].keyWindow.rootViewController);
+	config.SetClientID("1054735770297-nec7sp5kg6d6ibvavmevlk6vs2i813v3.apps.googleusercontent.com");
+	config.SetOptionalViewControllerForPopups((UIViewController*)((AppController*)[UIApplication sharedApplication].delegate).viewController);
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	JniMethodInfo getActivityInfo;
 	auto loaded = JniHelper::getStaticMethodInfo(getActivityInfo, "org/cocos2dx/cpp/AppActivity", "getActivity", "()Landroid/app/Activity;");
@@ -236,9 +240,6 @@ struct scoreGatherer
 		bool error = false;
 
 		{
-			std::mutex nameWriterMutex;
-			std::condition_variable nameWriterCondition;
-			long namesWritten = 0;
 			long i = 0;
 
 			for (auto it = begin; it != end; ++it, ++i)
@@ -250,41 +251,29 @@ struct scoreGatherer
 				
 				log("Retrieved score id %ld!", i);
 
-				gameServices->Players().Fetch(it->PlayerId(), [&, i](const gpg::PlayerManager::FetchResponse &response)
-				{
-					std::string textureKey;
+                auto response = gameServices->Players().FetchBlocking(it->PlayerId());
 
-					log("Lock mutex!");
-					nameWriterMutex.lock();
-					log("Mutex locked!");
+                std::string textureKey;
 
-					if (gpg::IsSuccess(response.status))
-					{
-						currentScores[i].name = response.data.Name();
-						currentScores[i].textureKey = textureKey = "Avatar" + response.data.Id();;
-					}
-					else error = true;
+                if (gpg::IsSuccess(response.status))
+                {
+                    currentScores[i].name = response.data.Name();
+                    currentScores[i].textureKey = textureKey = "Avatar" + response.data.Id();;
+                }
+                else
+                {
+                    error = true;
+                    break;
+                }
 
-					namesWritten++;
-
-					log("Wait condition!");
-					nameWriterCondition.notify_all();
-					nameWriterMutex.unlock();
-					log("Condition notified!");
-
-					if (gpg::IsSuccess(response.status) && loadPhotos && Director::getInstance()->getTextureCache()->getTextureForKey(textureKey) == nullptr)
-					{
-						downloadPicture(response.data.AvatarUrl(gpg::ImageResolution::HI_RES), textureKey, [=](Texture2D* texture)
-						{
-							Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("TextureArrived." + textureKey, &texture);
-						});
-					}
-				});
+                if (gpg::IsSuccess(response.status) && loadPhotos && Director::getInstance()->getTextureCache()->getTextureForKey(textureKey) == nullptr)
+                {
+                    downloadPicture(response.data.AvatarUrl(gpg::ImageResolution::HI_RES), textureKey, [=](Texture2D* texture)
+                    {
+                        Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("TextureArrived." + textureKey, &texture);
+                    });
+                }
 			}
-
-			std::unique_lock<std::mutex> nameWriterLock(nameWriterMutex);
-			nameWriterCondition.wait(nameWriterLock, [&, dist] { return namesWritten == dist; });
-			log("Successful!");
 		}
 
 		if (error)
@@ -409,6 +398,16 @@ void GPGManager::getAchievementProgress(std::string id, std::function<void(int)>
 		else handler(-1);
 	});
 	else handler(-1);
+}
+
+void GPGManager::presentLeaderboardWidget()
+{    if (gameServices)
+        gameServices->Leaderboards().ShowUI(LEADERBOARD_ID, [](gpg::UIStatus) {});
+}
+
+void GPGManager::presentAchievementWidget()
+{    if (gameServices)
+    gameServices->Achievements().ShowAllUI([](gpg::UIStatus) {});
 }
 
 #endif

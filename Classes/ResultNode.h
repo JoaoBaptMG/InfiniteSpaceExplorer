@@ -21,6 +21,8 @@ class ResultNode : public cocos2d::Node
     void repushScene();
     void popToMain();
     
+    void presentStatusLabel(float delay);
+    
     void fbAction();
     void fbShareScore();
     

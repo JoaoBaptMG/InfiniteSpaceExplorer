@@ -17,31 +17,26 @@
 
 using namespace cocos2d;
 
-struct AchievementPlatforms
+const std::unordered_map<std::string, std::string> achievementMapToGPG
 {
-	std::string gameCenterId, gpgId;
-};
-
-const std::unordered_map<std::string, AchievementPlatforms> achievementNames
-{
-	{ "ScoreGot0", { "", "CgkIucWamdkeEAIQCQ" } },
-	{ "ScoreGot1", { "", "CgkIucWamdkeEAIQCg" } },
-	{ "ScoreGot2", { "", "CgkIucWamdkeEAIQCw" } },
-	{ "ScoreGot3", { "", "CgkIucWamdkeEAIQDA" } },
-	{ "HazardHit0", { "", "CgkIucWamdkeEAIQDQ" } },
-	{ "HazardHit1", { "", "CgkIucWamdkeEAIQDg" } },
-	{ "HazardHit2", { "", "CgkIucWamdkeEAIQDw" } },
-	{ "HazardHit3", { "", "CgkIucWamdkeEAIQEA" } },
-	{ "PowerupCollected0", { "", "CgkIucWamdkeEAIQEQ" } },
-	{ "PowerupCollected1", { "", "CgkIucWamdkeEAIQEg" } },
-	{ "PowerupCollected2", { "", "CgkIucWamdkeEAIQEw" } },
-	{ "PowerupCollected3", { "", "CgkIucWamdkeEAIQFA" } },
-	{ "PowerupCollected4", { "", "" } },
-	{ "GameTime0", { "", "CgkIucWamdkeEAIQFQ" } },
-	{ "GameTime1", { "", "CgkIucWamdkeEAIQFg" } },
-	{ "GameTime2", { "", "CgkIucWamdkeEAIQFw" } },
-	{ "Unlock0", { "", "CgkIucWamdkeEAIQGA" } },
-	{ "Unlock1", { "", "CgkIucWamdkeEAIQGQ" } },
+	{ "ScoreGot0", "CgkIucWamdkeEAIQCQ" },
+	{ "ScoreGot1", "CgkIucWamdkeEAIQCg" },
+	{ "ScoreGot2", "CgkIucWamdkeEAIQCw" },
+	{ "ScoreGot3", "CgkIucWamdkeEAIQDA" },
+	{ "HazardHit0", "CgkIucWamdkeEAIQDQ" },
+	{ "HazardHit1", "CgkIucWamdkeEAIQDg" },
+	{ "HazardHit2", "CgkIucWamdkeEAIQDw" },
+	{ "HazardHit3", "CgkIucWamdkeEAIQEA" },
+	{ "PowerupCollected0", "CgkIucWamdkeEAIQEQ" },
+	{ "PowerupCollected1", "CgkIucWamdkeEAIQEg" },
+	{ "PowerupCollected2", "CgkIucWamdkeEAIQEw" },
+	{ "PowerupCollected3", "CgkIucWamdkeEAIQFA" },
+	{ "PowerupCollected4", "" },
+	{ "GameTime0", "CgkIucWamdkeEAIQFQ" },
+	{ "GameTime1", "CgkIucWamdkeEAIQFg" },
+	{ "GameTime2", "CgkIucWamdkeEAIQFw" },
+	{ "Unlock0", "CgkIucWamdkeEAIQGA" },
+	{ "Unlock1", "CgkIucWamdkeEAIQGQ" },
 };
 
 struct StatData
@@ -54,7 +49,7 @@ std::unordered_map <std::string, StatData> stats
 {
 	{ "ScoreGot", { StatData::Type::FULL, { 20000, 50000, 100000, 500000 } } },
 	{ "HazardHit", { StatData::Type::INCR, { 100, 250, 750, 2000 } } },
-	{ "PowerupCollected", { StatData::Type::INCR, { 300, 1000, 2500, 5000, 8000 } } },
+	{ "PowerupCollected", { StatData::Type::INCR, { 300, 1000, 2500, 5000, 10000 } } },
 	{ "GameTime", { StatData::Type::FULL, { 7, 15, 30 } } },
 	{ "Unlock", { StatData::Type::INCR, { 800000, 3000000 } } }
 };
@@ -117,29 +112,25 @@ void AchievementManager::initialize()
 
 inline void unlockAchievement(std::string achievement)
 {
-	auto it = achievementNames.find(achievement);
-
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	if (!it->second.gameCenterId.empty())
-		GameCenterManager::unlockAchievement(it->second.gameCenterId);
+    GameCenterManager::unlockAchievement(achievement);
 #endif
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	if (!it->second.gpgId.empty())
-		GPGManager::unlockAchievement(it->second.gpgId);
+    auto it = achievementMapToGPG.find(achievement);
+	if (it != achievementMapToGPG.end() && !it->second.empty())
+		GPGManager::unlockAchievement(it->second);
 #endif
 }
 
 inline void updateAchievementStatus(std::string achievement, int cur, int total)
 {
-	auto it = achievementNames.find(achievement);
-
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	if (!it->second.gameCenterId.empty())
-		GameCenterManager::updateAchievementStatus(it->second.gameCenterId, 100.0 * (double)cur/total);
+    GameCenterManager::updateAchievementStatus(achievement, 100.0 * (double)cur/total);
 #endif
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	if (!it->second.gpgId.empty())
-		GPGManager::updateAchievementStatus(it->second.gpgId, cur);
+    auto it = achievementMapToGPG.find(achievement);
+	if (it != achievementMapToGPG.end() && !it->second.empty())
+		GPGManager::updateAchievementStatus(it->second, cur);
 #endif
 }
 

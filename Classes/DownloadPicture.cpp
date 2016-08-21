@@ -24,15 +24,23 @@ void downloadPicture(std::string path, std::string key, std::function<void(cocos
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul), ^
     {
         NSData *data = [NSData dataWithContentsOfURL:url];
-        Image *image = new Image();
-        image->initWithImageData(reinterpret_cast<const unsigned char*>(data.bytes), data.length);
-        image->retain();
         
-        Director::getInstance()->getScheduler()->performFunctionInCocosThread([=]
+        if (data)
         {
-            callback(Director::getInstance()->getTextureCache()->addImage(image, key));
-            image->release();
-        });
+            Image *image = new Image();
+            image->initWithImageData(reinterpret_cast<const unsigned char*>(data.bytes), data.length);
+            image->retain();
+            
+            Director::getInstance()->getScheduler()->performFunctionInCocosThread([=]
+            {
+                callback(Director::getInstance()->getTextureCache()->addImage(image, key));
+                image->release();
+            });
+        }
+        else Director::getInstance()->getScheduler()->performFunctionInCocosThread([=]
+            {
+                callback(nullptr);
+            });
     });
 }
 
@@ -61,6 +69,10 @@ void downloadPicture(std::string path, std::string key, std::function<void(cocos
                 image->release();
             });
         }
+        else Director::getInstance()->getScheduler()->performFunctionInCocosThread([=]
+            {
+                callback(nullptr);
+            });
     };
     
     jstring pathStr = urlCtr.env->NewStringUTF(path.c_str());
@@ -120,11 +132,14 @@ void downloadPicture(std::string path, std::string key, std::function<void(cocos
 					image->release();
 				});
 			}
+            else Director::getInstance()->getScheduler()->performFunctionInCocosThread([=]
+            {
+                callback(nullptr);
+            });
 		});
 	}
 	catch (Platform::Exception^ e)
 	{
-
 	}
 }
 

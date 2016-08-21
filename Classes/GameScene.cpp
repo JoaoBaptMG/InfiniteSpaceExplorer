@@ -212,7 +212,7 @@ void GameScene::checkTutorialPhase()
         str = "#{TutorialDone}$Tap and hold to freeze";
         _eventDispatcher->dispatchCustomEvent("TutorialMessage", &str);
 
-		str = "You can only move on the left half";
+		str = "You can only move on\nthe left half of the screen";
 		_eventDispatcher->dispatchCustomEvent("TutorialMessage", &str);
         
         tutorialDoneListener = _eventDispatcher->addCustomEventListener("TutorialDone", [this] (EventCustom *event)

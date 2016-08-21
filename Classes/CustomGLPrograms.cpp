@@ -98,11 +98,17 @@ void main()
 }
 );
 
-static const GLchar ScoreWidgetProgram_frag[] = "\n#ifdef GL_ES\nvarying lowp vec4 v_fragmentColor; varying mediump vec2 v_texCoord;"
+static const GLchar ScoreWidgetProgramNonPremult_frag[] = "\n#ifdef GL_ES\nvarying lowp vec4 v_fragmentColor; varying mediump vec2 v_texCoord;"
 "\n#else\n varying vec4 v_fragmentColor; varying vec2 v_texCoord; \n#endif\nuniform mediump float size; "
 "void main() { gl_FragColor = v_fragmentColor * texture2D(CC_Texture0, v_texCoord); "
 "float dist = distance(vec2(0.5,0.5), v_texCoord); "
 "gl_FragColor.a *= clamp(size*(0.5 - dist), 0.0, 1.0); }";
+
+static const GLchar ScoreWidgetProgramPremult_frag[] = "\n#ifdef GL_ES\nvarying lowp vec4 v_fragmentColor; varying mediump vec2 v_texCoord;"
+"\n#else\n varying vec4 v_fragmentColor; varying vec2 v_texCoord; \n#endif\nuniform mediump float size; "
+"void main() { gl_FragColor = v_fragmentColor * texture2D(CC_Texture0, v_texCoord); "
+"float dist = distance(vec2(0.5,0.5), v_texCoord); "
+"gl_FragColor *= clamp(size*(0.5 - dist), 0.0, 1.0); }";
 
 void loadCustomProgram(const GLchar *vertexShader, const GLchar *fragmentShader, const std::string &key)
 {
@@ -128,5 +134,6 @@ void loadCustomGLPrograms()
     loadCustomProgram(ccPositionTextureColor_noMVP_vert, ShooterProgram_frag, "ShooterProgram");
     loadCustomProgram(ccPositionTextureColor_noMVP_vert, PowerupIconProgram_frag, "PowerupIconProgram");
     loadCustomProgram(ccPositionTextureColor_noMVP_vert, BackgroundProgram_frag, "BackgroundProgram");
-    loadCustomProgram(ccPositionTextureColor_noMVP_vert, ScoreWidgetProgram_frag, "ScoreWidgetProgram");
+    loadCustomProgram(ccPositionTextureColor_noMVP_vert, ScoreWidgetProgramNonPremult_frag, "ScoreWidgetProgramNonPremult");
+    loadCustomProgram(ccPositionTextureColor_noMVP_vert, ScoreWidgetProgramPremult_frag, "ScoreWidgetProgramPremult");
 }

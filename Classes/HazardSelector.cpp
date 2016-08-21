@@ -14,6 +14,7 @@
 using namespace cocos2d;
 
 float global_AdvanceSpeed = 0.0f;
+float global_GameTime = 0.0f;
 
 bool HazardSelector::init(bool onTitle)
 {
@@ -22,7 +23,7 @@ bool HazardSelector::init(bool onTitle)
     
     spawnTime = 5.0;
     currentTime = 0.0;
-	gameTime = 0.0;
+	global_GameTime = 0.0;
     speed = 1.0;
     global_AdvanceSpeed = 0.0f;
     
@@ -51,15 +52,15 @@ void HazardSelector::update(float delta)
 {
     if (paused) return;
     
-    speed = 1 + currentTime/750;
+    speed = 1 + currentTime/1080;
     if (onTitle) speed *= 0.5;
     currentTime += delta * speed;
     
 	if (!onTitle)
 	{
-		int oldMin = gameTime / 60;
-		gameTime += delta;
-		int newMin = gameTime / 60;
+		int oldMin = global_GameTime / 60;
+		global_GameTime += delta;
+		int newMin = global_GameTime / 60;
 
 		if (oldMin != newMin) AchievementManager::updateStat("GameTime", newMin);
 	}
@@ -112,7 +113,7 @@ void HazardSelector::update(float delta)
         
         // Update spawns
         int count = 0;
-        auto spawnWeight = powf(random_float_closed(0,1)*0.8, 300/currentTime);
+        auto spawnWeight = powf(random_float_closed(0,1), 480/currentTime) * 0.8;
         
         for (int i = 0; i < hazardSpawnerSize; i++)
         {

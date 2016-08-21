@@ -30,12 +30,16 @@ static GKLeaderboard *globalLeaderboard;
 static ScoreManager::ScoreData cachedPlayerData(-1, "", 0, true);
 static bool cachedPlayerDataDirty = true;
 
+static NSMutableDictionary *achievementCache;
+
 inline void initialize()
 {
     globalLeaderboard = [[GKLeaderboard alloc] init];
     globalLeaderboard.identifier = LEADERBOARD_ID;
     
     cachedPlayerDataDirty = true;
+    
+    
 }
 
 void GameCenterManager::authenticate(std::function<void()> success)
@@ -217,19 +221,70 @@ void GameCenterManager::reportScore(int64_t score)
     cachedPlayerDataDirty = true;
 }
 
-void GameCenterManager::unlockAchievement(std::string id)
+void GameCenterManager::unlockAchievement(std::string achId)
 {
-	updateAchievementStatus(id, 100);
+	updateAchievementStatus(achId, 100);
 }
 
-void GameCenterManager::updateAchievementStatus(std::string id, double percent)
+inline void loadAchievementCache(void(^handler)() = ^{}, void(^errorHandler)() = ^{})
 {
-
+    if (achievementCache != nil) handler();
+    else [GKAchievement loadAchievementsWithCompletionHandler: ^(NSArray *achievements, NSError *error)
+        {
+            if(error == nil)
+            {
+                NSMutableDictionary* tempCache= [NSMutableDictionary dictionaryWithCapacity:achievements.count];
+                
+                for (GKAchievement* achievement in achievements)
+                    [tempCache setObject:achievement forKey:achievement.identifier];
+                
+                achievementCache = tempCache;
+                handler();
+            }
+            else errorHandler();
+        }];
 }
 
-void GameCenterManager::getAchievementProgress(std::string id, std::function<void(double)> handler)
+void GameCenterManager::updateAchievementStatus(std::string achId, double percent)
 {
+    if (percent == 0) return;
+    
+    percent = MIN(percent, 100);
+    
+    // Excerpt taken from Apple's GKTapper example, modified to be used here
+    if (achievementCache == nil)
+        loadAchievementCache(^{ updateAchievementStatus(achId, percent); });
+    else
+    {
+        NSString *identifier = [NSString stringWithCString:achId.c_str() encoding:NSUTF8StringEncoding];
+        GKAchievement* achievement = [achievementCache objectForKey:identifier];
+        if (achievement != nil)
+        {
+            if (achievement.percentComplete >= percent) achievement = nil;
+            else achievement.percentComplete = percent;
+        }
+        else
+        {
+            achievement = [[GKAchievement alloc] initWithIdentifier:identifier];
+            achievement.percentComplete = percent;
+            [achievementCache setObject:achievement forKey:achievement.identifier];
+        }
+        
+        if (achievement != nil) [GKAchievement reportAchievements:@[achievement] withCompletionHandler:^(NSError*) {}];
+    }
+}
 
+void GameCenterManager::getAchievementProgress(std::string achId, std::function<void(double)> handler)
+{
+    if (achievementCache == nil)
+        loadAchievementCache(^{ getAchievementProgress(achId, handler); }, ^{ handler(-1); });
+    else
+    {
+        NSString *identifier = [NSString stringWithCString:achId.c_str() encoding:NSUTF8StringEncoding];
+        GKAchievement* achievement = [achievementCache objectForKey:identifier];
+        if (achievement != nil) handler(achievement.percentComplete);
+        else handler(0);
+    }
 }
 
 void GameCenterManager::presentWidget()

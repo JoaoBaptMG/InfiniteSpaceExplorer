@@ -31,10 +31,6 @@ bool DownloadedPhotoNode::init()
 {
     if (!Sprite::initWithTexture(getBlankTexture())) return false;
     
-    setBlendFunc(BlendFunc::ALPHA_NON_PREMULTIPLIED);
-    setGLProgramState(GLProgramState::getOrCreateWithGLProgramName("ScoreWidgetProgram"));
-    getGLProgramState()->setUniformFloat("size", 48 * _director->getContentScaleFactor());
-    
     waitForTextureListener = nullptr;
     isDownloaded = false;
     
@@ -81,4 +77,12 @@ void DownloadedPhotoNode::setTextureKey(std::string key)
         setTexture(getBlankTexture());
         isDownloaded = true;
     }
+}
+
+void DownloadedPhotoNode::setTexture(Texture2D* texture)
+{
+    Sprite::setTexture(texture);
+    
+    setGLProgramState(GLProgramState::getOrCreateWithGLProgramName(getBlendFunc().src == GL_ONE ? "ScoreWidgetProgramPremult" : "ScoreWidgetProgramNonPremult"));
+    getGLProgramState()->setUniformFloat("size", 48 * _director->getContentScaleFactor());
 }

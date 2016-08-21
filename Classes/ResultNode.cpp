@@ -144,8 +144,10 @@ void ResultNode::sequence()
         facebookLabel->setName("FacebookAllowLabel");
         
         facebookLabel->setOpacity(0);
-        facebookLabel->runAction(Sequence::createWithTwoActions(DelayTime::create(1.6 + duration), FadeIn::create(0.3)));
+        facebookLabel->runAction(Sequence::create(DelayTime::create(1.6 + duration), FadeIn::create(0.3), DelayTime::create(2.0), FadeOut::create(0.3),
+                                                  CallFunc::create([=] { presentStatusLabel(0.0); }), RemoveSelf::create(), nullptr));
     }
+    else presentStatusLabel(1.6 + duration);
 }
 
 void ResultNode::repushScene()
@@ -174,6 +176,40 @@ void ResultNode::popToMain()
     }, 0.01, "ReplaceScene");
 }
 
+inline std::string pluralText(int value, std::string str = "s")
+{
+    return value == 1 ? "" : str;
+}
+
+void ResultNode::presentStatusLabel(float delay)
+{
+    auto size = getScene()->getContentSize();
+    
+    int maxMultInt = global_MaxMultiplier;
+    int maxMultFrac = int(global_MaxMultiplier*10) - maxMultInt*10;
+    
+    auto string = "Your biggest multiplier in this game was " + ulongToString(maxMultInt) + "." + ulongToString(maxMultFrac) + "x.\n";
+    
+    string += "You lasted in this game for ";
+    if (global_GameTime < 60) string += ulongToString(global_GameTime) + " seconds";
+    else
+    {
+        string += ulongToString(global_GameTime/60) + " minute" + pluralText(global_GameTime/60);
+        int seconds = int(global_GameTime)%60;
+        if (seconds != 0) string += " and " + ulongToString(seconds) + " second" + pluralText(seconds);
+    }
+    
+    string += ".";
+    
+    auto statusLabel = Label::createWithTTF(string, LATO_REGULAR, 16);
+    statusLabel->setAlignment(TextHAlignment::CENTER);
+    statusLabel->setPosition(size/2);
+    addChild(statusLabel);
+    
+    statusLabel->setOpacity(0);
+    statusLabel->runAction(Sequence::createWithTwoActions(DelayTime::create(delay), FadeIn::create(0.3)));
+}
+
 void ResultNode::fbAction()
 {
     if (!FacebookManager::hasPermission("publish_actions"))
@@ -185,11 +221,12 @@ void ResultNode::fbAction()
             {
                 thisPtr->getChildByName<Label*>("FacebookLabel")->setString("SHARE");
                 FacebookManager::reportScore(global_GameScore);
-                thisPtr->getChildByName("FacebookAllowLabel")->runAction(Sequence::createWithTwoActions(FadeOut::create(0.3), RemoveSelf::create()));
             }
             else if (state == FacebookManager::PermissionState::ERROR)
             {
-                thisPtr->getChildByName<Label*>("FacebookAllowLabel")->setString("There was an error while processing the request.");
+                thisPtr->getChildByName<Label*>("FacebookLabel")->setString("ERROR");
+                thisPtr->getChildByName("FacebookLabel")->runAction(Sequence::create(DelayTime::create(1.0), FadeOut::create(0.3),
+                                                                                     CallFuncN::create([](Node* node) { ((Label*)node)->setString("ACCEPT"); }), FadeIn::create(0.3), nullptr));
             }
         });
     }

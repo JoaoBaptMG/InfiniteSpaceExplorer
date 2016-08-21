@@ -27,7 +27,8 @@ class PlayerNode : public cocos2d::Node
     
     cocos2d::Vector<cocos2d::Sprite*> jetFlames;
     float fixedAnimationInterval;
-    int currentAnimation;
+    int currentJetAnimation;
+    int currentShieldAnimation;
     
     float damageTimer;
     float tintAmount;

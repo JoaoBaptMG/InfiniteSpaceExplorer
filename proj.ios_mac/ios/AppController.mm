@@ -29,6 +29,7 @@
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <gpg/GooglePlayGames.h>
 
 @implementation AppController
 
@@ -49,8 +50,12 @@ static AppDelegate s_sharedApplication;
     // Use RootViewController to manage CCEAGLView
     _viewController = [[RootViewController alloc]init];
     _viewController.wantsFullScreenLayout = YES;
-    
 
+    [GIDSignIn sharedInstance].uiDelegate = self;
+    
+    [GPGManager sharedInstance].welcomeBackToastPlacement = kGPGToastPlacementBottom;
+    [GPGManager sharedInstance].achievementUnlockedToastPlacement = kGPGToastPlacementBottom;
+    
     // Set RootViewController to window
     if ( [[UIDevice currentDevice].systemVersion floatValue] < 6.0)
     {
@@ -118,12 +123,23 @@ static AppDelegate s_sharedApplication;
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                                           openURL:url
                                                 sourceApplication:sourceApplication
-                                                       annotation:annotation];
+                                                       annotation:annotation]
+        || [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 - (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController*)gameCenterViewController
 {
     [gameCenterViewController dismissViewControllerAnimated:true completion:nil];
+}
+
+- (void)signIn:(GIDSignIn *)signIn presentViewController:(UIViewController *)viewController
+{
+    [_viewController presentViewController:viewController animated:YES completion:^ {}];
+}
+
+- (void)signIn:(GIDSignIn *)signIn dismissViewController:(UIViewController *)viewController
+{
+    [_viewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
 #pragma mark -

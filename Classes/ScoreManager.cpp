@@ -100,7 +100,26 @@ inline void fetchScores(ScoreManager::Source source, long position, std::vector<
     std::move(data.begin(), data.end(), std::inserter(tempBuildScore, tempBuildScore.end()));
     
     if (ScoreManager::trackedScoresReady()) scoreTracking = std::move(tempBuildScore);
-
+    
+    ScoreManager::ScoreData lastData;
+    bool foundPlayer = false;
+    
+    for (auto it = scoreTracking.begin(); it != scoreTracking.end();)
+    {
+        if (it->isPlayer)
+        {
+            lastData = *it;
+            foundPlayer = true;
+            it = scoreTracking.erase(it);
+        }
+        else it++;
+    }
+    
+    lastData.name = "Your maximum score";
+    
+    if (foundPlayer)
+        scoreTracking.insert(std::move(lastData));
+    
 	scoreBuildLock.unlock();
 }
 

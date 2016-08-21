@@ -32,6 +32,10 @@ class MultiPurposeLayer : public cocos2d::LayerColor
     int currentLayout;
     cocos2d::ui::Button *arrowSprites[2];
     
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    cocos2d::EventListenerCustom *gpgListener;
+#endif
+    
 public:
     inline static MultiPurposeLayer *createTitleScene(cocos2d::Color3B color) { return create(color, false); }
     inline static MultiPurposeLayer *createPauseScene(cocos2d::Color3B color) { return create(color, true); }

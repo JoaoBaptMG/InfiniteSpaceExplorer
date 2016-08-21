@@ -23,6 +23,8 @@ public:
     void setTextureKey(std::string key);
     bool init();
     
+    virtual void setTexture(cocos2d::Texture2D* texture) override;
+    
     virtual ~DownloadedPhotoNode();
     
     CREATE_FUNC(DownloadedPhotoNode);

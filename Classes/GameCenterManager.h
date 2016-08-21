@@ -24,9 +24,9 @@ namespace GameCenterManager
                                long first, long last, std::function<void(long, std::vector<ScoreManager::ScoreData>&&, std::string)> handler, bool loadPhotos = true);
     void reportScore(int64_t score);
     
-	void unlockAchievement(std::string id);
-	void updateAchievementStatus(std::string id, double percent);
-	void getAchievementProgress(std::string id, std::function<void(double)> handler);
+	void unlockAchievement(std::string achId);
+	void updateAchievementStatus(std::string achId, double percent);
+	void getAchievementProgress(std::string achId, std::function<void(double)> handler);
 
     void presentWidget();
 }

@@ -260,7 +260,7 @@ void hazardShooterSpawner(HazardSelector *self)
     
     int numShots = 0;
     {
-        float rand = powf(random_float_open(0, 1), self->currentTime/450);
+        float rand = powf(random_float_open(0, 1), self->currentTime/330);
         while (numShots < probabilitiesSize && rand < probabilities[numShots]) numShots++;
     }
     
