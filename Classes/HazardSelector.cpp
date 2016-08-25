@@ -189,7 +189,7 @@ void HazardSelector::moveHazardOffscreen(RefPtr<Node> node, Vec2 dir, RefPtr<Act
         // the object is offscreen and the action is done
         
         Rect screenRect(-expansion, -expansion, screenSize.width + 2*expansion, screenSize.height + 2*expansion);
-        Rect transformedObjectRect = RectApplyTransform(node->getBoundingBox(), node->getParent()->getNodeToWorldTransform());
+		Rect transformedObjectRect = node->getBoundingBox();
         
         // Use a special intersection algorithm
         bool intersects = true;
