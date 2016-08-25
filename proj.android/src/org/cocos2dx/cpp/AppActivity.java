@@ -39,7 +39,6 @@ import joaobapt.FacebookManager;
 
 public class AppActivity extends Cocos2dxActivity
 {
-    public static Display defaultDisplay;
     public static Activity activity;
     public static FacebookManager fbManager;
     
@@ -47,7 +46,6 @@ public class AppActivity extends Cocos2dxActivity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        defaultDisplay = ((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
         activity = this;
         
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -56,7 +54,7 @@ public class AppActivity extends Cocos2dxActivity
     
     public static int getDisplayRotation()
     {
-        return defaultDisplay.getRotation();
+        return ((WindowManager)activity.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
     }
     
     public static Activity getActivity()
