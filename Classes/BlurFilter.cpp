@@ -205,8 +205,11 @@ bool BlurNode::init(Size contentSize, Node *targetNode)
 {
     if (!Node::init()) return false;
     
-    addChild(targetNode);
-    targetNode->setScale(0.25);
+	auto contentNode = Node::create();
+	contentNode->addChild(targetNode);
+
+    addChild(contentNode);
+	contentNode->setScale(0.25);
     
     setContentSize(contentSize);
     createRenderTextures();

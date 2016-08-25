@@ -79,7 +79,7 @@ JNIEXPORT void JNICALL Java_joaobapt_MotionProcessor_manualSensorFusionFeedAccel
 	if (data->usesGyroscope) data->lastAccelerometerData = vec3FromArray(env, accData);
 	else data->lastAccelerometerData += K*(vec3FromArray(env, accData) - data->lastAccelerometerData);
 
-	env->DeleteLocalRef(buffer);
+	//env->DeleteLocalRef(buffer);
 }
 
 JNIEXPORT void JNICALL Java_joaobapt_MotionProcessor_manualSensorFusionFeedMagnetometerData(JNIEnv* env, jobject thiz, jfloatArray magData, jobject buffer)
@@ -89,7 +89,7 @@ JNIEXPORT void JNICALL Java_joaobapt_MotionProcessor_manualSensorFusionFeedMagne
 	if (data->usesGyroscope) data->lastMagnetometerData = vec3FromArray(env, magData);
 	else data->lastMagnetometerData += K*(vec3FromArray(env, magData) - data->lastMagnetometerData);
 
-	env->DeleteLocalRef(buffer);
+	//env->DeleteLocalRef(buffer);
 }
 
 JNIEXPORT void JNICALL Java_joaobapt_MotionProcessor_manualSensorFusionFeedGyroscopeData(JNIEnv* env, jobject thiz, jfloatArray gyroData, jlong timestamp, jobject buffer)
@@ -115,7 +115,7 @@ JNIEXPORT void JNICALL Java_joaobapt_MotionProcessor_manualSensorFusionFeedGyros
 		data->timestamp = timestamp;
 	}
 
-	env->DeleteLocalRef(buffer);
+	//env->DeleteLocalRef(buffer);
 }
 
 Quaternion resolveManualSensorFusion(Vec3 accData, Vec3 magData, Quaternion gyroData, manualSensorFusionData *sensorData);
@@ -130,7 +130,7 @@ JNIEXPORT jfloatArray JNICALL Java_joaobapt_MotionProcessor_manualSensorFusionRe
 	float res[4] = { quat.x, quat.y, quat.z, quat.w };
 	env->SetFloatArrayRegion(result, 0, 4, res);
 
-	env->DeleteLocalRef(buffer);
+	//env->DeleteLocalRef(buffer);
 
 	return result;
 }
@@ -140,5 +140,5 @@ JNIEXPORT void JNICALL Java_joaobapt_MotionProcessor_manualSensorFusionBufferFre
 	manualSensorFusionData *data = reinterpret_cast<manualSensorFusionData*>(env->GetDirectBufferAddress(buffer));
 	delete data;
 
-	env->DeleteLocalRef(buffer);
+	//env->DeleteLocalRef(buffer);
 }
