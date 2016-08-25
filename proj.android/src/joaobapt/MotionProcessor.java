@@ -154,16 +154,18 @@ class MotionProcessor implements SensorEventListener
         float tanroll = .625f * (2.0f*quat[3]*quat[0] - 2.0f*quat[1]*quat[2]) / (1.0f - 2.0f*quat[0]*quat[0] - 2.0f*quat[2]*quat[2]);
             
         float dx = 0.0f, dy = 0.0f;
-            
-        switch (AppActivity.getDisplayRotation())
-        {
-            case 0: dx =  tanpitch; dy = -tanroll;  break;
-            case 1: dx =  tanroll;  dy =  tanpitch; break;
-            case 2: dx =  tanpitch; dy = -tanroll;  break;
-            case 3: dx =  tanroll;  dy =  tanpitch; break;
-        }
-
-		//dx = tanpitch; dy = -tanroll;
+           
+		if (manualSensorFusion)
+		{
+			switch (AppActivity.getDisplayRotation())
+			{
+				case 0: dx =  tanpitch; dy = -tanroll;  break;
+				case 1: dx =  tanroll;  dy =  tanpitch; break;
+				case 2: dx =  tanpitch; dy = -tanroll;  break;
+				case 3: dx =  tanroll;  dy =  tanpitch; break;
+			}
+		}
+		else { dx = tanpitch; dy = -tanroll; }
             
         directionVector[0] = directionVector[0]*(1.0f-quatK) + dx*quatK;
         directionVector[1] = directionVector[1]*(1.0f-quatK) + dy*quatK;
