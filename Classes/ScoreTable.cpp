@@ -49,14 +49,14 @@ bool ScoreWidget::init(float screenWidth)
     rankBubble = ui::Scale9Sprite::createWithSpriteFrameName("PauseRankBadge.png");
     rankBubble->setCapInsets(Rect(12, 0, 24, 24));
     
-    rankNumber = Label::createWithTTF("", LATO_LIGHT, 12);
-    rankSuffix = Label::createWithTTF("", LATO_LIGHT, 6);
+    rankNumber = Label::createWithSystemFont("", LATO_LIGHT, 12);
+    rankSuffix = Label::createWithSystemFont("", LATO_LIGHT, 6);
     
     rankNumber->setTextColor(Color4B(102, 102, 102, 255));
     rankSuffix->setTextColor(Color4B(102, 102, 102, 255));
     
-    nameText = Label::createWithTTF("", LATO_REGULAR, 18);
-    scoreText = Label::createWithTTF("", LATO_LIGHT, 24);
+    nameText = Label::createWithSystemFont("", LATO_REGULAR, 18);
+    scoreText = Label::createWithSystemFont("", LATO_LIGHT, 24);
     
     nameText->setTextColor(Color4B(51, 51, 51, 255));
     scoreText->setTextColor(Color4B(153, 153, 153, 255));
@@ -115,6 +115,8 @@ void ScoreWidget::updateScoreData(const ScoreManager::ScoreData &data)
         nameText->setTextColor(Color4B(51, 51, 51, 255));
         scoreText->setTextColor(Color4B(153, 153, 153, 255));
     }
+    
+    log("%d, %d, %d", data.context.time, data.context.maxMultiplier, data.context.shipUsed);
 }
 
 inline static ui::Button *createButton(const std::string &name)
@@ -149,17 +151,16 @@ bool ScoreTable::init(Size size)
     
     int i = 0;
     for (auto val : { "DAILY", "WEEKLY", "ALL", })
-        timeConstraintButtons[i++] = Label::createWithTTF(val, LATO_REGULAR, 12 * scaling);
+        timeConstraintButtons[i++] = Label::createWithSystemFont(val, LATO_REGULAR, 12 * scaling);
     
     i = 0;
     for (auto val : { "FRIENDS", "GLOBAL" })
-        socialConstraintButtons[i++] = Label::createWithTTF(val, LATO_REGULAR, 12 * scaling);
+        socialConstraintButtons[i++] = Label::createWithSystemFont(val, LATO_REGULAR, 12 * scaling);
     
     i = 0;
     for (auto val : {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
         "IconGameCenter",
-		"IconGPG",
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 		"IconGPG",
 #endif
@@ -170,12 +171,12 @@ bool ScoreTable::init(Size size)
     socialConstraintDecorator = LayerColor::create(Color4B(51, 51, 51, 255), 1, 1);
     sourceDecorator = LayerColor::create(Color4B(51, 51, 51, 255), 1, 1);
     
-    infoLabel = Label::createWithTTF("", LATO_REGULAR, 18, Size(size.width, size.height - scaling * ScoreTableSpacing), TextHAlignment::CENTER, TextVAlignment::CENTER);
+    infoLabel = Label::createWithSystemFont("", LATO_REGULAR, 18, Size(size.width, size.height - scaling * ScoreTableSpacing), TextHAlignment::CENTER, TextVAlignment::CENTER);
     infoLabel->setTextColor(Color4B(153, 153, 153, 255));
     infoLabel->setPosition(size/2);
     infoLabel->retain(); // To prevent being deallocated on its removal
     
-    scoresTopLabel = Label::createWithTTF("", LATO_REGULAR, 18, Size(size.width, size.height - scaling * ScoreTableSpacing), TextHAlignment::CENTER, TextVAlignment::CENTER);
+    scoresTopLabel = Label::createWithSystemFont("", LATO_REGULAR, 18, Size(size.width, size.height - scaling * ScoreTableSpacing), TextHAlignment::CENTER, TextVAlignment::CENTER);
     scoresTopLabel->setTextColor(Color4B(153, 153, 153, 255));
     scoresTopLabel->setPosition(size/2);
     scoresTopLabel->retain(); // To prevent being deallocated on its removal
@@ -205,7 +206,7 @@ bool ScoreTable::init(Size size)
     currentRequestCode = 0;
     
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-    gameCenterLoadedListener = _eventDispatcher->addCustomEventListener("SocialManagersRefreshed", [=] (EventCustom*) { redrawScores(); });
+    socialManagersLoadedListener = _eventDispatcher->addCustomEventListener("SocialManagersRefreshed", [=] (EventCustom*) { redrawScores(); });
 #endif
     
     auto separator = LayerColor::create(Color4B(204, 204, 204, 255), size.width, 1);
@@ -230,7 +231,7 @@ ScoreTable::~ScoreTable()
     scoresTopLabel->release();
     
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-    _eventDispatcher->removeEventListener(gameCenterLoadedListener);
+    _eventDispatcher->removeEventListener(socialManagersLoadedListener);
 #endif
 }
 
@@ -573,7 +574,7 @@ void ScoreTable::scrollViewListener(Ref *ref, ui::ScrollView::EventType event)
 {
     auto scrollView = static_cast<ui::ScrollView*>(ref);
     
-    if (event == ui::ScrollView::EventType::SCROLLING)
+    if (event == ui::ScrollView::EventType::CONTAINER_MOVED)
     {
         if (!scoreList.empty())
         {

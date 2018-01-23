@@ -26,6 +26,7 @@ class MotionProcessoriOS : public MotionProcessor
     
     Quaternion currentQuaternion, calibratedQuaternion;
     Vec2 directionVector;
+    std::atomic<UIInterfaceOrientation> curOrientation;
     
 public:
     virtual ~MotionProcessoriOS() override
@@ -51,10 +52,17 @@ public:
         return directionVector;
     }
     
+    void update(float dt)
+    {
+        curOrientation = [UIApplication sharedApplication].statusBarOrientation;
+    }
+    
 protected:
     MotionProcessoriOS() : queue([[NSOperationQueue alloc] init]), manager([[CMMotionManager alloc] init]), currentQuaternion(0, 0, 0, 0), calibratedQuaternion(0, 0, 0, 0),
                             directionVector(0, 0)
     {
+        Director::getInstance()->getScheduler()->scheduleUpdate(this, 0, false);
+        
         manager.deviceMotionUpdateInterval = 1.0f/60;
         [manager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXArbitraryZVertical toQueue:queue withHandler:
          ^(CMDeviceMotion *device, NSError *error)
@@ -75,7 +83,7 @@ protected:
                 
                 Vec2 cur(tanroll, tanpitch);
                 
-                if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeLeft)
+                if (curOrientation == UIInterfaceOrientationLandscapeLeft)
                     cur.negate();
                 
                 directionVector = directionVector*(1-K) + cur*K;

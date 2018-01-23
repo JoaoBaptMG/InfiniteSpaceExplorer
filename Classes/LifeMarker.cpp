@@ -41,7 +41,7 @@ bool LifeMarkers::init(const Size &screenSize)
     lifeIndicatorSprite->setBlendFunc(BlendFunc::ALPHA_PREMULTIPLIED);
     lifeIndicatorSprite->setGLProgramState(GLProgramState::getOrCreateWithGLProgramName("LifeMarkerProgram"));
     
-    lifeText = Label::createWithTTF("100%", "fonts/Lato/Lato-Bold.ttf", 28);
+    lifeText = Label::createWithSystemFont("100%", "fonts/Lato/Lato-Bold.ttf", 28);
     lifeText->setHorizontalAlignment(TextHAlignment::LEFT);
     
     addChild(lifeIndicatorSprite);
@@ -81,7 +81,7 @@ void LifeMarkers::onExitTransitionDidStart()
 
 void LifeMarkers::lifeUpdate(EventCustom *event)
 {
-    targetLives = abs(*static_cast<int*>(event->getUserData()));
+    targetLives = std::abs(*static_cast<int*>(event->getUserData()));
 }
 
 void LifeMarkers::update(float delta)

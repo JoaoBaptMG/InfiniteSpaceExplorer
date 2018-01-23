@@ -99,7 +99,7 @@ void HazardSelector::update(float delta)
             if (hazardSpawners[i].entranceTime < currentTime)
                 totalProb += hazardSpawners[i].probability;
         
-        auto rand = random<float>(0, totalProb);
+        auto rand = random_float_open(0, totalProb);
         float weight = 0.0f;
         int current = 0;
         

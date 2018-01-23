@@ -22,7 +22,7 @@ namespace GameCenterManager
     void loadPlayerCurrentScore(std::function<void(const ScoreManager::ScoreData&)> handler);
     void loadHighscoresOnRange(ScoreManager::SocialConstraint socialConstraint, ScoreManager::TimeConstraint timeConstraint,
                                long first, long last, std::function<void(long, std::vector<ScoreManager::ScoreData>&&, std::string)> handler, bool loadPhotos = true);
-    void reportScore(int64_t score);
+    void reportScore(int64_t score, ScoreManager::AdditionalContext context);
     
 	void unlockAchievement(std::string achId);
 	void updateAchievementStatus(std::string achId, double percent);

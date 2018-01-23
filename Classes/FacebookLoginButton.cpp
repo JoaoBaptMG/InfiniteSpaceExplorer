@@ -33,7 +33,7 @@ bool FacebookLoginButton::init()
     waitingForResponse = false;
     setPressed(false);
     
-    label = Label::createWithTTF("", "fonts/Lato/Lato-Regular.ttf", 18);
+    label = Label::createWithSystemFont("", "fonts/Lato/Lato-Regular.ttf", 18);
     label->setPosition(82, 16);
     label->setTextColor(Color4B::WHITE);
     addChild(label);

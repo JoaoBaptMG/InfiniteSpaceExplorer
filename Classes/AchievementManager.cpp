@@ -17,6 +17,7 @@
 
 using namespace cocos2d;
 
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 const std::unordered_map<std::string, std::string> achievementMapToGPG
 {
 	{ "ScoreGot0", "CgkIucWamdkeEAIQCQ" },
@@ -38,6 +39,7 @@ const std::unordered_map<std::string, std::string> achievementMapToGPG
 	{ "Unlock0", "CgkIucWamdkeEAIQGA" },
 	{ "Unlock1", "CgkIucWamdkeEAIQGQ" },
 };
+#endif
 
 struct StatData
 {
@@ -63,8 +65,9 @@ void syncStat(std::string stat)
 	int maximumMilestone = stats.find(stat)->second.milestones.size();
 	int maxVal = UserDefault::getInstance()->getIntegerForKey(stat.c_str());
 
+    bool fetched = false;
+    
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	bool gameCenterFetched = false;
 	GameCenterManager::getAchievementProgress(stat + ulongToString(maximumMilestone-1), [&](double percent)
 	{
 		std::lock_guard<std::mutex> syncGuard(syncMutex);
@@ -73,11 +76,10 @@ void syncStat(std::string stat)
 		if (maxVal < val)
 			maxVal = val;
 
-		gameCenterFetched = true;
+		fetched = true;
 		syncCondition.notify_all();
 	});
-#endif
-	bool gpgFetched = false;
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	GPGManager::getAchievementProgress(stat + ulongToString(maximumMilestone - 1), [&](int val)
 	{
 		std::lock_guard<std::mutex> syncGuard(syncMutex);
@@ -85,19 +87,17 @@ void syncStat(std::string stat)
 		if (maxVal < val)
 			maxVal = val;
 
-		gpgFetched = true;
+		fetched = true;
 		syncCondition.notify_all();
 	});
+#endif
 
 	{
 		std::unique_lock<std::mutex> syncLock(syncMutex);
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-		syncCondition.wait(syncLock, [&] { return gameCenterFetched && gpgFetched; });
-#else
-		syncCondition.wait(syncLock, [&] { return gpgFetched; });
-#endif
+		syncCondition.wait(syncLock, [&] { return fetched; });
 	}
 
+    printf("Syncing stat %s with value %d\n", stat.c_str(), maxVal);
 	UserDefault::getInstance()->setIntegerForKey(stat.c_str(), maxVal);
 	AchievementManager::updateStat(stat, maxVal);
 #endif
@@ -114,8 +114,7 @@ inline void unlockAchievement(std::string achievement)
 {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     GameCenterManager::unlockAchievement(achievement);
-#endif
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
     auto it = achievementMapToGPG.find(achievement);
 	if (it != achievementMapToGPG.end() && !it->second.empty())
 		GPGManager::unlockAchievement(it->second);
@@ -126,8 +125,7 @@ inline void updateAchievementStatus(std::string achievement, int cur, int total)
 {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     GameCenterManager::updateAchievementStatus(achievement, 100.0 * (double)cur/total);
-#endif
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
     auto it = achievementMapToGPG.find(achievement);
 	if (it != achievementMapToGPG.end() && !it->second.empty())
 		GPGManager::updateAchievementStatus(it->second, cur);

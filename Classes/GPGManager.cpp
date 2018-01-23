@@ -8,18 +8,10 @@
 
 #include "GPGManager.h"
 
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-#ifndef __OBJC__
-#error This file must be compiled as an Objective-C++ source file!
-#endif
-
-#include "../proj.ios_mac/ios/AppController.h"
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 #include <jni.h>
 #include <string>
 #include "platform/android/jni/JniHelper.h"
-#endif
 
 #include <gpg/gpg.h>
 #include "DownloadPicture.h"
@@ -51,17 +43,41 @@ std::string getPlayerName()
 	return playerName;
 }
 
+inline std::string packContext(ScoreManager::AdditionalContext context)
+{
+    int32_t packedTime = MAX(context.time, 0xFFFFF);
+    int32_t packedMultiplier = MAX(context.maxMultiplier, 0x3FF);
+    int32_t packedShip = MAX(context.shipUsed, 3);
+    
+    std::string str(9, 'a');
+    str[0] = 'a' + packedTime & 0xF;
+    str[1] = 'a' + (packedTime >> 4) & 0xF;
+    str[2] = 'a' + (packedTime >> 8) & 0xF;
+    str[3] = 'a' + (packedTime >> 12) & 0xF;
+    str[4] = 'a' + (packedTime >> 16) & 0xF;
+    str[5] = 'a' + packedMultiplier & 0xF;
+    str[6] = 'a' + (packedMultiplier >> 4) & 0xF;
+    str[7] = 'a' + (packedMultiplier >> 8) & 0x3;
+    str[8] = 'a' + packedShip;
+    
+    return str;
+}
+
+inline ScoreManager::AdditionalContext unpackContext(std::string ctx)
+{
+    if (ctx.size() != 9) return { 0, 0, 0 };
+    
+    int32_t unpackedTime = (ctx[0] - 'a') | ((ctx[1] - 'a') << 4) | ((ctx[2] - 'a') << 8) | ((ctx[3] - 'a') << 12) | ((ctx[4] - 'a') << 16);
+    int32_t unpackedMultiplier = (ctx[5] - 'a') | ((ctx[6] - 'a') << 4) | ((ctx[7] - 'a') << 8);
+    int32_t unpackedShip = ctx[8] - 'a';
+    
+    return { unpackedTime, unpackedMultiplier, unpackedShip };
+}
+
 #define LEADERBOARD_ID "CgkIucWamdkeEAIQAQ"
 
 void GPGManager::initialize()
 {
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    log("View controller = %p", ((AppController*)[UIApplication sharedApplication].delegate).viewController);
-    
-	gpg::IosPlatformConfiguration config;
-	config.SetClientID("1054735770297-nec7sp5kg6d6ibvavmevlk6vs2i813v3.apps.googleusercontent.com");
-	config.SetOptionalViewControllerForPopups((UIViewController*)((AppController*)[UIApplication sharedApplication].delegate).viewController);
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	JniMethodInfo getActivityInfo;
 	auto loaded = JniHelper::getStaticMethodInfo(getActivityInfo, "org/cocos2dx/cpp/AppActivity", "getActivity", "()Landroid/app/Activity;");
 	CC_ASSERT(loaded);
@@ -71,7 +87,6 @@ void GPGManager::initialize()
 
 	gpg::AndroidPlatformConfiguration config;
 	config.SetActivity(activity);
-#endif
 
 	auto onAuthStarted = [](gpg::AuthOperation op)
 	{
@@ -171,6 +186,7 @@ void GPGManager::loadPlayerCurrentScore(std::function<void(const ScoreManager::S
 			cachedPlayerData.index = score.Rank();
 			cachedPlayerData.score = score.Value();
 			cachedPlayerData.name = getPlayerName();
+            cachedPlayerData.context = unpackContext(score.Metadata());
 		}
 
 		handler(cachedPlayerData);
@@ -246,6 +262,7 @@ struct scoreGatherer
 			{
 				currentScores[i].score = it->Score().Value();
 				currentScores[i].index = it->Score().Rank();
+                currentScores[i].context = unpackContext(it->Score().Metadata());
 
 				currentScores[i].isPlayer = it->PlayerId() == playerId;
 				
@@ -373,9 +390,9 @@ void GPGManager::loadHighscoresOnRange(ScoreManager::SocialConstraint socialCons
 	gatherer->requestToken();
 }
 
-void GPGManager::reportScore(int64_t score)
+void GPGManager::reportScore(int64_t score, ScoreManager::AdditionalContext context)
 {
-	if (gameServices) gameServices->Leaderboards().SubmitScore(LEADERBOARD_ID, score);
+	if (gameServices) gameServices->Leaderboards().SubmitScore(LEADERBOARD_ID, score, packContext(context));
 }
 
 void GPGManager::unlockAchievement(std::string id)

@@ -18,9 +18,9 @@ using namespace cocos2d;
 
 inline static CallFunc *postScore(int value)
 {
-    return CallFunc::create([value]
+    return CallFunc::create([value] () mutable
                             {
-                                Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("ScoreUpdate", const_cast<int*>(&value));
+                                Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("ScoreUpdate", &value);
                             });
 }
 

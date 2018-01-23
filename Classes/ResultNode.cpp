@@ -80,7 +80,7 @@ void ResultNode::sequence()
         button->setPosition(Vec2(firstPos + i*84, size.height*0.3));
         addChild(button);
         
-        auto label = Label::createWithTTF(buttons[i].string, LATO_REGULAR, 12);
+        auto label = Label::createWithSystemFont(buttons[i].string, LATO_REGULAR, 12);
         label->setPosition(button->getPosition() - Vec2(0, 48));
         addChild(label);
         
@@ -116,11 +116,11 @@ void ResultNode::sequence()
         }
     }
     
-    auto scoreText = Label::createWithTTF("000000", LATO_LIGHT, 96);
+    auto scoreText = Label::createWithSystemFont("000000", LATO_LIGHT, 96);
     scoreText->setPosition(Vec2(size.width/2, size.height*.7));
 	addChild(scoreText);
     
-    auto infoText = Label::createWithTTF("YOUR SCORE ON THIS GAME WAS", LATO_REGULAR, 16);
+    auto infoText = Label::createWithSystemFont("YOUR SCORE ON THIS GAME WAS", LATO_REGULAR, 16);
     infoText->setPosition(scoreText->getPosition() + Vec2(0, 50));
     addChild(infoText);
     
@@ -136,7 +136,7 @@ void ResultNode::sequence()
     
     if (!FacebookManager::hasPermission("publish_actions"))
     {
-        auto facebookLabel = Label::createWithTTF("You can tap the button below to allow\nthe game to publish on Facebook", LATO_REGULAR, 16);
+        auto facebookLabel = Label::createWithSystemFont("You can tap the button below to allow\nthe game to publish on Facebook", LATO_REGULAR, 16);
         facebookLabel->setAlignment(TextHAlignment::CENTER);
         facebookLabel->setPosition(size/2);
         addChild(facebookLabel);
@@ -201,7 +201,7 @@ void ResultNode::presentStatusLabel(float delay)
     
     string += ".";
     
-    auto statusLabel = Label::createWithTTF(string, LATO_REGULAR, 16);
+    auto statusLabel = Label::createWithSystemFont(string, LATO_REGULAR, 16);
     statusLabel->setAlignment(TextHAlignment::CENTER);
     statusLabel->setPosition(size/2);
     addChild(statusLabel);

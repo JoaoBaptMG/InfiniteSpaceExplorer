@@ -318,22 +318,6 @@ void PlayerNode::update(float delta)
     }
 }
 
-static const Vector<SpriteFrame*> &getAnimationFrames()
-{
-    static Vector<SpriteFrame*> frames(24);
-    if (frames.empty())
-    {
-        for (int i = 0; i < 24; i++)
-        {
-            std::string name = "ShieldAnimation" + ulongToString(i+1) + ".png";
-            auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(name);
-            frame->getTexture()->setAntiAliasTexParameters();
-            frames.pushBack(frame);
-        }
-    }
-    return frames;
-}
-
 void PlayerNode::addShield()
 {
     if (onShield) return;
@@ -341,9 +325,6 @@ void PlayerNode::addShield()
     auto glowingBorder = Sprite::createWithSpriteFrameName("ShieldGlowingBorder.png");
     auto blink = EaseSineInOut::create(FadeTo::create(0.4, 150));
     auto blink2 = EaseSineInOut::create(FadeTo::create(0.4, 255));
-    
-    auto animation = Animation::createWithSpriteFrames(getAnimationFrames(), 1.0/60.0);
-    auto animationAction = Animate::create(animation);
     
     auto animationFront = Sprite::create();
     auto animationBack = Sprite::create();

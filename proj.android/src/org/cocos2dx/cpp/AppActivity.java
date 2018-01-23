@@ -71,7 +71,13 @@ public class AppActivity extends Cocos2dxActivity
     {
         try
         {
-            activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            if (url.startsWith("market"))
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                                Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+            
+            activity.startActivity();
             return true;
         }
         catch (ActivityNotFoundException exc)

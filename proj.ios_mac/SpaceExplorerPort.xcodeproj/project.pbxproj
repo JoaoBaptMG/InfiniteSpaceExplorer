@@ -66,7 +66,6 @@
 		84055AE21D3F09DA000B4A04 /* DownloadedPhotoNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84055AC21D3F09DA000B4A04 /* DownloadedPhotoNode.cpp */; };
 		84055AE31D3F09DA000B4A04 /* FacebookLoginButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84055AC41D3F09DA000B4A04 /* FacebookLoginButton.cpp */; };
 		84D5068F1D68E19800C9C666 /* gpg.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84D5068D1D68E19800C9C666 /* gpg.bundle */; };
-		84D506901D68E19800C9C666 /* gpg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D5068E1D68E19800C9C666 /* gpg.framework */; };
 		84D506961D68E1A900C9C666 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84D506931D68E1A900C9C666 /* GoogleSignIn.bundle */; };
 		84D506991D68E1D500C9C666 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D506981D68E1D500C9C666 /* AddressBook.framework */; };
 		84D5069B1D68E1DA00C9C666 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D5069A1D68E1DA00C9C666 /* AssetsLibrary.framework */; };
@@ -83,13 +82,6 @@
 		84D506B11D68E23700C9C666 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D506AB1D68E23700C9C666 /* SystemConfiguration.framework */; };
 		84D506B41D68E25D00C9C666 /* GPGLoginButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84D506B21D68E25D00C9C666 /* GPGLoginButton.cpp */; };
 		84D506B71D68E26600C9C666 /* AchievementManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84D506B51D68E26600C9C666 /* AchievementManager.cpp */; };
-		84D506C01D68EC5800C9C666 /* GoogleAppUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D506B81D68EC5700C9C666 /* GoogleAppUtilities.framework */; };
-		84D506C11D68EC5800C9C666 /* GoogleAuthUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D506B91D68EC5700C9C666 /* GoogleAuthUtilities.framework */; };
-		84D506C21D68EC5800C9C666 /* GoogleNetworkingUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D506BA1D68EC5700C9C666 /* GoogleNetworkingUtilities.framework */; };
-		84D506C31D68EC5800C9C666 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D506BB1D68EC5700C9C666 /* GoogleOpenSource.framework */; };
-		84D506C51D68EC5800C9C666 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D506BD1D68EC5800C9C666 /* GoogleSignIn.framework */; };
-		84D506C61D68EC5800C9C666 /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D506BE1D68EC5800C9C666 /* GoogleSymbolUtilities.framework */; };
-		84D506C71D68EC5800C9C666 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D506BF1D68EC5800C9C666 /* GoogleUtilities.framework */; };
 		84DF858F1D442D4A004D8A77 /* AppCatalog.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84DF857A1D442D4A004D8A77 /* AppCatalog.xcassets */; };
 		84DF868E1D446E9A004D8A77 /* assets2x in Resources */ = {isa = PBXBuildFile; fileRef = 84DF86891D446E9A004D8A77 /* assets2x */; };
 		84DF868F1D446E9A004D8A77 /* assets3x in Resources */ = {isa = PBXBuildFile; fileRef = 84DF868A1D446E9A004D8A77 /* assets3x */; };
@@ -282,7 +274,7 @@
 		84DF869B1D447201004D8A77 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		84DF869C1D447201004D8A77 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		84DF86A11D447687004D8A77 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
-		84DF86A51D451CF1004D8A77 /* GPGManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = GPGManager.cpp; sourceTree = "<group>"; };
+		84DF86A51D451CF1004D8A77 /* GPGManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = GPGManager.cpp; sourceTree = "<group>"; };
 		84DF86A61D451CF1004D8A77 /* GPGManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPGManager.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -302,8 +294,6 @@
 			files = (
 				84D506AC1D68E23700C9C666 /* MediaPlayer.framework in Frameworks */,
 				84D506AD1D68E23700C9C666 /* QuartzCore.framework in Frameworks */,
-				84D506C61D68EC5800C9C666 /* GoogleSymbolUtilities.framework in Frameworks */,
-				84D506C31D68EC5800C9C666 /* GoogleOpenSource.framework in Frameworks */,
 				84D506AE1D68E23700C9C666 /* SafariServices.framework in Frameworks */,
 				84D506AF1D68E23700C9C666 /* Security.framework in Frameworks */,
 				84D506B01D68E23700C9C666 /* StoreKit.framework in Frameworks */,
@@ -313,13 +303,9 @@
 				84D506A21D68E1F500C9C666 /* CoreMotion.framework in Frameworks */,
 				84D506A31D68E1F500C9C666 /* CoreTelephony.framework in Frameworks */,
 				294D0D641D0D56D500F7F5D4 /* CoreText.framework in Frameworks */,
-				84D506C01D68EC5800C9C666 /* GoogleAppUtilities.framework in Frameworks */,
 				84D5069D1D68E1E100C9C666 /* CoreData.framework in Frameworks */,
 				84D5069B1D68E1DA00C9C666 /* AssetsLibrary.framework in Frameworks */,
 				84D506991D68E1D500C9C666 /* AddressBook.framework in Frameworks */,
-				84D506C51D68EC5800C9C666 /* GoogleSignIn.framework in Frameworks */,
-				84D506901D68E19800C9C666 /* gpg.framework in Frameworks */,
-				84D506C21D68EC5800C9C666 /* GoogleNetworkingUtilities.framework in Frameworks */,
 				84DF86A21D447687004D8A77 /* GameKit.framework in Frameworks */,
 				84DF869D1D447201004D8A77 /* FBSDKCoreKit.framework in Frameworks */,
 				84DF869E1D447201004D8A77 /* FBSDKLoginKit.framework in Frameworks */,
@@ -330,12 +316,10 @@
 				D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				84D506C11D68EC5800C9C666 /* GoogleAuthUtilities.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */,
 				BF1712471292920000B8313A /* libz.dylib in Frameworks */,
 				BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */,
-				84D506C71D68EC5800C9C666 /* GoogleUtilities.framework in Frameworks */,
 				D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */,
 				D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */,
 				D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */,
@@ -832,6 +816,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				ENABLE_BITCODE = NO;
@@ -873,6 +858,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				ENABLE_BITCODE = NO;

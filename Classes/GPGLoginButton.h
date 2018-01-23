@@ -12,7 +12,7 @@
 #include "cocos2d.h"
 #include "GPGManager.h"
 
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
 class GPGLoginButton : public cocos2d::Sprite
 {

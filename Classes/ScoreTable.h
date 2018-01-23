@@ -32,7 +32,7 @@ class ScoreTable : public cocos2d::Node
     cocos2d::Size preferredSize;
     
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-    cocos2d::EventListenerCustom *gameCenterLoadedListener;
+    cocos2d::EventListenerCustom *socialManagersLoadedListener;
 #endif
     
     cocos2d::EventListenerTouchOneByOne *timeConstraintButtonListeners[(int)ScoreManager::TimeConstraint::NUMBER_OF_TIME_CONSTRAINTS];

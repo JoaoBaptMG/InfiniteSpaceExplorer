@@ -22,16 +22,17 @@ namespace ScoreManager
     enum class Source
     {
         //EXAMPLE,
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-        GAME_CENTER,
-#endif
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-		GOOGLE_PLAY_GAMES,
-#endif
+        PLATFORM_SPECIFIC,
         FACEBOOK,
         NUMBER_OF_SOURCES
     };
     
+    struct AdditionalContext
+    {
+        int32_t time, maxMultiplier, shipUsed;
+        bool isValid() const { return shipUsed != 0; }
+    };
+
     struct ScoreData
     {
         long index;
@@ -39,10 +40,11 @@ namespace ScoreManager
         std::string textureKey;
         int64_t score;
         bool isPlayer;
+        AdditionalContext context;
         
         inline ScoreData() : ScoreData(0, "", 0) {}
         inline ScoreData(long index, std::string name, int64_t score, bool isPlayer = false) :
-        index(index), name(name), score(score), textureKey(""), isPlayer(isPlayer) {}
+        index(index), name(name), score(score), textureKey(""), isPlayer(isPlayer), context() {}
     };
     
     void init();

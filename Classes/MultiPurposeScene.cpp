@@ -184,7 +184,7 @@ void MultiPurposeLayer::createLayout1Title()
     Vec2 pos(size.width/2, size.height/2 - 104);
     shipLabel->setPosition(pos);
     
-    auto pointsRequiredLabel = Label::createWithTTF(getLockedText(global_ShipSelect), LATO_BOLD, 12);
+    auto pointsRequiredLabel = Label::createWithSystemFont(getLockedText(global_ShipSelect), LATO_BOLD, 12);
     pos -= Vec2(0, 24);
     pointsRequiredLabel->setPosition(floorf(pos.x), floorf(pos.y));
     
@@ -330,7 +330,7 @@ void MultiPurposeLayer::createLayout1Pause()
         button->setPosition(Vec2(firstPos + i*84, size.height*0.25));
         containerNode->addChild(button);
         
-        auto label = Label::createWithTTF(buttons[i].string, LATO_REGULAR, 12);
+        auto label = Label::createWithSystemFont(buttons[i].string, LATO_REGULAR, 12);
         label->setPosition(button->getPosition() - Vec2(0, 48));
         containerNode->addChild(label);
         
@@ -343,11 +343,11 @@ void MultiPurposeLayer::createLayout1Pause()
                                       });
     }
     
-    auto scoreText = Label::createWithTTF(ulongToString(global_GameScore, 6), LATO_LIGHT, 80);
+    auto scoreText = Label::createWithSystemFont(ulongToString(global_GameScore, 6), LATO_LIGHT, 80);
     scoreText->setPosition(Vec2((size.width - 48)/2, size.height*.75));
     containerNode->addChild(scoreText, 2);
     
-    auto infoText = Label::createWithTTF("CURRENT SCORE", LATO_REGULAR, 12);
+    auto infoText = Label::createWithSystemFont("CURRENT SCORE", LATO_REGULAR, 12);
     infoText->setPosition(scoreText->getPosition() + Vec2(0, 40));
     containerNode->addChild(infoText, 3);
 }
@@ -428,7 +428,7 @@ void MultiPurposeLayer::createLayout2()
         containerNode->addChild(sprite, 300);
         
         auto value = UserDefault::getInstance()->getIntegerForKey(sliders[i].defaultKey);
-        auto label = Label::createWithTTF(std::string(sliders[i].text) + ": " + ulongToString(value), LATO_REGULAR, 8);
+        auto label = Label::createWithSystemFont(std::string(sliders[i].text) + ": " + ulongToString(value), LATO_REGULAR, 8);
         label->setHorizontalAlignment(TextHAlignment::LEFT);
         label->setTextColor(Color4B(102, 102, 102, 255));
         containerNode->addChild(label, 400);
@@ -458,7 +458,7 @@ void MultiPurposeLayer::createLayout2()
     
     auto totalWidth = fbButton->getContentSize().width;
     
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	auto gpgLoginButton = GPGLoginButton::create();
 	gpgLoginButton->setPosition(fbButton->getPosition() + Vec2(fbButton->getContentSize().width/2 + 8 + gpgLoginButton->getContentSize().width/2, 0));
 	buttonsNode->addChild(gpgLoginButton);
@@ -492,12 +492,9 @@ void MultiPurposeLayer::createLayout2()
             openURL("http://infinitespaceexplorer.com/");
     });
     
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-    auto destPos = Vec2(24, size.height - 24);
-    
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     auto gameCenterButton = createHoverButton("IconGameCenter");
-    gameCenterButton->setPosition(destPos);
+    gameCenterButton->setPosition(Vec2(24, size.height - 24));
     containerNode->addChild(gameCenterButton);
     
     gameCenterButton->addTouchEventListener([this] (Ref* button, ui::Widget::TouchEventType type)
@@ -507,9 +504,8 @@ void MultiPurposeLayer::createLayout2()
         else if (type == ui::Widget::TouchEventType::ENDED)
             GameCenterManager::presentWidget();
     });
-    
-    destPos += Vec2(gameCenterButton->getContentSize().width/2 + 16, 0);
-#endif
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    auto destPos = Vec2(24, size.height - 24);
     
     auto gpgSprite = Sprite::createWithSpriteFrameName("IconGPG.png");
     gpgSprite->setPosition(destPos + Vec2(gpgSprite->getContentSize().width/2, 0));
@@ -606,17 +602,17 @@ void MultiPurposeLayer::onEnterTransitionDidFinish()
     {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
         std::string callToAction = "Rate our game on App Store if you like it! It will help us improve your experience.";
-        std::string url = "itms-apps://itunes.apple.com/app/id1024737542";
+        auto action = [] { openURL("itms-apps://itunes.apple.com/app/id1024737542"); };
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
         std::string callToAction = "Rate our game on Play Store if you like it! It will help us improve your experience.";
-        std::string url = "";
+        auto action = [] { openURL("market://details?id=joaobapt.SpaceExplorer") && openURL("http://play.google.com/store/apps/details?id=joaobapt.SpaceExplorer"); };
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
 		std::string callToAction = "Rate our game on Windows Store if you like it! It will help us improve your experience.";
-		std::string url = "";
+        auto action = [] {};
 #endif
         
         UserDefault::getInstance()->setIntegerForKey("CountdownToRate", -1);
-        presentMessage(callToAction, "Leave us a review!", "Sure!", "Not now...", [=] { openURL(url); }, [] {});
+        presentMessage(callToAction, "Leave us a review!", "Sure!", "Not now...", action, [] {});
     }
     
     auto likeOnFacebook = UserDefault::getInstance()->getIntegerForKey("CountdownToLike", 14);

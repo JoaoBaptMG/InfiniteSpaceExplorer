@@ -113,7 +113,7 @@ void FacebookManager::requestPublishPermissions(std::function<void(FacebookManag
         }
         else
         {
-            publishState = [result.grantedPermissions containsObject:@"user_friends"] ? PermissionState::ACCEPTED : PermissionState::DECLINED;
+            publishState = [result.grantedPermissions containsObject:@"publish_actions"] ? PermissionState::ACCEPTED : PermissionState::DECLINED;
             callback(publishState, "");
         }
     }];

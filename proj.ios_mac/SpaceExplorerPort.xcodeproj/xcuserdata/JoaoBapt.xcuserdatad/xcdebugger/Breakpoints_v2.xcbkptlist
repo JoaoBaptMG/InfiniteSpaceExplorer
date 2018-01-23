@@ -19,13 +19,45 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/DownloadPicture.cpp"
-            timestampString = "493423248.83023"
+            filePath = "../Classes/AchievementManager.cpp"
+            timestampString = "538358462.123317"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "downloadPicture(std::string path, std::string key, std::function&lt;void(cocos2d::Texture2D*)&gt; callback)"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "syncStat(std::string stat)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/AchievementManager.cpp"
+            timestampString = "538358462.123402"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "syncStat(std::string stat)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/ScoreTable.cpp"
+            timestampString = "538358462.123473"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "ScoreWidget::init(float screenWidth)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +67,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/DownloadPicture.cpp"
-            timestampString = "493503384.242679"
+            filePath = "../Classes/ScoreTable.cpp"
+            timestampString = "538358462.123543"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "downloadPicture(std::string path, std::string key, std::function&lt;void(cocos2d::Texture2D*)&gt; callback)"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "ScoreWidget::updateScoreData(const ScoreManager::ScoreData &amp;data)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

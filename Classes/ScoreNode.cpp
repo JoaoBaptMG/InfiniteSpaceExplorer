@@ -86,8 +86,8 @@ bool ScoreNode::init(const Size &screenSize)
     multiplier = 1;
     multiplierTime = INFINITY;
     
-    scoreText = Label::createWithTTF("000000", "fonts/Lato/Lato-Bold.ttf", 24);
-    multiplierText = Label::createWithTTF("1.0x", "fonts/Lato/Lato-Light.ttf", 12);
+    scoreText = Label::createWithSystemFont("000000", "fonts/Lato/Lato-Bold.ttf", 24);
+    multiplierText = Label::createWithSystemFont("1.0x", "fonts/Lato/Lato-Light.ttf", 12);
     
     scoreText->setHorizontalAlignment(TextHAlignment::RIGHT);
     scoreText->setVerticalAlignment(TextVAlignment::TOP);
@@ -202,7 +202,7 @@ void ScoreNode::updateMultiplierText(bool createText)
         
         auto size = getScene()->getContentSize();
         
-        auto text = Label::createWithTTF("Score multiplier: " + multiplierText->getString() + "!", "fonts/Lato/Lato-Regular.ttf", 24);
+        auto text = Label::createWithSystemFont("Score multiplier: " + multiplierText->getString() + "!", "fonts/Lato/Lato-Regular.ttf", 24);
         text->setPosition(size/2);
         
         text->setName("MultiplierText");
@@ -272,7 +272,7 @@ void ScoreNode::updateScoreTracking()
         
         if (data.index > -1)
         {
-            auto newLabel = Label::createWithTTF(data.name + ": " + longToString(data.score, 6), "fonts/Lato/Lato-Regular.ttf", 16);
+            auto newLabel = Label::createWithSystemFont(data.name + ": " + longToString(data.score, 6), "fonts/Lato/Lato-Regular.ttf", 16);
             newLabel->setPosition(getScene()->getContentSize().width/2, getScene()->getContentSize().height - 32);
             newLabel->setTextColor(data.isPlayer ? Color4B::YELLOW : Color4B::WHITE);
             addChild(newLabel);
